@@ -3,7 +3,7 @@
 
   config = lib.mkIf config.cfi2017.graphical.fuzzel.enable {
     home-manager.users.${config.cfi2017.user.name} = {
-      home.packages = with pkgs; [ papirus-icon-theme ];
+      home.packages = with pkgs; [ ];
 
       programs.fuzzel = {
         enable = true;
