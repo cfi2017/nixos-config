@@ -6,7 +6,7 @@
     nixpkgs.config = { allowUnfree = true; };
 
     # timezone
-    time.timeZone = config.cfi2017.timeTone;
+    time.timeZone = config.cfi2017.timeZone;
 
     # zsh everywhere uwu
     programs.zsh.enable = true;
