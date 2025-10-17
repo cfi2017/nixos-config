@@ -17,6 +17,7 @@
         "sd_mod"
       ];
       kernelModules = [ "virtio" ];
+      luks.devices.cryptswap.device = "/dev/disk/by-partlabel/cryptswap";
     };
     kernelParams = [ "mitigations=off" ];
     kernelModules = [ "kvm-intel" ];
