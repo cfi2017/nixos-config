@@ -8,7 +8,7 @@
       wl-clipboard
       slurp
       grim
-      catppuccin-sddm.override
+      catppuccin-sddm # .override
       # {
       #   flavor = config.cfi2017.colorScheme.flavor;
       #   accent = config.cfi2017.colorScheme.accent;
