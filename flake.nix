@@ -24,7 +24,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpaper = {
-      url = "github:hyprvm/hyprpaper";
+      url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
