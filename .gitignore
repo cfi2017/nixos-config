@@ -1,0 +1,7 @@
+*.tar.gz
+.vscode
+.DS_Store
+idea/
+result/
+.direnv/
+.pre-commit-config.yaml

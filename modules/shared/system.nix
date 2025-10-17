@@ -1,0 +1,52 @@
+# Shared System Configuration
+
+{ config, lib, pkgs, ... }: {
+  config = {
+    # Allow unfree because we're not free :(
+    nixpkgs.config = { allowUnfree = true; };
+
+    # timezone
+    time.timeZone = config.cfi2017.timeTone;
+
+    # zsh everywhere uwu
+    programs.zsh.enable = true;
+    environment.shells = with pkgs; [ zsh ];
+
+    # default editor
+    environment.variables.EDITOR = config.cfi2017.user.editor;
+
+    # fonts
+    fonts = {
+      packages = with pkgs; [
+        material-design-icons
+        font-awesome
+        nerd-fonts.symbols-only
+        nerd-fonts._0xproto
+      ];
+    };
+
+    # nix config
+    nix = {
+      enable = true;
+      package = pkgs.nix;
+      settings = {
+        trusted-users = [ config.cfi2017.user.name ];
+        experimental-features = [ "nix-command" "flakes" ];
+        warn-dirty = false;
+        auto-optimise-store = false;
+      };
+
+      # garbage collection
+      gc = {
+        automatic = true;
+        interval = {
+          Hour = 1;
+          Minute = 0;
+          Weekday = 7;
+        };
+        options = "--delete-older-than 7d";
+      };
+    };
+
+  };
+}
