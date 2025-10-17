@@ -63,9 +63,28 @@
           lib = nixpkgs.lib;
         }) nixpkgs.lib;
 
-      # TODO: this
-      sharedModules = [ ];
-      nixosModules = [ ];
+      sharedModules = [
+        ({ inputs, outputs, lib, config, pkgs, ... }: {
+          nixpkgs = {
+            overlays = [
+              (import ./overlays { inherit inputs; }).additions
+              (import ./overlays { inherit inputs; }).stable-packages
+              (import ./overlays { inherit inputs; }).force-latest
+            ];
+          };
+        })
+
+        ./modules/shared
+      ];
+      nixosModules = [
+        sops-nix.nixosModules.sops
+        impermanence.nixosModule
+        home-manager.nixosModules.home-manager
+        catppuccin.nixosModules.catppuccin
+        nur.modules.nixos.default
+
+        ./modules/nixos
+      ];
 
     in {
       packages = forAllSystems (system:
