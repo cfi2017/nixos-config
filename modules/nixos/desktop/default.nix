@@ -20,10 +20,6 @@
         key_management.enable = lib.mkDefault true;
         theme.enable = lib.mkDefault true;
         sound.enable = lib.mkDefault true;
-        applications = {
-          firefox.enable = lib.mkDefault true;
-          obsidian.enable = lib.mkDefault true;
-        };
       };
     };
   };
