@@ -2,6 +2,7 @@
   imports = [
     ./bat.nix
     ./btop.nix
+    ./gpg.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix

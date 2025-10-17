@@ -11,7 +11,7 @@
 
   cfi2017 = {
     stateVersion = "25.05";
-    # gpg.enable = true;
+    gpg.enable = true;
     persistence.enable = true;
     core = {
       zfs = {
