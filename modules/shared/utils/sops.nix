@@ -44,24 +44,24 @@
           owner = config.cfi2017.user.name;
         };
 
-        # GPG keys for Linux
-        "gpg/private_key" = {
-          path = "${config.cfi2017.user.homeDirectory}/.gnupg/private-key.asc";
-          owner = config.cfi2017.user.name;
-          mode = "0600";
-        };
-
-        "gpg/public_key" = {
-          path = "${config.cfi2017.user.homeDirectory}/.gnupg/public-key.asc";
-          owner = config.cfi2017.user.name;
-          mode = "0644";
-        };
-
-        "gpg/trust_db" = {
-          path = "${config.cfi2017.user.homeDirectory}/.gnupg/trust-db.txt";
-          owner = config.cfi2017.user.name;
-          mode = "0600";
-        };
+        # # GPG keys for Linux
+        # "gpg/private_key" = {
+        #   path = "${config.cfi2017.user.homeDirectory}/.gnupg/private-key.asc";
+        #   owner = config.cfi2017.user.name;
+        #   mode = "0600";
+        # };
+        #
+        # "gpg/public_key" = {
+        #   path = "${config.cfi2017.user.homeDirectory}/.gnupg/public-key.asc";
+        #   owner = config.cfi2017.user.name;
+        #   mode = "0644";
+        # };
+        #
+        # "gpg/trust_db" = {
+        #   path = "${config.cfi2017.user.homeDirectory}/.gnupg/trust-db.txt";
+        #   owner = config.cfi2017.user.name;
+        #   mode = "0600";
+        # };
       })
 
       # Darwin-specific secrets
@@ -71,24 +71,24 @@
           owner = config.cfi2017.user.name;
         };
 
-        # GPG keys for Darwin
-        "gpg/private_key" = {
-          path = "${config.cfi2017.user.homeDirectory}/.gnupg/private-key.asc";
-          owner = config.cfi2017.user.name;
-          mode = "0600";
-        };
-
-        "gpg/public_key" = {
-          path = "${config.cfi2017.user.homeDirectory}/.gnupg/public-key.asc";
-          owner = config.cfi2017.user.name;
-          mode = "0644";
-        };
-
-        "gpg/trust_db" = {
-          path = "${config.cfi2017.user.homeDirectory}/.gnupg/trust-db.txt";
-          owner = config.cfi2017.user.name;
-          mode = "0600";
-        };
+        # # GPG keys for Darwin
+        # "gpg/private_key" = {
+        #   path = "${config.cfi2017.user.homeDirectory}/.gnupg/private-key.asc";
+        #   owner = config.cfi2017.user.name;
+        #   mode = "0600";
+        # };
+        #
+        # "gpg/public_key" = {
+        #   path = "${config.cfi2017.user.homeDirectory}/.gnupg/public-key.asc";
+        #   owner = config.cfi2017.user.name;
+        #   mode = "0644";
+        # };
+        #
+        # "gpg/trust_db" = {
+        #   path = "${config.cfi2017.user.homeDirectory}/.gnupg/trust-db.txt";
+        #   owner = config.cfi2017.user.name;
+        #   mode = "0600";
+        # };
       })
     ];
   };
