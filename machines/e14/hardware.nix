@@ -17,12 +17,13 @@
         "sd_mod"
       ];
       kernelModules = [ "virtio" ];
-      luks.devices.cryptswap.device = "/dev/disk/by-partlabel/cryptswap";
+      luks.devices.cryptswap.device = "/dev/nvme0n1p3";
     };
     kernelParams = [ "mitigations=off" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    resumeDevice = "/dev/disk/by-label/swap";
   };
 
   fileSystems = {
