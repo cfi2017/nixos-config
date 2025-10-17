@@ -45,11 +45,11 @@
           size = 10;
         };
 
-        catppuccin = {
-          flavor = config.cfi2017.colorScheme.flavor;
-          accent = config.cfi2017.colorScheme.accent;
-          size = "compact";
-        };
+        # catppuccin = {
+        #   flavor = config.cfi2017.colorScheme.flavor;
+        #   accent = config.cfi2017.colorScheme.accent;
+        #   size = "compact";
+        # };
       };
 
       qt = {
