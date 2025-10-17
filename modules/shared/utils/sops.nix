@@ -21,13 +21,6 @@
     };
 
     secrets = lib.mkMerge [
-      # Shared secrets (available on both Linux and Darwin)
-      {
-        openrouter_api_key = {
-          owner = config.cfi2017.user.name;
-          mode = "0600";
-        };
-      }
 
       # Linux-specific secrets
       (lib.mkIf config.cfi2017.isLinux {
