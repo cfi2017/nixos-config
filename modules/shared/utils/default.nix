@@ -1,6 +1,5 @@
 { ... }: {
   imports = [
-    ./packages.nix
     ./bat.nix
     ./btop.nix
     ./direnv.nix
@@ -13,7 +12,6 @@
     ./ripgrep.nix
     ./sops.nix
     ./ssh.nix
-    ./starship.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
