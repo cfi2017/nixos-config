@@ -39,12 +39,13 @@
       # garbage collection
       gc = {
         automatic = true;
-        interval = {
-          Hour = 1;
-          Minute = 0;
-          Weekday = 7;
-        };
-        options = "--delete-older-than 7d";
+        dates = "weekly";
+        options = "--delete-older-than 14d";
+      };
+
+      optimize = {
+        automatic = true;
+        dates = "weekly";
       };
     };
 
