@@ -8,15 +8,15 @@
       wl-clipboard
       slurp
       grim
-      catppuccin-sddm.override
-      {
-        flavor = config.cfi2017.colorScheme.flavor;
-        accent = config.cfi2017.colorScheme.accent;
-        font = config.cfi2017.font;
-        fontSize = "9";
-        background = "${./_assets/lockscreen.png}";
-        loginBackground = true;
-      }
+      catppuccin-sddm # .override
+      # {
+      #   flavor = config.cfi2017.colorScheme.flavor;
+      #   accent = config.cfi2017.colorScheme.accent;
+      #   font = config.cfi2017.font;
+      #   fontSize = "9";
+      #   background = "${./_assets/lockscreen.png}";
+      #   loginBackground = true;
+      # }
     ];
 
     nix.settings = {
