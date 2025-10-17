@@ -43,7 +43,7 @@
         options = "--delete-older-than 14d";
       };
 
-      optimize = {
+      optimise = {
         automatic = true;
         dates = "weekly";
       };
