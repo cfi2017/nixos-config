@@ -18,6 +18,7 @@
       ];
       kernelModules = [ "virtio" ];
       luks.devices.cryptswap.device = "/dev/nvme0n1p3";
+      supportedFileSystems = [ "zfs" ];
     };
     kernelParams = [ "mitigations=off" ];
     kernelModules = [ "kvm-intel" ];
