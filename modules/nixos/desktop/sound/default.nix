@@ -25,7 +25,6 @@
           };
         };
       };
-      pulseaudio.enable = false;
     };
 
     services.pipewire = {

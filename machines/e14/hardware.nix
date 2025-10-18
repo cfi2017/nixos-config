@@ -66,7 +66,6 @@
   hardware = {
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
-    opengl.enable = true;
     graphics.enable = true;
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.latest;
