@@ -1,11 +1,4 @@
 { config, lib, ... }: {
-  imports = [
-    ./connectivity
-    ./desktop
-    ./services
-    ./storage
-    ./system.nix
-    ./utils
-    ./virtualization
-  ];
+  imports =
+    [ ./desktop ./services ./storage ./system.nix ./utils ./virtualization ];
 }
