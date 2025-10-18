@@ -1,1 +1,4 @@
-{ ... }: { imports = [ ./wireless.nix ]; }
+{ ... }: {
+  imports = [ ./wireless.nix ];
+  networking.networkmanager.enable = true;
+}
