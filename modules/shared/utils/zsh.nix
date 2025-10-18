@@ -74,26 +74,28 @@
           autocd = true;
           history = {
             expireDuplicatesFirst = true;
-            path = if config.cfi2017.persistence.enable then
-              "${config.cfi2017.persistence.dataPrefix}/home/${config.cfi2017.user.name}/.local/share/zsh/zsh_history"
-            else
-              "${config.cfi2017.user.homeDirectory}/.local/share/zsh/zsh_history";
+            path =
+              if config.cfi2017.persistence.enable then
+                "${config.cfi2017.persistence.dataPrefix}/home/${config.cfi2017.user.name}/.local/share/zsh/zsh_history"
+              else
+                "${config.cfi2017.user.homeDirectory}/.local/share/zsh/zsh_history";
           };
 
           sessionVariables = {
             DEFAULT_USER = config.cfi2017.user.name;
-            PATH = if config.cfi2017.isDarwin then
-              "/opt/homebrew/bin:/Users/${config.cfi2017.user.name}/Library/Python/3.9/bin:$PATH"
-            else
-              "$PATH";
+            PATH =
+              if config.cfi2017.isDarwin then
+                "/opt/homebrew/bin:/Users/${config.cfi2017.user.name}/Library/Python/3.9/bin:$PATH"
+              else
+                "$PATH";
             GPG_TTY = "$(tty)";
           };
 
           shellAliases = {
             home = "cd ~/";
-            config = "cd ~/projects/personal/nixos-config";
-            work = "cd ~/projects/work";
-            personal = "cd ~/projects/personal";
+            config = "cd ~/code/personal/nixos-config";
+            work = "cd ~/code/work";
+            personal = "cd ~/code/personal";
             gcl = "git clone";
             cat = "bat";
             ls = "eza --icons --group-directories-first";

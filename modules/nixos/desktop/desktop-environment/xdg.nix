@@ -4,7 +4,7 @@
   config = lib.mkIf config.cfi2017.graphical.xdg.enable {
     cfi2017.core.zfs.homeDataLinks =
       [ "documents" "music" "pictures" "videos" ];
-    cfi2017.core.zfs.homeCacheLinks = [ "downloads" "projects" ];
+    cfi2017.core.zfs.homeCacheLinks = [ "downloads" "code" ];
 
     xdg = {
       portal = {
