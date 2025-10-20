@@ -18,7 +18,10 @@
     };
 
     security = {
-      sudo = { enable = true; };
+      sudo = { 
+        enable = true; 
+        wheelNeedsPassword = false;
+      };
 
       doas = {
         enable = true;

@@ -10,6 +10,7 @@
     ./kitty.nix
     ./nh.nix
     ./packages.nix
+    ./neovim.nix
     ./ripgrep.nix
     ./sops.nix
     ./ssh.nix

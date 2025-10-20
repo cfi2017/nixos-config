@@ -3,6 +3,7 @@
     cfi2017.development-packages = {
       enable = lib.mkEnableOption "shared development packages";
       tools = {
+        c = lib.mkEnableOption "C development";
         go = lib.mkEnableOption "Go development";
         python = lib.mkEnableOption "Python development";
         rust = lib.mkEnableOption "Rust development";
@@ -22,6 +23,11 @@
     home-manager.users.${config.cfi2017.user.name} = {
       home.packages = with pkgs;
         lib.flatten [
+          # C Tools
+          (lib.optionals config.cfi2017.development-packages.tools.c [
+            gcc
+            gnumake
+          ])
           # Go Tools
           (lib.optionals config.cfi2017.development-packages.tools.go [
             go

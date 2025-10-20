@@ -13,6 +13,8 @@
             push.autoSetupRemote = true;
             pull.rebase = true;
 
+            user.signingKey = "~/.ssh/id_ed25519.pub";
+
             safe.directory =
               "${config.cfi2017.user.homeDirectory}/${config.cfi2017.user.codeDir}/personal/nixos-config";
 

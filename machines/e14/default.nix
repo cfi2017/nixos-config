@@ -20,6 +20,21 @@
         rootDataset = "rpool/local/root";
       };
     };
+    development-packages = {
+      enable = true;
+      tools = {
+        c = true;
+        go = true;
+        rust = true;
+        k8s = true;
+        iac = true;
+        networking = true;
+        security = true;
+        infra = true;
+        cloud = true;
+        dev = true;
+      };
+    };
     development = {
       virtualisation = {
         docker.enable = true;

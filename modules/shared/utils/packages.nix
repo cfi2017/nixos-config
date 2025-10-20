@@ -19,6 +19,7 @@
       tcpdump
       nvd
       tree
+      vim
     ];
 
     # User Packages
@@ -36,6 +37,11 @@
           autojump
           # inputs.nixvim.packages.${pkgs.system}.default
           ffmpeg
+
+	  # language servers
+	  bash-language-server
+	  rust-analyzer
+	  nil nixd
         ];
       };
     };
