@@ -76,7 +76,8 @@
             group = config.cfi2017.user.name;
             hashedPasswordFile =
               config.sops.secrets."users/${config.cfi2017.user.name}".path;
-            extraGroups = lib.mkIf config.cfi2017.isLinux [ "systemd-journal" ];
+            extraGroups =
+              lib.mkIf config.cfi2017.isLinux [ "systemd-journal" "wheel" ];
           })
           # Darwin-specific user configuration (no extra fields needed)
         ];
