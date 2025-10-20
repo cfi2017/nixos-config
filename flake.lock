@@ -49,6 +49,71 @@
         "type": "github"
       }
     },
+    "binaryninja": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "binaryninja-flake",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760834122,
+        "narHash": "sha256-TbfaQ0hNCkWBb8TQ5RV/mYG1NOmyVjYNuQuujD51DKI=",
+        "owner": "jchv",
+        "repo": "nix-binary-ninja",
+        "rev": "ede7478cdf2997f48cfbfd2888266390d990f021",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jchv",
+        "repo": "nix-binary-ninja",
+        "type": "github"
+      }
+    },
+    "binaryninja-flake": {
+      "inputs": {
+        "binaryninja": "binaryninja",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760971933,
+        "lfs": true,
+        "narHash": "sha256-dYHdD7HWjaCU4Y7K6jGOm22vI228nqAKj+W1KbjRjIw=",
+        "ref": "refs/heads/main",
+        "rev": "b1c1810241832f19b6f65721d0eef5fc3e0f1016",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/cfi2017/binaryninja-flake"
+      },
+      "original": {
+        "lfs": true,
+        "type": "git",
+        "url": "ssh://git@github.com/cfi2017/binaryninja-flake"
+      }
+    },
+    "burpsuite": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759396775,
+        "narHash": "sha256-KWx6JG/nZkfsE/5gj9BGfThlpe1UfYJ+o0rvVaqrhOg=",
+        "owner": "xiv3r",
+        "repo": "Burpsuite-Professional",
+        "rev": "0f09ae71e4786501f99b3f1f11cd5f1911739d69",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xiv3r",
+        "repo": "Burpsuite-Professional",
+        "type": "github"
+      }
+    },
     "catppuccin": {
       "inputs": {
         "nixpkgs": [
@@ -119,6 +184,24 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -336,7 +419,7 @@
           "nixpkgs"
         ],
         "pre-commit-hooks": "pre-commit-hooks",
-        "systems": "systems",
+        "systems": "systems_2",
         "xdph": "xdph"
       },
       "locked": {
@@ -544,7 +627,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_2"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1760023949,
@@ -569,7 +652,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1760120448,
@@ -743,15 +826,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1760961104,
-        "narHash": "sha256-sTbRGjPhj+UBKUDmpxAXyJjfTm+EgMiBKyyJLtP/yxI=",
+        "lastModified": 1760962228,
+        "lfs": true,
+        "narHash": "sha256-1o53dkKBn2d2Qq+VBTfH5kL3d+ew0hT4sXG/PsglJ98=",
         "ref": "refs/heads/main",
-        "rev": "9e6fd019a2d3b5e713ac03d65b6651a7132d32cd",
-        "revCount": 5,
+        "rev": "02cc3cca2e9a552c743f1727d2601cda479112f2",
+        "revCount": 6,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/ida-pro-flake"
       },
       "original": {
+        "lfs": true,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/ida-pro-flake"
       }
@@ -862,11 +947,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1760960140,
-        "narHash": "sha256-TxHm4Dj7mTOSTasGioIEBBW0mGykEKJ9UK5ktiPBMCs=",
+        "lastModified": 1760961556,
+        "narHash": "sha256-/6FtO7d2O38am11hRKjniyXdGhwyBZ86JsRac8teZZE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "62ce7da0f20dcf1344cf3b0c077d74b9bebfc943",
+        "rev": "42bad2f30434914eee5d878e5a357b195ff00ecf",
         "type": "github"
       },
       "original": {
@@ -989,6 +1074,8 @@
     },
     "root": {
       "inputs": {
+        "binaryninja-flake": "binaryninja-flake",
+        "burpsuite": "burpsuite",
         "catppuccin": "catppuccin",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
@@ -1029,16 +1116,16 @@
     },
     "systems": {
       "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default-linux",
+        "repo": "default",
         "type": "github"
       }
     },
@@ -1058,6 +1145,21 @@
       }
     },
     "systems_3": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_4": {
       "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",

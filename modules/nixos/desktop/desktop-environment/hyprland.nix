@@ -49,7 +49,7 @@
     };
 
     home-manager.users.${config.cfi2017.user.name} = { pkgs, ... }: {
-      home.packages = with pkgs; [ qt5.qtwayland qt6.qtwayland ];
+      home.packages = with pkgs; [ qt5.qtwayland (pkgs.hiPrio qt6.qtwayland) ];
 
       services = { cliphist = { enable = true; }; };
 

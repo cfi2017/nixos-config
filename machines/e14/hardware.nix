@@ -81,5 +81,5 @@
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia" "nvidia-settings" ];
+    builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia" "nvidia-settings" "ida-pro" ];
 }

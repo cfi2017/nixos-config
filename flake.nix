@@ -53,7 +53,17 @@
 
     # private flakes
     ida-pro-flake = {
-      url = "git+ssh://git@github.com/cfi2017/ida-pro-flake";
+      url = "git+ssh://git@github.com/cfi2017/ida-pro-flake?lfs=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    binaryninja-flake = {
+      url = "git+ssh://git@github.com/cfi2017/binaryninja-flake?lfs=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # CTF Tooling
+    burpsuite = {
+      url = "github:xiv3r/Burpsuite-Professional";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -62,7 +72,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ida-pro-flake, zen-browser, impermanence, hyprland, hyprpaper
-    , hyprlock, nur, nix-colors, catppuccin, sops-nix, ndg, pre-commit-hooks
+    , hyprlock, nur, nix-colors, catppuccin, sops-nix, binaryninja-flake, ndg, pre-commit-hooks
     , ... }@inputs:
     let
       inherit (self) outputs;
@@ -82,6 +92,7 @@
               (import ./overlays { inherit inputs; }).stable-packages
               (import ./overlays { inherit inputs; }).force-latest
             ];
+
           };
         })
 
@@ -93,6 +104,7 @@
         home-manager.nixosModules.home-manager
         catppuccin.nixosModules.catppuccin
         nur.modules.nixos.default
+        binaryninja-flake.nixosModules.binaryninja
 
         ./modules/nixos
       ];

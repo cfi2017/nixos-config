@@ -111,7 +111,9 @@
           (lib.optionals config.cfi2017.development-packages.tools.security [
             vault
             openbao
-            inputs.ida-pro-flake.packages.x86_64-linux.ida-pro
+            inputs.ida-pro-flake.packages.${system}.ida-pro
+            inputs.binaryninja-flake.packages.${system}.binaryninja
+            inputs.burpsuite.packages.${system}.default
           ])
           # Database Tools
           (lib.optionals config.cfi2017.development-packages.tools.database
