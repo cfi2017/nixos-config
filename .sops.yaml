@@ -1,9 +1,11 @@
 keys:
   - &main age1utctcjekpgm7ch2x92njmzzy3fxyhqy5d4za9sd8ewgqv0ae5yls6q4lta
   - &bootstrap age154lt405t8s6cfd0j3v340s6a9d0s70e99hq9hem7l0vzyzr3q3wquw08f7
+  - &e14 age14pgxrfmz90lc2pn4j3dg0sh5lpsasr2lvhytj8ggkf5ne4q7mc5qzkcsp7
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:
           - *main
           - *bootstrap
+          - *e14
