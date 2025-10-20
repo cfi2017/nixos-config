@@ -24,6 +24,7 @@ in {
             imports = [
               inputs.catppuccin.homeModules.catppuccin
               inputs.nix-colors.homeManagerModules.default
+              inputs.zen-browser.homeModules.twilight-official
             ];
 
             colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;

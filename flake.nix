@@ -46,11 +46,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Documentation
     ndg.url = "github:feel-co/ndg";
   };
 
-  outputs = { self, nixpkgs, home-manager, impermanence, hyprland, hyprpaper
+  outputs = { self, nixpkgs, home-manager, zen-browser, impermanence, hyprland, hyprpaper
     , hyprlock, nur, nix-colors, catppuccin, sops-nix, ndg, pre-commit-hooks
     , ... }@inputs:
     let
