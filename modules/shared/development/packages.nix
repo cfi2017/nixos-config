@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   options = {
     cfi2017.development-packages = {
       enable = lib.mkEnableOption "shared development packages";
@@ -111,6 +111,7 @@
           (lib.optionals config.cfi2017.development-packages.tools.security [
             vault
             openbao
+            inputs.ida-pro-flake.packages.x86_64-linux.ida-pro
           ])
           # Database Tools
           (lib.optionals config.cfi2017.development-packages.tools.database

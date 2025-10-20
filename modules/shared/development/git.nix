@@ -4,6 +4,7 @@
       programs = {
         git = {
           enable = true;
+          lfs.enable = true;
 
           userEmail = config.cfi2017.user.email;
           userName = config.cfi2017.user.fullName;

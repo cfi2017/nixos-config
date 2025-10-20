@@ -51,11 +51,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # private flakes
+    ida-pro-flake = {
+      url = "git+ssh://git@github.com/cfi2017/ida-pro-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Documentation
     ndg.url = "github:feel-co/ndg";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, impermanence, hyprland, hyprpaper
+  outputs = { self, nixpkgs, home-manager, ida-pro-flake, zen-browser, impermanence, hyprland, hyprpaper
     , hyprlock, nur, nix-colors, catppuccin, sops-nix, ndg, pre-commit-hooks
     , ... }@inputs:
     let
