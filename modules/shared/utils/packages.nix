@@ -20,6 +20,7 @@
       nvd
       tree
       vim
+      wireguard-tools
     ];
 
     # User Packages
