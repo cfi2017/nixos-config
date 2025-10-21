@@ -12,7 +12,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence = { url = "github:nix-community/impermanence"; };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +35,9 @@
     };
 
     # Catpuccin theming
-    nix-colors = { url = "github:misterio77/nix-colors"; };
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +66,10 @@
     };
 
     # CTF Tooling
+    berg-cli = {
+      url = "github:TeamM0unt41n/berg-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     burpsuite = {
       url = "github:xiv3r/Burpsuite-Professional";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,30 +79,58 @@
     ndg.url = "github:feel-co/ndg";
   };
 
-  outputs = { self, nixpkgs, home-manager, ida-pro-flake, zen-browser, impermanence, hyprland, hyprpaper
-    , hyprlock, nur, nix-colors, catppuccin, sops-nix, binaryninja-flake, ndg, pre-commit-hooks
-    , ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ida-pro-flake,
+      zen-browser,
+      impermanence,
+      hyprland,
+      hyprpaper,
+      hyprlock,
+      nur,
+      nix-colors,
+      catppuccin,
+      sops-nix,
+      binaryninja-flake,
+      ndg,
+      pre-commit-hooks,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
 
-      lib = system:
+      lib =
+        system:
         nixpkgs.lib.recursiveUpdate (import ./lib {
           pkgs = nixpkgs.legacyPackages.${system};
           lib = nixpkgs.lib;
         }) nixpkgs.lib;
 
       sharedModules = [
-        ({ inputs, outputs, lib, config, pkgs, ... }: {
-          nixpkgs = {
-            overlays = [
-              (import ./overlays { inherit inputs; }).additions
-              (import ./overlays { inherit inputs; }).stable-packages
-              (import ./overlays { inherit inputs; }).force-latest
-            ];
+        (
+          {
+            inputs,
+            outputs,
+            lib,
+            config,
+            pkgs,
+            ...
+          }:
+          {
+            nixpkgs = {
+              overlays = [
+                (import ./overlays { inherit inputs; }).additions
+                (import ./overlays { inherit inputs; }).stable-packages
+                (import ./overlays { inherit inputs; }).force-latest
+              ];
 
-          };
-        })
+            };
+          }
+        )
 
         ./modules/shared
       ];
@@ -109,36 +145,50 @@
         ./modules/nixos
       ];
 
-    in {
-      packages = forAllSystems (system:
+    in
+    {
+      packages = forAllSystems (
+        system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
           rawModules = [
             ./modules/shared
             ./modules/nixos # Linux specific
           ];
-        in (import ./pkgs { inherit pkgs; }) // {
+        in
+        (import ./pkgs { inherit pkgs; })
+        // {
           docs = ndg.packages.${system}.ndg-builder.override {
             title = "cfi2017 - Nix systems";
             inputDir = ./docs;
             rawModules = rawModules;
             optionsDepth = 3;
           };
-        });
+        }
+      );
 
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in {
-          default = with pkgs;
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default =
+            with pkgs;
             mkShell {
               inherit (self.checks.${system}.pre-commit-check) shellHook;
               NIX_CONFIG = "experimental-features = nix-command flakes";
             };
-        });
+        }
+      );
 
-      formatter = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in pkgs.nixfmt-rfc-style);
+      formatter = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.nixfmt-rfc-style
+      );
 
       checks = forAllSystems (system: {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
@@ -158,8 +208,7 @@
             inherit inputs outputs;
             lib = lib "x86_64-linux";
           };
-          modules = sharedModules ++ nixosModules
-            ++ [ ./machines/e14/default.nix ];
+          modules = sharedModules ++ nixosModules ++ [ ./machines/e14/default.nix ];
         };
       };
     };

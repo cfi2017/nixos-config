@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   options = {
     cfi2017.development-packages = {
       enable = lib.mkEnableOption "shared development packages";
@@ -21,7 +28,8 @@
 
   config = lib.mkIf config.cfi2017.development-packages.enable {
     home-manager.users.${config.cfi2017.user.name} = {
-      home.packages = with pkgs;
+      home.packages =
+        with pkgs;
         lib.flatten [
           # C Tools
           (lib.optionals config.cfi2017.development-packages.tools.c [
@@ -114,10 +122,12 @@
             inputs.ida-pro-flake.packages.${system}.ida-pro
             inputs.binaryninja-flake.packages.${system}.binaryninja
             inputs.burpsuite.packages.${system}.default
+            inputs.berg-cli.packages.${system}.default
+            pwntools
+            gdb
           ])
           # Database Tools
-          (lib.optionals config.cfi2017.development-packages.tools.database
-            [ postgresql ])
+          (lib.optionals config.cfi2017.development-packages.tools.database [ postgresql ])
         ];
     };
   };
