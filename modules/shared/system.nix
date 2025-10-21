@@ -1,9 +1,17 @@
 # Shared System Configuration
 
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = {
     # Allow unfree because we're not free :(
-    nixpkgs.config = { allowUnfree = true; };
+    nixpkgs.config = {
+      allowUnfree = true;
+    };
 
     # timezone
     time.timeZone = config.cfi2017.timeZone;
@@ -11,6 +19,7 @@
     # zsh everywhere uwu
     programs.zsh.enable = true;
     environment.shells = with pkgs; [ zsh ];
+    users.defaultUserShell = pkgs.zsh;
 
     # default editor
     environment.variables.EDITOR = config.cfi2017.user.editor;
@@ -31,7 +40,10 @@
       package = pkgs.nix;
       settings = {
         trusted-users = [ config.cfi2017.user.name ];
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         warn-dirty = false;
         auto-optimise-store = false;
       };

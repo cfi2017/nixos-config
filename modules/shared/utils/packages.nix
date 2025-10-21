@@ -1,4 +1,11 @@
-{ lib, config, pkgs, inputs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   config = {
     # System Wide Packages
     environment.systemPackages = with pkgs; [
@@ -39,10 +46,12 @@
           # inputs.nixvim.packages.${pkgs.system}.default
           ffmpeg
 
-	  # language servers
-	  bash-language-server
-	  rust-analyzer
-	  nil nixd
+          # language servers
+          bash-language-server
+          rust-analyzer
+          nil
+          nixd
+          helm-ls
         ];
       };
     };
