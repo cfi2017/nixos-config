@@ -16,6 +16,7 @@
       slurp
       grim
       grimblast
+      brightnessctl
       catppuccin-sddm # .override
       # {
       #   flavor = config.cfi2017.colorScheme.flavor;

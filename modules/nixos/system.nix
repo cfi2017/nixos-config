@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = {
     cfi2017.core.zfs = lib.mkMerge [
       (lib.mkIf (config.cfi2017.persistence.enable && config.cfi2017.isLinux) {
         systemDataLinks = [ "/var/lib/nixos" ];
       })
-      (lib.mkIf (!config.cfi2017.persistence.enable && config.cfi2017.isLinux)
-        { })
+      (lib.mkIf (!config.cfi2017.persistence.enable && config.cfi2017.isLinux) { })
     ];
 
     system = {
@@ -18,25 +23,37 @@
     };
 
     security = {
-      sudo = { 
-        enable = true; 
+      sudo = {
+        enable = true;
         wheelNeedsPassword = false;
       };
 
       doas = {
         enable = true;
-        extraRules = [{
-          users = [ config.cfi2017.user.name ];
-          noPass = true;
-        }];
+        extraRules = [
+          {
+            users = [ config.cfi2017.user.name ];
+            noPass = true;
+          }
+        ];
       };
 
-      polkit = { enable = true; };
+      polkit = {
+        enable = true;
+      };
     };
 
-    environment.systemPackages = with pkgs; [ lshw bridge-utils ];
+    environment.systemPackages = with pkgs; [
+      lshw
+      bridge-utils
+      intel-ocl
+    ];
 
-    services = { fwupd = { enable = true; }; };
+    services = {
+      fwupd = {
+        enable = true;
+      };
+    };
 
     i18n = {
       defaultLocale = "de_CH.UTF-8";

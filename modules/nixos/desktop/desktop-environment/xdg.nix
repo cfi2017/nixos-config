@@ -1,36 +1,66 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.cfi2017.graphical.xdg.enable = lib.mkEnableOption "xdg folders";
 
   config = lib.mkIf config.cfi2017.graphical.xdg.enable {
-    cfi2017.core.zfs.homeDataLinks =
-      [ "documents" "music" "pictures" "videos" ];
-    cfi2017.core.zfs.homeCacheLinks = [ "downloads" "code" ];
+    cfi2017.core.zfs.homeDataLinks = [
+      "documents"
+      "music"
+      "pictures"
+      "videos"
+    ];
+    cfi2017.core.zfs.homeCacheLinks = [
+      "downloads"
+      "code"
+    ];
 
-    xdg = {
-      portal = {
-        enable = true;
-        wlr.enable = true;
-        extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
-        configPackages = with pkgs; [ xdg-desktop-portal-hyprland ];
-      };
-    };
+    # xdg = {
+    #   portal = {
+    #     enable = true;
+    #     wlr.enable = true;
+    #     extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+    #     configPackages = with pkgs; [ xdg-desktop-portal-hyprland ];
+    #   };
+    # };
 
-    home-manager.users.${config.cfi2017.user.name} = { pkgs, ... }: {
-      home.packages = with pkgs; [ xdg-user-dirs xdg-utils ];
-      xdg = {
-        enable = true;
-        userDirs = {
+    home-manager.users.${config.cfi2017.user.name} =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          xdg-user-dirs
+          xdg-utils
+        ];
+        xdg = {
           enable = true;
-          desktop = "$HOME/desktop";
-          documents = "$HOME/documents";
-          download = "$HOME/downloads";
-          music = "$HOME/music";
-          pictures = "$HOME/pictures";
-          publicShare = "$HOME/desktop";
-          templates = "$HOME/templates";
-          videos = "$HOME/videos";
+          portal = {
+            enable = true;
+            # wlr.enable = true;
+            extraPortals = with pkgs; [
+              xdg-desktop-portal-hyprland
+              xdg-desktop-portal-wlr
+            ];
+            configPackages = with pkgs; [
+              xdg-desktop-portal-hyprland
+              xdg-desktop-portal-wlr
+            ];
+          };
+          userDirs = {
+            enable = true;
+            desktop = "$HOME/desktop";
+            documents = "$HOME/documents";
+            download = "$HOME/downloads";
+            music = "$HOME/music";
+            pictures = "$HOME/pictures";
+            publicShare = "$HOME/desktop";
+            templates = "$HOME/templates";
+            videos = "$HOME/videos";
+          };
         };
       };
-    };
   };
 }

@@ -1,5 +1,11 @@
-{ config, lib, ... }: {
-  imports = [ ./desktop-environment ./theme ./applications ./sound ];
+{ config, lib, ... }:
+{
+  imports = [
+    ./desktop-environment
+    ./theme
+    ./applications
+    ./sound
+  ];
 
   options.cfi2017.graphical = {
     enable = lib.mkEnableOption "graphical environment";
@@ -12,6 +18,7 @@
       graphical = {
         hyprland.enable = lib.mkDefault true;
         hyprlock.enable = lib.mkDefault true;
+        hypridle.enable = lib.mkDefault true;
         hyprpaper.enable = lib.mkDefault true;
         waybar.enable = lib.mkDefault true;
         swaync.enable = lib.mkDefault true;

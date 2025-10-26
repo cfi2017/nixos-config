@@ -27,19 +27,34 @@
       nvd
       tree
       vim
+      tlrc
+      file
       wireguard-tools
+      mumble
+      openvpn
+
+      # iphone stuff
+      libimobiledevice
+      libimobiledevice-glue
+      usbmuxd
+
+      # binary analysis
+      lurk
+      ltrace
+      strace
+      strace-analyzer
     ];
 
     # User Packages
     home-manager.users.${config.cfi2017.user.name} = {
       home = {
         packages = with pkgs; [
-          tlrc
           fontconfig
           fd
           jq
           yq
           direnv
+          devenv
           atac
           comma
           autojump

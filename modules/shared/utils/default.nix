@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./bat.nix
     ./btop.nix
@@ -18,5 +19,6 @@
     ./zoxide.nix
     ./zsh.nix
     ./zen.nix
+    ./zed.nix
   ];
 }

@@ -49,6 +49,8 @@
             python3
             python3Packages.python-lsp-server
             python3Packages.python-lsp-ruff
+            python3Packages.pwncat
+            python3Packages.pwntools
             uv
           ])
           # Rust Tools
@@ -77,7 +79,6 @@
             kustomize
             argocd
             cilium-cli
-            kubectl-cnpg
             kubeseal
             talosctl
             kube-linter
@@ -86,6 +87,13 @@
             k3d
             kind
             rakkess
+
+            kubectl-cnpg
+            kubectl-tree
+            kubectl-rook-ceph
+            kubectl-gadget
+            kubectl-neat
+            kubelogin-oidc
           ])
           # Cloud CLI Tools
           (lib.optionals config.cfi2017.development-packages.tools.cloud [
@@ -123,8 +131,9 @@
             inputs.binaryninja-flake.packages.${system}.binaryninja
             inputs.burpsuite.packages.${system}.default
             inputs.berg-cli.packages.${system}.default
-            pwntools
             gdb
+            ngrok
+            frp
           ])
           # Database Tools
           (lib.optionals config.cfi2017.development-packages.tools.database [ postgresql ])

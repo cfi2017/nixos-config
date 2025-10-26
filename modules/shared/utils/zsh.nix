@@ -1,4 +1,11 @@
-{ config, options, inputs, lib, ... }: {
+{
+  config,
+  options,
+  inputs,
+  lib,
+  ...
+}:
+{
   config = lib.mkMerge [
     (lib.mkIf config.cfi2017.isLinux {
       cfi2017.core.zfs = lib.mkMerge [
@@ -14,13 +21,18 @@
       home-manager.users.${config.cfi2017.user.name} = {
         programs.zsh = {
           enable = true;
-          autosuggestion = { enable = true; };
+          autosuggestion = {
+            enable = true;
+          };
 
           # https://github.com/catppuccin/zsh-syntax-highlighting/blob/main/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
           syntaxHighlighting = {
             enable = true;
-            highlighters = [ "main" "cursor" ];
+            highlighters = [
+              "main"
+              "cursor"
+            ];
             styles = {
               comment = "fg=#5b6078";
               alias = "fg=#a6da95";
@@ -99,7 +111,7 @@
             gcl = "git clone";
             cat = "bat";
             ls = "eza --icons --group-directories-first";
-            man = "tlrc";
+            # man = "tlrc";
             ll = "eza --icons --group-directories-first -lah";
             grep = "rg";
             top = "btm";

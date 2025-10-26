@@ -1,1 +1,4 @@
-_: { imports = [ ./sshd.nix ]; }
+_: {
+  imports = [ ./sshd.nix ];
+  services.usbmuxd.enable = true;
+}
