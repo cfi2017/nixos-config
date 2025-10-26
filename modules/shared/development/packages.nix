@@ -49,7 +49,6 @@
             python3
             python3Packages.python-lsp-server
             python3Packages.python-lsp-ruff
-            python3Packages.pwncat
             python3Packages.pwntools
             uv
           ])
@@ -133,6 +132,7 @@
             inputs.berg-cli.packages.${system}.default
             gdb
             ngrok
+            pwncat
             frp
           ])
           # Database Tools

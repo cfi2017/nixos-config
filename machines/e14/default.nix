@@ -1,11 +1,15 @@
-{ ... }: {
+{ ... }:
+{
   imports = [ ./hardware.nix ];
 
   networking = {
     hostName = "e14";
     hostId = "00000e14";
 
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
 
   };
 
@@ -28,6 +32,7 @@
         rust = true;
         k8s = true;
         iac = true;
+        python = true;
         networking = true;
         security = true;
         infra = true;
@@ -44,8 +49,12 @@
     graphical = {
       enable = true;
       laptop = true;
-      hyprland = { enable = true; };
-      xdg = { enable = true; };
+      hyprland = {
+        enable = true;
+      };
+      xdg = {
+        enable = true;
+      };
     };
   };
 }
