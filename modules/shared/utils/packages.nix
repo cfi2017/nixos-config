@@ -33,6 +33,7 @@
       mumble
       openvpn
       trippy
+      spotify
 
       # iphone stuff
       libimobiledevice

@@ -1,8 +1,18 @@
-{ config, lib, ... }: {
-  options.cfi2017.graphical.sound = { enable = lib.mkEnableOption "Sound"; };
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
+  options.cfi2017.graphical.sound = {
+    enable = lib.mkEnableOption "Sound";
+  };
 
   config = lib.mkIf config.cfi2017.graphical.sound.enable {
-    security = { rtkit.enable = true; };
+    security = {
+      rtkit.enable = true;
+    };
 
     environment.etc = {
       "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
@@ -15,6 +25,10 @@
       '';
     };
 
+    environment.systemPackages = with pkgs; [
+      qpwgraph
+      pavucontrol
+    ];
     hardware = {
       bluetooth = {
         enable = true;
@@ -27,7 +41,10 @@
       };
     };
 
+    services.avahi.enable = true;
+
     services.pipewire = {
+      raopOpenFirewall = true;
       enable = true;
       audio.enable = true;
       alsa.enable = true;
@@ -35,6 +52,16 @@
       pulse.enable = true;
       wireplumber.enable = true;
       #jack.enable = true;
+
+      extraConfig.pipewire = {
+        "10-airplay" = {
+          "context.modules" = [
+            {
+              name = "libpipewire-module-raop-discover";
+            }
+          ];
+        };
+      };
     };
   };
 }
