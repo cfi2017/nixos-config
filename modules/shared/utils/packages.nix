@@ -32,6 +32,7 @@
       wireguard-tools
       mumble
       openvpn
+      trippy
 
       # iphone stuff
       libimobiledevice

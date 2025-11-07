@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   config = {
     home-manager.users.${config.cfi2017.user.name} = {
       programs.kitty = {
@@ -24,6 +25,8 @@
           # Window config
           window_margin_width = 5;
           single_window_margin_width = -1;
+
+          cursor_trail = 3;
         };
         keybindings = {
           "ctrl+c" = "copy_and_clear_or_interrupt";
