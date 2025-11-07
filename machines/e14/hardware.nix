@@ -1,12 +1,21 @@
-{ config, lib, modulesPath, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
+{
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
+      # timeout = 0;
     };
     initrd = {
+      verbose = false;
       availableKernelModules = [
         "xhci_pci"
         "ahci"
@@ -18,12 +27,32 @@
       ];
       kernelModules = [ "virtio" ];
       luks.devices.cryptswap.device = "/dev/nvme0n1p3";
+      systemd.enable = true;
     };
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [
+      "mitigations=off"
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     resumeDevice = "/dev/disk/by-label/swap";
+
+    plymouth = {
+      enable = true;
+      theme = "rings";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "rings" ];
+        })
+      ];
+    };
+
+    consoleLogLevel = 3;
   };
 
   fileSystems = {
@@ -58,7 +87,7 @@
     };
   };
 
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   networking.useDHCP = lib.mkDefault true;
@@ -72,7 +101,9 @@
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       powerManagement.enable = true;
       open = true;
-      modesetting = { enable = true; };
+      modesetting = {
+        enable = true;
+      };
     };
   };
   services = {
@@ -80,6 +111,12 @@
     fstrim.enable = true;
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia" "nvidia-settings" "ida-pro" ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia"
+      "nvidia-settings"
+      "ida-pro"
+    ];
 }

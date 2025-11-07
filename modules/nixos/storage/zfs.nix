@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.cfi2017.core = {
     zfs = {
       # Enable ZFS
@@ -43,21 +49,29 @@
   };
 
   config = {
-    cfi2017 = { core = { zfs = { enable = lib.mkDefault true; }; }; };
+    cfi2017 = {
+      core = {
+        zfs = {
+          enable = lib.mkDefault true;
+        };
+      };
+    };
 
     environment.persistence."${config.cfi2017.persistence.cachePrefix}" =
-      lib.mkIf config.cfi2017.persistence.enable {
-        hideMounts = true;
-        directories = config.cfi2017.core.zfs.systemCacheLinks;
-        users.cfi.directories = config.cfi2017.core.zfs.homeCacheLinks;
-      };
+      lib.mkIf config.cfi2017.persistence.enable
+        {
+          hideMounts = true;
+          directories = config.cfi2017.core.zfs.systemCacheLinks;
+          users.cfi.directories = config.cfi2017.core.zfs.homeCacheLinks;
+        };
 
     environment.persistence."${config.cfi2017.persistence.dataPrefix}" =
-      lib.mkIf config.cfi2017.persistence.enable {
-        hideMounts = true;
-        directories = config.cfi2017.core.zfs.systemDataLinks;
-        users.cfi.directories = config.cfi2017.core.zfs.homeDataLinks;
-      };
+      lib.mkIf config.cfi2017.persistence.enable
+        {
+          hideMounts = true;
+          directories = config.cfi2017.core.zfs.systemDataLinks;
+          users.cfi.directories = config.cfi2017.core.zfs.homeDataLinks;
+        };
 
     boot = lib.mkIf config.cfi2017.core.zfs.enable {
       supportedFilesystems = [ "zfs" ];
@@ -65,10 +79,24 @@
         devNodes = "/dev/";
         requestEncryptionCredentials = config.cfi2017.core.zfs.encrypted;
       };
-      initrd.postDeviceCommands = lib.mkIf (config.cfi2017.persistence.enable
-        && config.cfi2017.core.zfs.rootDataset != "") (lib.mkAfter ''
-          zfs rollback -r ${config.cfi2017.core.zfs.rootDataset}@blank
-        '');
+      #initrd.postDeviceCommands = lib.mkIf (config.cfi2017.persistence.enable
+      #  && config.cfi2017.core.zfs.rootDataset != "") (lib.mkAfter ''
+      #    zfs rollback -r ${config.cfi2017.core.zfs.rootDataset}@blank
+      #  '');
+
+      initrd.systemd.services.rollback-root =
+        lib.mkIf (config.cfi2017.persistence.enable && config.cfi2017.core.zfs.rootDataset != "")
+          {
+            description = "Rollback ZFS root dataset to blank";
+            wantedBy = [ "initrd.target" ];
+            after = [ "zfs-import.target" ];
+            before = [ "sysroot.mount" ];
+            unitConfig.DefaultDependencies = "no";
+            serviceConfig.Type = "oneshot";
+            script = ''
+              zfs rollback -r ${config.cfi2017.core.zfs.rootDataset}@blank
+            '';
+          };
     };
 
     services = lib.mkIf config.cfi2017.core.zfs.enable {
@@ -78,33 +106,46 @@
       };
     };
 
-    environment.systemPackages = lib.mkIf (config.cfi2017.core.zfs.enable
-      && config.cfi2017.persistence.enable
-      && config.cfi2017.core.zfs.rootDataset != "") [
-        (pkgs.writeScriptBin "zfsdiff" ''
-          doas zfs diff ${config.cfi2017.core.zfs.rootDataset}@blank -F | ${pkgs.ripgrep}/bin/rg -e "\+\s+/\s+" | cut -f3- | ${pkgs.skim}/bin/sk --query "/home/cfi/"
-        '')
-      ];
+    environment.systemPackages =
+      lib.mkIf
+        (
+          config.cfi2017.core.zfs.enable
+          && config.cfi2017.persistence.enable
+          && config.cfi2017.core.zfs.rootDataset != ""
+        )
+        [
+          (pkgs.writeScriptBin "zfsdiff" ''
+            doas zfs diff ${config.cfi2017.core.zfs.rootDataset}@blank -F | ${pkgs.ripgrep}/bin/rg -e "\+\s+/\s+" | cut -f3- | ${pkgs.skim}/bin/sk --query "/home/cfi/"
+          '')
+        ];
 
-    system.activationScripts = lib.mkIf config.cfi2017.persistence.enable (let
-      ensureSystemExistsScript = lib.concatStringsSep "\n"
-        (map (path: ''mkdir -p "${path}"'')
-          config.cfi2017.core.zfs.ensureSystemExists);
-      ensureHomeExistsScript = lib.concatStringsSep "\n" (map (path: ''
-        mkdir -p "/home/cfi/${path}"; chown cfi:users /home/cfi/${path}
-      '') config.cfi2017.core.zfs.ensureHomeExists);
-    in {
-      ensureSystemPathsExist = {
-        text = ensureSystemExistsScript;
-        deps = [ ];
-      };
-      ensureHomePathsExist = {
-        text = ''
-          mkdir -p /home/cfi/
-          ${ensureHomeExistsScript}
-        '';
-        deps = [ "users" "groups" ];
-      };
-    });
+    system.activationScripts = lib.mkIf config.cfi2017.persistence.enable (
+      let
+        ensureSystemExistsScript = lib.concatStringsSep "\n" (
+          map (path: ''mkdir -p "${path}"'') config.cfi2017.core.zfs.ensureSystemExists
+        );
+        ensureHomeExistsScript = lib.concatStringsSep "\n" (
+          map (path: ''
+            mkdir -p "/home/cfi/${path}"; chown cfi:users /home/cfi/${path}
+          '') config.cfi2017.core.zfs.ensureHomeExists
+        );
+      in
+      {
+        ensureSystemPathsExist = {
+          text = ensureSystemExistsScript;
+          deps = [ ];
+        };
+        ensureHomePathsExist = {
+          text = ''
+            mkdir -p /home/cfi/
+            ${ensureHomeExistsScript}
+          '';
+          deps = [
+            "users"
+            "groups"
+          ];
+        };
+      }
+    );
   };
 }
