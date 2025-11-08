@@ -62,6 +62,7 @@
           autojump
           # inputs.nixvim.packages.${pkgs.system}.default
           ffmpeg
+          z3
 
           # language servers
           bash-language-server

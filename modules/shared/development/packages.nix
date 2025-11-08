@@ -134,6 +134,10 @@
             ngrok
             pwncat
             frp
+            rustscan
+            remmina
+            gobuster
+            sqlmap
           ])
           # Database Tools
           (lib.optionals config.cfi2017.development-packages.tools.database [ postgresql ])
