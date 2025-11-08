@@ -11,6 +11,10 @@
         (lib.mkIf config.cfi2017.persistence.enable {
           homeDataLinks = [
             {
+              directory = ".zen";
+              mode = "0700";
+            }
+            {
               directory = ".cache/zen";
               mode = "0700";
             }
