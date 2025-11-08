@@ -5,6 +5,10 @@
   inputs,
   ...
 }:
+let
+  tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
+  hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
+in
 {
   options.cfi2017.graphical.hyprland = {
     enable = lib.mkEnableOption "hyprlandwm";
@@ -39,9 +43,18 @@
       xserver = {
         videoDrivers = [ "nvidia" ];
       };
+      greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+            user = "greeter";
+          };
+        };
+      };
       displayManager = {
         sddm = {
-          enable = true;
+          enable = false;
           package = pkgs.kdePackages.sddm;
           wayland = {
             enable = true;
@@ -59,6 +72,15 @@
           ];
         };
       };
+    };
+
+    systemd.services.greetd.serviceConfig = {
+      Type = "idle";
+      StandardInput = "tty";
+      StandardError = "journal";
+      TTYReset = true;
+      TTYHangup = true;
+      TTYDisallocate = true;
     };
 
     home-manager.users.${config.cfi2017.user.name} =

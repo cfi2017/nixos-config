@@ -55,6 +55,15 @@
     consoleLogLevel = 3;
   };
 
+  console = {
+    earlySetup = true;
+    useXkbConfig = true;
+  };
+
+  services.xserver.xkb = {
+    layout = "ch";
+  };
+
   fileSystems = {
     "/" = {
       device = "rpool/local/root";

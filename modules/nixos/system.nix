@@ -56,10 +56,10 @@
     };
 
     i18n = {
-      defaultLocale = "de_CH.UTF-8";
+      defaultLocale = "en_GB.UTF-8";
       extraLocaleSettings = {
         LC_ALL = "de_CH.UTF-8";
-        LANGUAGE = "en_US.UTF-8";
+        LANGUAGE = "en_GB.UTF-8";
         LC_TIME = "de_CH.UTF-8";
       };
       supportedLocales = [
