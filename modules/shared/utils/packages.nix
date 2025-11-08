@@ -69,6 +69,8 @@
           nil
           nixd
           helm-ls
+          ruff
+          basedpyright
         ];
       };
     };
