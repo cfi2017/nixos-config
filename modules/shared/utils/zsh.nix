@@ -116,6 +116,7 @@
               else
                 "$PATH";
             GPG_TTY = "$(tty)";
+            NIXPKGS_ALLOW_UNFREE = "1";
           };
 
           shellAliases = {
