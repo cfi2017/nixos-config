@@ -1,5 +1,0 @@
-# Ignore syntax: https://github.com/moby/patternmatcher/tree/main/ignorefile
-build
-.git
-.github
-*.md
