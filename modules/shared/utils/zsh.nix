@@ -26,6 +26,8 @@
             enable = true;
           };
 
+          defaultKeymap = "emacs";
+
           # https://github.com/catppuccin/zsh-syntax-highlighting/blob/main/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
           enableCompletion = true;
@@ -165,6 +167,14 @@
             drm = "docker rm";
 
           };
+
+          initExtra = ''
+            bindkey "^[[1;5D" backward-word # Ctrl+Left
+            bindkey "^[[1;5C" forward-word # Ctrl+Right
+
+            bindkey "^[OD" backward-word
+            bindkey "^[OC" forward-word
+          '';
         };
       };
     }
