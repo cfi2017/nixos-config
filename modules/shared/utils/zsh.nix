@@ -165,15 +165,14 @@
             dexec = "docker exec";
             ds = "docker stop";
             drm = "docker rm";
-
           };
 
           initExtra = ''
             bindkey "^[[1;5D" backward-word # Ctrl+Left
             bindkey "^[[1;5C" forward-word # Ctrl+Right
 
-            bindkey "^[OD" backward-word
-            bindkey "^[OC" forward-word
+            #bindkey "^[OD" backward-word
+            #bindkey "^[OC" forward-word
           '';
         };
       };
