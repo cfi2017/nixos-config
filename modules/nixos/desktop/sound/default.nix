@@ -28,6 +28,7 @@
     environment.systemPackages = with pkgs; [
       qpwgraph
       pavucontrol
+      sof-firmware
     ];
     hardware = {
       bluetooth = {
