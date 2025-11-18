@@ -132,7 +132,7 @@ in
                 natural_scroll = true;
               };
               accel_profile = "flat";
-              sensitivity = 0;
+              sensitivity = 0.5;
             };
 
             decoration = {
