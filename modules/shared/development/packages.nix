@@ -99,6 +99,7 @@
             awscli2
             azure-cli
             hcloud
+            minio-client
           ])
           # Dev Tools
           (lib.optionals config.cfi2017.development-packages.tools.dev [
