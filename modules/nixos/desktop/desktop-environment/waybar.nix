@@ -1,4 +1,8 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 {
   options.cfi2017.graphical.waybar = {
     enable = lib.mkEnableOption "Waybar Status Bar";
@@ -15,13 +19,13 @@
             {
               layer = "top";
               position = "top";
-              output = [
-                "eDP-1"
-                "DP-2"
-                "DP-4"
-                "DP-5"
-                "HDMI-A-1"
-              ];
+              # output = [
+              #   "eDP-1"
+              #   "DP-2"
+              #   "DP-4"
+              #   "DP-5"
+              #   "HDMI-A-1"
+              # ];
               modules-left = [ "hyprland/workspaces" ];
               modules-center = [ "hyprland/window" ];
               modules-right = [
