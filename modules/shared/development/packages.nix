@@ -78,6 +78,7 @@
             kustomize
             argocd
             cilium-cli
+            hubble
             kubeseal
             talosctl
             kube-linter
