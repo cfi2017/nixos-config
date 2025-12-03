@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   options.cfi2017.graphical.hyprlock = {
     enable = lib.mkEnableOption "hyprlock";
   };
@@ -33,7 +39,7 @@
           inner_color = rgba(0, 0, 0, 0.5)
           font_color = rgb(200, 200, 200)
           fade_on_empty = false
-          placeholder_text = <i>UwU who's a good puppy?</i>
+          placeholder_text = <i>Have you tried QubesOS?</i>
           hide_input = false
           position = 0,0
           halign = center
