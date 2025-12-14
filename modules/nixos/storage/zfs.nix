@@ -25,6 +25,10 @@
         default = [ ];
         description = "List of home cache directories to persist";
       };
+      homeCacheFileLinks = lib.mkOption {
+        default = [ ];
+        description = "List of home cache files to persist";
+      };
       homeDataLinks = lib.mkOption {
         default = [ ];
         description = "List of home data directories to persist";
@@ -63,6 +67,7 @@
           hideMounts = true;
           directories = config.cfi2017.core.zfs.systemCacheLinks;
           users.cfi.directories = config.cfi2017.core.zfs.homeCacheLinks;
+          users.cfi.files = config.cfi2017.core.zfs.homeCacheFileLinks;
         };
 
     environment.persistence."${config.cfi2017.persistence.dataPrefix}" =
