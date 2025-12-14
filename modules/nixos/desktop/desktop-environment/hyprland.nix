@@ -219,7 +219,7 @@ in
               "$mod, return, exec, $terminal"
               "$mod SHIFT, q, killactive"
               "$mod SHIFT, e, exit"
-              "$mod SHIFT, p, exec, ${pkgs.hyprlock}/bin/hyprlock"
+              "$mod SHIFT, p, exec, ${pkgs.hyprlock}/bin/hyprlock -v > /tmp/hyprlock.log"
 
               # Screen focus
               "$mod, v, togglefloating"
