@@ -1,16 +1,23 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.cfi2017.graphical.theme = {
     enable = lib.mkOption {
       default = true;
-      description =
-        "Enable graphical theme configuration including fonts, GTK, and Qt theming";
+      description = "Enable graphical theme configuration including fonts, GTK, and Qt theming";
     };
   };
 
   config = lib.mkIf config.cfi2017.graphical.theme.enable {
     fonts = {
       enableDefaultPackages = true;
-      fontDir = { enable = true; };
+      fontDir = {
+        enable = true;
+      };
       fontconfig = {
         enable = true;
         defaultFonts = {
@@ -26,37 +33,39 @@
 
     programs.dconf.enable = true;
 
-    home-manager.users.${config.cfi2017.user.name} = { pkgs, ... }: {
-      catppuccin = {
-        pointerCursor = {
+    home-manager.users.${config.cfi2017.user.name} =
+      { pkgs, ... }:
+      {
+        catppuccin = {
+          cursors = {
+            enable = true;
+            accent = "dark";
+            flavor = config.cfi2017.colorScheme.flavor;
+          };
+        };
+
+        gtk = {
           enable = true;
-          accent = "dark";
-          flavor = config.cfi2017.colorScheme.flavor;
+          gtk2.extraConfig = "gtk-application-prefer-dark-theme = true;";
+          gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+
+          font = {
+            name = config.cfi2017.font;
+            size = 10;
+          };
+
+          # catppuccin = {
+          #   flavor = config.cfi2017.colorScheme.flavor;
+          #   accent = config.cfi2017.colorScheme.accent;
+          #   size = "compact";
+          # };
+        };
+
+        qt = {
+          enable = true;
+          platformTheme.name = "kvantum";
+          style.name = "kvantum";
         };
       };
-
-      gtk = {
-        enable = true;
-        gtk2.extraConfig = "gtk-application-prefer-dark-theme = true;";
-        gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-
-        font = {
-          name = config.cfi2017.font;
-          size = 10;
-        };
-
-        # catppuccin = {
-        #   flavor = config.cfi2017.colorScheme.flavor;
-        #   accent = config.cfi2017.colorScheme.accent;
-        #   size = "compact";
-        # };
-      };
-
-      qt = {
-        enable = true;
-        platformTheme.name = "kvantum";
-        style.name = "kvantum";
-      };
-    };
   };
 }

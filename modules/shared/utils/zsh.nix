@@ -167,7 +167,7 @@
             drm = "docker rm";
           };
 
-          initExtra = ''
+          initContent = ''
             bindkey "^[[1;5D" backward-word # Ctrl+Left
             bindkey "^[[1;5C" forward-word # Ctrl+Right
 

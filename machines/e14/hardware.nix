@@ -39,7 +39,8 @@
     ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    # deprecated
+    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     resumeDevice = "/dev/disk/by-label/swap";
 
     plymouth = {
@@ -62,6 +63,10 @@
 
   services.xserver.xkb = {
     layout = "ch";
+  };
+
+  system = {
+    stateVersion = "25.11";
   };
 
   fileSystems = {

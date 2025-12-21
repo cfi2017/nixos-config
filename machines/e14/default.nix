@@ -10,11 +10,10 @@
       "1.1.1.1"
       "8.8.8.8"
     ];
-
   };
 
   cfi2017 = {
-    stateVersion = "25.05";
+    stateVersion = "25.11";
     gpg.enable = true;
     persistence.enable = true;
     core = {
