@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     nixpkgs-master.url = "github:nixos/nixpkgs";
 
@@ -60,16 +60,16 @@
       url = "git+ssh://git@github.com/cfi2017/ida-pro-flake?lfs=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    binaryninja-flake = {
-      url = "git+ssh://git@github.com/cfi2017/binaryninja-flake?lfs=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # binaryninja-flake = {
+    #   url = "git+ssh://git@github.com/cfi2017/binaryninja-flake?lfs=1";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # CTF Tooling
-    berg-cli = {
-      url = "github:TeamM0unt41n/berg-cli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # berg-cli = {
+    #   url = "github:TeamM0unt41n/berg-cli";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     burpsuite = {
       url = "github:xiv3r/Burpsuite-Professional";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -94,7 +94,7 @@
       nix-colors,
       catppuccin,
       sops-nix,
-      binaryninja-flake,
+      # binaryninja-flake,
       ndg,
       pre-commit-hooks,
       ...
@@ -127,7 +127,6 @@
                 (import ./overlays { inherit inputs; }).stable-packages
                 (import ./overlays { inherit inputs; }).force-latest
               ];
-
             };
           }
         )
@@ -140,11 +139,10 @@
         home-manager.nixosModules.home-manager
         catppuccin.nixosModules.catppuccin
         nur.modules.nixos.default
-        binaryninja-flake.nixosModules.binaryninja
+        # binaryninja-flake.nixosModules.binaryninja
 
         ./modules/nixos
       ];
-
     in
     {
       packages = forAllSystems (

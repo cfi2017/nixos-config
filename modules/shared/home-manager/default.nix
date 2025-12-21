@@ -27,6 +27,10 @@ in
       ];
     })
     {
+      environment.pathsToLink = [
+        "/share/applications"
+        "/share/xdg-desktop-portal"
+      ];
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;

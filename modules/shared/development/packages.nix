@@ -129,9 +129,9 @@
             vault
             openbao
             inputs.ida-pro-flake.packages.${system}.ida-pro
-            inputs.binaryninja-flake.packages.${system}.binaryninja
+            # inputs.binaryninja-flake.packages.${system}.binaryninja
             inputs.burpsuite.packages.${system}.default
-            inputs.berg-cli.packages.${system}.default
+            # inputs.berg-cli.packages.${system}.default
             gdb
             ngrok
             pwncat
