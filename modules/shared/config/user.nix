@@ -1,4 +1,10 @@
-{ lib, pkgs, config, ... }: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+{
   options.cfi2017.user = {
     name = lib.mkOption {
       type = lib.types.str;
@@ -55,16 +61,19 @@
   };
 
   config = {
-    cfi2017.user.homeDirectory = lib.mkDefault (if config.cfi2017.isDarwin then
-      "/Users/${config.cfi2017.user.name}"
-    else
-      "/home/${config.cfi2017.user.name}");
+    cfi2017.user.homeDirectory = lib.mkDefault (
+      if config.cfi2017.isDarwin then
+        "/Users/${config.cfi2017.user.name}"
+      else
+        "/home/${config.cfi2017.user.name}"
+    );
 
     users =
       # Add mutableUsers only on NixOS; nix-darwin does not have this option.
       (lib.optionalAttrs config.cfi2017.isLinux {
         mutableUsers = config.cfi2017.persistence.enable;
-      }) // {
+      })
+      // {
         users.${config.cfi2017.user.name} = lib.mkMerge [
           # Base user configuration
           {
@@ -74,10 +83,12 @@
           (lib.mkIf config.cfi2017.isLinux {
             isNormalUser = true;
             group = config.cfi2017.user.name;
-            hashedPasswordFile =
-              config.sops.secrets."users/${config.cfi2017.user.name}".path;
-            extraGroups =
-              lib.mkIf config.cfi2017.isLinux [ "systemd-journal" "wheel" ];
+            hashedPasswordFile = config.sops.secrets."users/${config.cfi2017.user.name}".path;
+            extraGroups = lib.mkIf config.cfi2017.isLinux [
+              "systemd-journal"
+              "wheel"
+              "dialout"
+            ];
           })
           # Darwin-specific user configuration (no extra fields needed)
         ];

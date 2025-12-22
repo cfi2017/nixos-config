@@ -12,6 +12,8 @@
       home.packages = [
         pkgs.jetbrains.rust-rover
         pkgs.jetbrains.goland
+        pkgs.discord
+        pkgs.google-chrome
       ];
     };
   };
