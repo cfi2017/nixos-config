@@ -1,4 +1,8 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 {
   config = lib.mkMerge [
     (lib.mkIf config.cfi2017.isLinux {
@@ -14,7 +18,9 @@
       ];
     })
     {
-
+      services.netbird = {
+        enable = true;
+      };
     }
   ];
 }
