@@ -87,6 +87,7 @@
             k3d
             kind
             rakkess
+            kyverno-chainsaw
 
             kubectl-cnpg
             kubectl-tree
