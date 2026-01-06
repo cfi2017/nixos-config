@@ -20,6 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Hyprland / Wayland flakes
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -91,6 +95,7 @@
       hyprpaper,
       hyprlock,
       nur,
+      niri,
       nix-colors,
       catppuccin,
       sops-nix,

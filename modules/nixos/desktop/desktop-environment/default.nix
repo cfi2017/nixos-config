@@ -11,5 +11,6 @@
     ./fuzzel.nix
     ./keyring.nix
     ./xdg.nix
+    ./niri.nix
   ];
 }
