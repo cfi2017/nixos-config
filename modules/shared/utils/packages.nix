@@ -34,6 +34,7 @@
       openvpn
       trippy
       spotify
+      bitwarden-cli
 
       # iphone stuff
       libimobiledevice

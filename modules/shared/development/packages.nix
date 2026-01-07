@@ -87,13 +87,16 @@
             k3d
             kind
             rakkess
-            kyverno-chainsaw
+            pkgs.stable.kyverno-chainsaw
+            # azure
+            kubelogin
 
             kubectl-cnpg
             kubectl-tree
             kubectl-rook-ceph
             kubectl-gadget
             kubectl-neat
+            # oidc-login
             kubelogin-oidc
           ])
           # Cloud CLI Tools
