@@ -19,6 +19,8 @@
             {
               layer = "top";
               position = "top";
+              # spacing = 2;
+              margin = "2";
               # output = [
               #   "eDP-1"
               #   "DP-2"
