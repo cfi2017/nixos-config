@@ -118,9 +118,9 @@ in
             };
 
             general = {
-              gaps_in = 6;
-              gaps_out = 6;
-              border_size = 2;
+              gaps_in = 2;
+              gaps_out = 2;
+              border_size = 1;
               layout = "dwindle";
               allow_tearing = true;
             };
@@ -136,7 +136,7 @@ in
             };
 
             decoration = {
-              rounding = 15;
+              rounding = 0;
               active_opacity = 0.9;
               inactive_opacity = 0.8;
               fullscreen_opacity = 0.9;
