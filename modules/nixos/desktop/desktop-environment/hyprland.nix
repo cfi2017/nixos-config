@@ -270,7 +270,7 @@ in
               "$mod ALT, n, exec, swaync-client -t -sw"
 
               # Clipboard
-              "$mod ALT, v, exec, pkill fuzzel || cliphist list | fuzzel --no-fuzzy --dmenu | cliphist decode | wl-copy"
+              "$mod ALT, v, exec, pkill fuzzel || cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 
               # Screencapture
               "$mod SHIFT+CTRL+ALT, S, exec, grimblast copy area"
