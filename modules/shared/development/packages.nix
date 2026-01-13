@@ -84,6 +84,7 @@
             kube-linter
             kubescape
             helm-docs
+            dive
             k3d
             kind
             rakkess
