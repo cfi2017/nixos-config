@@ -73,6 +73,8 @@
           helm-ls
           ruff
           basedpyright
+
+          shell-gpt
         ];
       };
     };
