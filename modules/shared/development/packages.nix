@@ -88,6 +88,8 @@
             k3d
             kind
             rakkess
+            drawio
+            prometheus-alertmanager
             pkgs.stable.kyverno-chainsaw
             # azure
             kubelogin
