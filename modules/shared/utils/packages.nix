@@ -35,6 +35,8 @@
       trippy
       spotify
       bitwarden-cli
+      gopass
+      sshpass
 
       # iphone stuff
       libimobiledevice
