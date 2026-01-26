@@ -86,6 +86,7 @@
             hashedPasswordFile = config.sops.secrets."users/${config.cfi2017.user.name}".path;
             extraGroups = lib.mkIf config.cfi2017.isLinux [
               "systemd-journal"
+              "systemd-resolve"
               "wheel"
               "dialout"
             ];
