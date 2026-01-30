@@ -1,10 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 {
   imports = [
     ./desktop-environment
-    ./theme
+    ./theme.nix
     ./applications
-    ./sound
+    ./sound.nix
   ];
 
   options.cfi2017.graphical = {
