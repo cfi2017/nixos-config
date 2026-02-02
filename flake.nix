@@ -77,6 +77,11 @@
 
     # Documentation
     ndg.url = "github:feel-co/ndg";
+
+    private-work = {
+      url = "git+ssh://git@github.com/cfi2017/private-work-nixos-configs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -109,6 +114,12 @@
           pkgs = nixpkgs.legacyPackages.${system};
           lib = nixpkgs.lib;
         }) nixpkgs.lib;
+
+      privateModules = [
+      ]
+      ++ (nixpkgs.lib.optionals (inputs ? private-work) [
+        inputs.private-work.nixosModules.default
+      ]);
 
       sharedModules = [
         (
@@ -206,7 +217,7 @@
             inherit inputs outputs;
             lib = lib "x86_64-linux";
           };
-          modules = sharedModules ++ nixosModules ++ [ ./machines/e14/default.nix ];
+          modules = privateModules ++ sharedModules ++ nixosModules ++ [ ./machines/e14/default.nix ];
         };
       };
     };
