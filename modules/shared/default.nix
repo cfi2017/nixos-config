@@ -1,3 +1,11 @@
-{ ... }: {
-  imports = [ ./config ./utils ./home-manager ./development ./system.nix ];
+{ ... }:
+{
+  imports = [
+    ./config
+    ./utils
+    ./email
+    ./home-manager
+    ./development
+    ./system.nix
+  ];
 }
