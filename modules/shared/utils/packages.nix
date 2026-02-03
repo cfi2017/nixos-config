@@ -66,6 +66,7 @@
           # inputs.nixvim.packages.${pkgs.system}.default
           ffmpeg
           z3
+          glab
 
           # language servers
           bash-language-server
