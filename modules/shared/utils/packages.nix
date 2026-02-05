@@ -69,6 +69,7 @@
           glab
           gpgme
           gpgme.dev
+          logseq
 
           # language servers
           bash-language-server
