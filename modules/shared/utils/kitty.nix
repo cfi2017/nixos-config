@@ -31,6 +31,8 @@
         keybindings = {
           "ctrl+c" = "copy_and_clear_or_interrupt";
           "ctrl+v" = "paste_from_clipboard";
+          "ctrl+shift+plus" = "change_font_size all +2.0";
+          "ctrl+shift+minus" = "change_font_size all -2.0";
         };
       };
     };

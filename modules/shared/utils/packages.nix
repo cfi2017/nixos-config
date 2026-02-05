@@ -67,6 +67,8 @@
           ffmpeg
           z3
           glab
+          gpgme
+          gpgme.dev
 
           # language servers
           bash-language-server
