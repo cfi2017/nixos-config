@@ -38,6 +38,7 @@
       gopass
       sshpass
       keepassxc
+      lbdb
 
       # iphone stuff
       libimobiledevice

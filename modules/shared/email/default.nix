@@ -111,6 +111,15 @@ in
                     unset collapse_unread
                     bind index - collapse-thread
                     bind index _ collapse-all
+
+                    uncolor index *
+                    color index      white        default  ~Q # answered
+                    color index      yellow       default  ~F # marked
+                    color index      red          default  ~N # new
+                    color index      red          default  ~O # unread
+                    color index      green        default  ~T # tagged
+                    color index      magenta      default  ~D # deleted
+
                   '';
                 };
                 notmuch = {
