@@ -37,6 +37,7 @@
       bitwarden-cli
       gopass
       sshpass
+      keepassxc
 
       # iphone stuff
       libimobiledevice

@@ -984,6 +984,26 @@
         "type": "github"
       }
     },
+    "microsoft-azurevpnclient": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770361260,
+        "narHash": "sha256-Pu3AQqdHNuxOq1//seHrrq1ltTtAmzsD+0tQvmgUcfU=",
+        "owner": "cfi2017",
+        "repo": "flake-microsoft-azurevpnclient",
+        "rev": "f681bbfd912d902282f79b3574683b5486df15f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cfi2017",
+        "repo": "flake-microsoft-azurevpnclient",
+        "type": "github"
+      }
+    },
     "ndg": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -1209,6 +1229,7 @@
         "hyprpaper": "hyprpaper",
         "ida-pro-flake": "ida-pro-flake",
         "impermanence": "impermanence",
+        "microsoft-azurevpnclient": "microsoft-azurevpnclient",
         "ndg": "ndg",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_2",
