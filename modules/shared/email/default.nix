@@ -34,7 +34,6 @@ in
             {
               accounts.email.maildirBasePath = ".local/share/email";
               programs = {
-                mbsync.enable = true;
                 msmtp.enable = true;
                 lieer.enable = true;
                 neomutt = {

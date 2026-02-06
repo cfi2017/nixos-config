@@ -64,6 +64,8 @@
         ];
         dnsovertls = "false";
       };
+
+      programs.microsoft-azurevpnclient.enable = true;
     }
   ];
 }

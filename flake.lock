@@ -991,11 +991,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770361260,
-        "narHash": "sha256-Pu3AQqdHNuxOq1//seHrrq1ltTtAmzsD+0tQvmgUcfU=",
+        "lastModified": 1770368262,
+        "narHash": "sha256-dGel5m+G2EyOQrT/hE4ekvja09vWvGdtEds7a+B6RnM=",
         "owner": "cfi2017",
         "repo": "flake-microsoft-azurevpnclient",
-        "rev": "f681bbfd912d902282f79b3574683b5486df15f9",
+        "rev": "9991bf5091ae3dc35a1aa5c548ba3428d61a5689",
         "type": "github"
       },
       "original": {
@@ -1206,11 +1206,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770209824,
-        "narHash": "sha256-Y7UV3gpStWNkI3WHNJl8ofxB9dFf40+gzHBSNk0ewr8=",
+        "lastModified": 1770386673,
+        "narHash": "sha256-pmTSJ9UCRLY+ZD0xmf/IYqjejE+MIZxMkj9V8oD1Ps4=",
         "ref": "refs/heads/main",
-        "rev": "bfa181ce0700e441b0be8868c44578e2f2d68244",
-        "revCount": 23,
+        "rev": "319b40fe6ff73d5dd427dc5959ed737457f1a3ab",
+        "revCount": 28,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/private-work-nixos-configs"
       },
