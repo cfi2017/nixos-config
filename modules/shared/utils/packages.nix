@@ -39,6 +39,7 @@
       sshpass
       keepassxc
       lbdb
+      citrix_workspace
 
       # iphone stuff
       libimobiledevice

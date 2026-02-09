@@ -1,5 +1,4 @@
 # Shared System Configuration
-
 {
   config,
   lib,
@@ -11,6 +10,12 @@
     # Allow unfree because we're not free :(
     nixpkgs.config = {
       allowUnfree = true;
+
+      # citrix workspace is awful and doesn't update their linux packages
+      permittedInsecurePackages = [
+        "libsoup-2.74.3"
+        "webkitgtk-2.42.4"
+      ];
     };
 
     # timezone
@@ -61,6 +66,5 @@
         dates = "weekly";
       };
     };
-
   };
 }

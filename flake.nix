@@ -7,6 +7,8 @@
 
     nixpkgs-master.url = "github:nixos/nixpkgs";
 
+    nixpkgs-25-05.url = "github:NixOS/nixpkgs/nixos-25.05";
+
     # core flakes
     home-manager = {
       url = "github:nix-community/home-manager";
