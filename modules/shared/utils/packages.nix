@@ -40,6 +40,8 @@
       keepassxc
       lbdb
       citrix_workspace
+      ccid
+      pcsclite
 
       # iphone stuff
       libimobiledevice
