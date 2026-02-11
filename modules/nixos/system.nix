@@ -8,7 +8,10 @@
   config = {
     cfi2017.core.zfs = lib.mkMerge [
       (lib.mkIf (config.cfi2017.persistence.enable && config.cfi2017.isLinux) {
-        systemDataLinks = [ "/var/lib/nixos" ];
+        systemDataLinks = [
+          "/var/lib/nixos"
+          "/var/lib/fprint"
+        ];
       })
       (lib.mkIf (!config.cfi2017.persistence.enable && config.cfi2017.isLinux) { })
     ];

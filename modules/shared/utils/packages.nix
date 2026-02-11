@@ -42,6 +42,7 @@
       citrix_workspace
       ccid
       pcsclite
+      usbutils
 
       # iphone stuff
       libimobiledevice
