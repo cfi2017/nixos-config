@@ -42,7 +42,7 @@ in
                   extraConfig = ''
                     set arrow_cursor
                     set record = ""
-                    set spool_file = "Inbox"
+                    set spoolfile = "notmuch://?query=tag%3Ainbox"
                     set sidebar_visible
                     set sidebar_width = 30
                     set sidebar_short_path = yes
