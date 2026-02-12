@@ -33,6 +33,7 @@
           "ctrl+v" = "paste_from_clipboard";
           "ctrl+shift+plus" = "change_font_size all +2.0";
           "ctrl+shift+minus" = "change_font_size all -2.0";
+          "mod+f6" = "change_font_size current +2.0";
         };
       };
     };
