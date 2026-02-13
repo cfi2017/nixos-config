@@ -26,9 +26,18 @@
           serif = [ config.cfi2017.font ];
         };
       };
-      packages = with pkgs; [ nerd-fonts._0xproto ];
-      # System-wide catppuccin configuration (Linux only)
-      # (Removed: catppuccin configuration here was invalid for the fonts module)
+      packages = with pkgs; [
+        nerd-fonts._0xproto
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+        liberation_ttf
+        fira-code
+        fira-code-symbols
+        mplus-outline-fonts.githubRelease
+        dina-font
+        proggyfonts
+      ];
     };
 
     programs.dconf.enable = true;
