@@ -54,6 +54,11 @@
         "8.8.8.8"
       ];
 
+      networking.firewall = {
+        enable = true;
+        allowedTCPPorts = [ 22 ];
+      };
+
       services.resolved = {
         enable = true;
         dnssec = "false";
