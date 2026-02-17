@@ -6,7 +6,7 @@
         enable = true;
         font = {
           name = config.cfi2017.font;
-          size = if config.cfi2017.isDarwin then 11 else 10;
+          size = if config.cfi2017.isDarwin then 11 else 9;
         };
         settings = {
           enable_audio_bell = false;

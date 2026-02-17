@@ -5,4 +5,5 @@
   services.pcscd.enable = true;
   services.fprintd.enable = true;
   services.printing.enable = true;
+  services.hardware.bolt.enable = true;
 }
