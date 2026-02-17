@@ -76,7 +76,7 @@
             kubectl
             kubernetes-helm
             kustomize
-            argocd
+            pkgs.stable.argocd
             cilium-cli
             hubble
             kubeseal
