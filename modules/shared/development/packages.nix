@@ -142,9 +142,9 @@
           (lib.optionals config.cfi2017.development-packages.tools.security [
             vault
             openbao
-            inputs.ida-pro-flake.packages.${system}.ida-pro
+            inputs.ida-pro-flake.packages.${stdenv.hostPlatform.system}.ida-pro
             # inputs.binaryninja-flake.packages.${system}.binaryninja
-            inputs.burpsuite.packages.${system}.default
+            inputs.burpsuite.packages.${stdenv.hostPlatform.system}.default
             # inputs.berg-cli.packages.${system}.default
             gdb
             ngrok

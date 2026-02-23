@@ -26,6 +26,8 @@
             enable = true;
           };
 
+          dotDir = "${config.xdg.configHome}/zsh";
+
           defaultKeymap = "emacs";
 
           # https://github.com/catppuccin/zsh-syntax-highlighting/blob/main/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
