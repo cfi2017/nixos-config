@@ -36,6 +36,7 @@ in
         useUserPackages = true;
         # Fix for file conflicts during darwin-rebuild/home-manager activation
         backupFileExtension = "backup";
+
         users = {
           "${user}" =
             { ... }:
