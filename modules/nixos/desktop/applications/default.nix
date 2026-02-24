@@ -12,6 +12,7 @@
       home.packages = [
         pkgs.discord
         pkgs.google-chrome
+        pkgs.obsidian
       ];
     };
   };
