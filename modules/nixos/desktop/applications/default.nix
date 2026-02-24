@@ -13,6 +13,7 @@
         pkgs.discord
         pkgs.google-chrome
         pkgs.obsidian
+        pkgs.wireshark
       ];
     };
   };
