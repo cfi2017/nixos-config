@@ -70,7 +70,7 @@
         dnsovertls = "false";
       };
 
-      programs.microsoft-azurevpnclient.enable = true;
+      # programs.microsoft-azurevpnclient.enable = true;
     }
   ];
 }

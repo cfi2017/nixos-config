@@ -52,10 +52,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    microsoft-azurevpnclient = {
-      url = "github:cfi2017/flake-microsoft-azurevpnclient";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # microsoft-azurevpnclient = {
+    #   url = "github:cfi2017/flake-microsoft-azurevpnclient";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -157,7 +157,7 @@
         home-manager.nixosModules.home-manager
         catppuccin.nixosModules.catppuccin
         nur.modules.nixos.default
-        inputs.microsoft-azurevpnclient.nixosModules.default
+        # inputs.microsoft-azurevpnclient.nixosModules.default
         # binaryninja-flake.nixosModules.binaryninja
 
         ./modules/nixos
