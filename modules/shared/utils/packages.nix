@@ -43,6 +43,11 @@
       ccid
       pcsclite
       usbutils
+      gitflow
+      # telnet
+      inetutils
+      difftastic
+      socat
 
       # iphone stuff
       libimobiledevice
