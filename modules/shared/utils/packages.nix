@@ -49,6 +49,9 @@
       difftastic
       socat
 
+      # enshittification
+      claude-code
+
       # iphone stuff
       libimobiledevice
       libimobiledevice-glue
