@@ -49,6 +49,8 @@
       difftastic
       socat
 
+      jetbrains.rust-rover
+
       # enshittification
       claude-code
 
