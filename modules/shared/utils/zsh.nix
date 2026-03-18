@@ -11,7 +11,10 @@
     (lib.mkIf config.cfi2017.isLinux {
       cfi2017.core.zfs = lib.mkMerge [
         (lib.mkIf config.cfi2017.persistence.enable {
-          systemCacheLinks = [ "/root/.local/share/autojump" ];
+          systemCacheLinks = [
+            "/root/.local/share/autojump"
+            "/var/lib/cloudflare-warp"
+          ];
           homeCacheLinks = [ ".local/share/autojump" ];
         })
       ];
