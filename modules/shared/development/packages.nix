@@ -91,6 +91,7 @@
             drawio
             prometheus-alertmanager
             pkgs.stable.kyverno-chainsaw
+            kubeconform
             kargo
             skopeo
             # azure
