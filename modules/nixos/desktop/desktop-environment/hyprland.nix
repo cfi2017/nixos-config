@@ -221,6 +221,8 @@ in
               "$mod SHIFT, e, exit"
               "$mod SHIFT, p, exec, ${pkgs.hyprlock}/bin/hyprlock -v > /tmp/hyprlock.log"
 
+              "$mod, t, togglegroup"
+
               # Screen focus
               "$mod, v, togglefloating"
               "$mod, u, focusurgentorlast"

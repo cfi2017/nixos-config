@@ -13,6 +13,9 @@
               directory = "/etc/NetworkManager/system-connections/";
               # mode = "0700";
             }
+            {
+              directory = "/var/lib/netbird/";
+            }
           ];
         })
       ];

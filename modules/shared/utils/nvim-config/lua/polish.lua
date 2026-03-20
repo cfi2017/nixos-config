@@ -41,6 +41,6 @@ vim.filetype.add {
   },
 }
 
-require("lint").linters_by_ft = {
-  ["yaml.kubernetes"] = { "kubeconform" },
-}
+-- require("lint").linters_by_ft = {
+--   ["yaml.kubernetes"] = { "kubeconform" },
+-- }
