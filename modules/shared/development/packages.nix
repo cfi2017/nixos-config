@@ -97,6 +97,8 @@
             # azure
             kubelogin
 
+            fluxcd
+
             kubectl-cnpg
             kubectl-tree
             kubectl-rook-ceph
