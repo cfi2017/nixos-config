@@ -134,7 +134,7 @@
             ls = "eza --icons --group-directories-first";
             # man = "tlrc";
             ll = "eza --icons --group-directories-first -lah";
-            grep = "rg";
+            # grep = "rg";
             top = "btm";
             cls = "clear";
             myip = "dig +short myip.opendns.com @208.67.222.222 2>&1";
