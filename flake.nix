@@ -62,6 +62,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-headlamp = {
+      url = "github:plaflamme/nix-headlamp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # private flakes
     ida-pro-flake = {
       url = "git+ssh://git@github.com/cfi2017/ida-pro-flake?lfs=1";
@@ -106,6 +111,7 @@
       nix-colors,
       catppuccin,
       sops-nix,
+      nix-headlamp,
       # binaryninja-flake,
       ndg,
       pre-commit-hooks,
@@ -144,6 +150,7 @@
                 (import ./overlays { inherit inputs; }).additions
                 (import ./overlays { inherit inputs; }).stable-packages
                 (import ./overlays { inherit inputs; }).force-latest
+                nix-headlamp.overlays.default
               ];
             };
           }
