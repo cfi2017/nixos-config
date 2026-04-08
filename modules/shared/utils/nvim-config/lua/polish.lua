@@ -44,3 +44,31 @@ vim.filetype.add {
 -- require("lint").linters_by_ft = {
 --   ["yaml.kubernetes"] = { "kubeconform" },
 -- }
+--
+
+vim.keymap.set("n", "<leader>xx", function()
+  local line = vim.api.nvim_get_current_line()
+  if line:match "%- %[x%]" then
+    line = line:gsub("%- %[x%]", "- [ ]", 1)
+  elseif line:match "%- %[ %]" then
+    line = line:gsub("%- %[ %]", "- [x]", 1)
+  end
+  vim.api.nvim_set_current_line(line)
+end, { desc = "Toggle markdown checkbox" })
+
+vim.keymap.set("v", "<leader>xx", function()
+  local start_line = vim.fn.line "'<"
+  local end_line = vim.fn.line "'>"
+  for i = start_line, end_line do
+    local result = vim.api.nvim_buf_get_lines(0, i - 1, i, false)
+    local line = result[1]
+    if line then
+      if line:match "%- %[x%]" then
+        line = line:gsub("%- %[x%]", "- [ ]", 1)
+      elseif line:match "%- %[ %]" then
+        line = line:gsub("%- %[ %]", "- [x]", 1)
+      end
+      vim.api.nvim_buf_set_lines(0, i - 1, i, false, { line })
+    end
+  end
+end, { desc = "Toggle markdown checkboxes in selection" })

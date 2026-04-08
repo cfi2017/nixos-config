@@ -49,6 +49,8 @@
       difftastic
       socat
 
+      zammad-tui
+
       jetbrains.rust-rover
 
       # enshittification
