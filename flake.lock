@@ -1293,11 +1293,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771834985,
-        "narHash": "sha256-kyxNx8ofnwP6r96S/eW0w3DFlPnol1nnqHzxO+2kG0Q=",
+        "lastModified": 1775646077,
+        "narHash": "sha256-td3nAwRezyeUH+pc+wr7e7GlbjuJ6zP6y1VfD+SdUrA=",
         "ref": "refs/heads/main",
-        "rev": "3dddc9f1f76b367420904e7ef99a6f2806095676",
-        "revCount": 36,
+        "rev": "f613ee31b7c149119b6d2e435b5f17b6c5cb2ff8",
+        "revCount": 38,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/private-work-nixos-configs"
       },
