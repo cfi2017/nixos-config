@@ -1,6 +1,22 @@
-{ ... }:
 {
-  # imports = [ ./hardware.nix ];
+  inputs,
+  lib,
+  ...
+}:
+{
+  imports = [ inputs.nixos-wsl.nixosModules.default ];
+
+  wsl = {
+    enable = true;
+    defaultUser = "user";
+  };
+
+  networking = {
+    hostName = "wsl";
+    hostId = "12345678";
+  };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   cfi2017 = {
     stateVersion = "25.05";
@@ -14,17 +30,17 @@
     development-packages = {
       enable = true;
       tools = {
-        c = true;
-        go = true;
-        rust = true;
+        c = false;
+        go = false;
+        rust = false;
         k8s = true;
         iac = true;
-        python = true;
-        networking = true;
-        security = true;
+        python = false;
+        networking = false;
+        security = false;
         infra = true;
         cloud = true;
-        dev = true;
+        dev = false;
       };
     };
     development = {
