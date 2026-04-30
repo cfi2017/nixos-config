@@ -112,6 +112,7 @@
   hardware = {
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
+    enableAllFirmware = true;
     graphics.enable = true;
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.latest;
