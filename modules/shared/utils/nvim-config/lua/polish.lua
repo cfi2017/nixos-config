@@ -19,6 +19,8 @@ require("lspconfig").yamlls.setup {
 }
 require("lspconfig").helm_ls.setup {}
 
+vim.o.autoread = true
+
 vim.filetype.add {
   pattern = {
     [".*/templates/.*%.yaml"] = "helm",
