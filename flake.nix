@@ -218,7 +218,7 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
         in
-        pkgs.nixfmt-rfc-style
+        pkgs.nixfmt
       );
 
       checks = forAllSystems (system: {
@@ -226,7 +226,7 @@
           src = ./.;
           hooks = {
             statix.enable = false;
-            nixfmt-rfc-style.enable = true;
+            nixfmt.enable = true;
           };
         };
       });
