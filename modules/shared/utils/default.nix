@@ -5,8 +5,8 @@
     ./btop.nix
     ./gpg.nix
     ./direnv.nix
-    ./eza.nix
     ./fzf.nix
+    ./lsd.nix
     ./k9s.nix
     ./kitty.nix
     ./nh.nix

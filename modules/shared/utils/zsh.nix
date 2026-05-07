@@ -29,7 +29,25 @@
             enable = true;
           };
 
-          defaultKeymap = "emacs";
+          oh-my-zsh = {
+            enable = true;
+            plugins = [
+              "aliases"
+              "common-aliases"
+              "fzf"
+              "git"
+              "gitignore"
+              "history-substring-search"
+              "helm"
+              "kubectl"
+              "ssh-agent"
+              "urltools"
+            ];
+            theme = "bira";
+          };
+          initContent = "zmodload zsh/zprof";
+
+          # defaultKeymap = "emacs";
 
           # https://github.com/catppuccin/zsh-syntax-highlighting/blob/main/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
@@ -125,15 +143,9 @@
           };
 
           shellAliases = {
-            home = "cd ~/";
             config = "cd ~/code/personal/nixos-config";
-            work = "cd ~/code/work";
-            personal = "cd ~/code/personal";
-            gcl = "git clone";
             cat = "bat -p --no-pager";
-            ls = "lsd";
             # man = "tlrc";
-            ll = "lsd -lah";
             # grep = "rg";
             top = "btm";
             cls = "clear";
@@ -153,30 +165,9 @@
             vi = "nvim";
             v = "nvim";
 
-            # Nix aliases
-            nhds = "nh darwin switch --hostname";
-            nhos = "nh os switch --hostname";
-
             # Kubernetes aliases
             k = "kubectl";
-
-            # Docker aliases
-            d = "docker";
-            dps = "docker ps";
-            dpsa = "docker ps -a";
-            di = "docker images";
-            dexec = "docker exec";
-            ds = "docker stop";
-            drm = "docker rm";
           };
-
-          initContent = ''
-            bindkey "^[[1;5D" backward-word # Ctrl+Left
-            bindkey "^[[1;5C" forward-word # Ctrl+Right
-
-            #bindkey "^[OD" backward-word
-            #bindkey "^[OC" forward-word
-          '';
         };
       };
     }
