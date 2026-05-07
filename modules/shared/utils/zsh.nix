@@ -130,10 +130,10 @@
             work = "cd ~/code/work";
             personal = "cd ~/code/personal";
             gcl = "git clone";
-            cat = "bat";
-            ls = "eza --icons --group-directories-first";
+            cat = "bat -p --no-pager";
+            ls = "lsd";
             # man = "tlrc";
-            ll = "eza --icons --group-directories-first -lah";
+            ll = "lsd -lah";
             # grep = "rg";
             top = "btm";
             cls = "clear";

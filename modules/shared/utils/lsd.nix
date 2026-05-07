@@ -1,7 +1,8 @@
-{ config, ... }: {
+{ config, ... }:
+{
   config = {
     home-manager.users.${config.cfi2017.user.name} = {
-      programs.eza = {
+      programs.lsd = {
         enable = true;
         enableZshIntegration = true;
         icons = "auto";
