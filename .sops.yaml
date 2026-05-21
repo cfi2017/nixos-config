@@ -1,4 +1,5 @@
 keys:
+  - &work-yubikey 44FE2A0A9B3796D2365E4A6FC292399AE67CE6F2
   - &main age1utctcjekpgm7ch2x92njmzzy3fxyhqy5d4za9sd8ewgqv0ae5yls6q4lta
   - &bootstrap age154lt405t8s6cfd0j3v340s6a9d0s70e99hq9hem7l0vzyzr3q3wquw08f7
   - &e14 age14pgxrfmz90lc2pn4j3dg0sh5lpsasr2lvhytj8ggkf5ne4q7mc5qzkcsp7
@@ -11,3 +12,5 @@ creation_rules:
           - *bootstrap
           - *e14
           - *e14-user
+        pgp:
+          - *work-yubikey
