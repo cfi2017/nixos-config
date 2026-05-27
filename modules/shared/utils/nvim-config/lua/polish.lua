@@ -2,9 +2,10 @@
 -- This is just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
-require("lspconfig").clangd.setup {}
-require("lspconfig").rust_analyzer.setup {}
-require("lspconfig").yamlls.setup {
+-- vim.lsp.config.clangd.setup {}
+vim.lsp.config("clangd", {})
+vim.lsp.config("rust_analyzer", {})
+vim.lsp.config("yamlls", {
   filetypes = { "yaml", "yaml.kubernetes", "yaml.docker-compose" },
   settings = {
     yaml = {
@@ -16,8 +17,8 @@ require("lspconfig").yamlls.setup {
       schemaStore = { enable = true },
     },
   },
-}
-require("lspconfig").helm_ls.setup {}
+})
+vim.lsp.config("helm_ls", {})
 
 vim.o.autoread = true
 
