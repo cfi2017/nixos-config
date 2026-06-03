@@ -21,7 +21,14 @@ in
       grim
       grimblast
       brightnessctl
-      catppuccin-sddm # .override
+      # catppuccin-sddm # .override
+      (catppuccin-hyprland.overrideAttrs (oldAttrs: {
+        version = "2.0.0";
+        src = oldAttrs.src.override {
+          tag = "v2.0.0";
+          hash = "sha256-jGqBpSQa793phan9PeU2yXMX1nxzYClthQSeTwdqgEQ="; # replace after first build
+        };
+      }))
       # {
       #   flavor = config.cfi2017.colorScheme.flavor;
       #   accent = config.cfi2017.colorScheme.accent;
@@ -161,7 +168,6 @@ in
                 range = 20;
                 render_power = 3;
                 offset = "0 2";
-                ignore_window = true;
               };
             };
 
@@ -203,7 +209,6 @@ in
             };
 
             dwindle = {
-              pseudotile = true;
               preserve_split = true;
               smart_split = false;
               smart_resizing = false;
