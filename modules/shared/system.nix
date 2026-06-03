@@ -15,6 +15,7 @@
       permittedInsecurePackages = [
         "libsoup-2.74.3"
         "webkitgtk-2.42.4"
+        "electron-39.8.10"
       ];
     };
 

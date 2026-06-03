@@ -66,6 +66,8 @@
       ltrace
       strace
       strace-analyzer
+
+      pcsc-safenet
     ];
 
     # User Packages
