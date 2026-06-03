@@ -51,6 +51,7 @@
             accent = "dark";
             flavor = config.cfi2017.colorScheme.flavor;
           };
+          hyprland.enable = false;
         };
 
         gtk = {
