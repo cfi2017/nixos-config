@@ -110,6 +110,7 @@ in
           xwayland = {
             enable = true;
           };
+          configType = "hyprlang";
 
           settings = {
             "$terminal" = "kitty";
