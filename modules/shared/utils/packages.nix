@@ -56,6 +56,8 @@
       # enshittification
       claude-code
 
+      comma
+
       # iphone stuff
       libimobiledevice
       libimobiledevice-glue
