@@ -79,7 +79,7 @@
           fontconfig
           fd
           jq
-          yq
+          yq-go
           direnv
           devenv
           atac
