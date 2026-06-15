@@ -63,6 +63,7 @@
       libimobiledevice-glue
       usbmuxd
       f3d
+      mesa-demos
 
       # binary analysis
       lurk
