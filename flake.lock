@@ -1148,11 +1148,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1781513744,
-        "narHash": "sha256-JdsP0nON7AIUgHuz/xCbLE7K88QDJ/+uyH/T0QO0Bmc=",
+        "lastModified": 1781515014,
+        "narHash": "sha256-ClJqPacpzqeQ/igcNHL2Z4Zj6NLTH5/5Wm24pYvAKiM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8a6f1ef744f051c653552326975da072d88f7b2d",
+        "rev": "1ed0de7fc9760d65a44870218f8ec6b5ffece1db",
         "type": "github"
       },
       "original": {
@@ -1293,11 +1293,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780644871,
-        "narHash": "sha256-9xaIGXaydelUyZIJ2+SdTsLm1nrOXK+uEK3SCWTNcw0=",
+        "lastModified": 1781515735,
+        "narHash": "sha256-TWKC26Hfl6EZL1mDg11Diaglc2/FKoBOzMx6bQCvqCU=",
         "ref": "refs/heads/main",
-        "rev": "9b37f49c1011aff9da2aa7d3b77b93e7a0f9b40b",
-        "revCount": 40,
+        "rev": "140337b4e805c3a6722d16ef3ff535f94205883a",
+        "revCount": 41,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/private-work-nixos-configs"
       },
