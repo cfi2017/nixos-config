@@ -62,6 +62,7 @@
       libimobiledevice
       libimobiledevice-glue
       usbmuxd
+      f3d
 
       # binary analysis
       lurk
