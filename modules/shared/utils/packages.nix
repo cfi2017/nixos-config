@@ -55,6 +55,7 @@
 
       # enshittification
       claude-code
+      code-cursor
 
       comma
 
