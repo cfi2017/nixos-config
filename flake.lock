@@ -1094,11 +1094,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783006986,
-        "narHash": "sha256-5RV060ivMuYopXG4EdE1NlogdhsBn/ZgmnsGYMGKWwY=",
+        "lastModified": 1783009640,
+        "narHash": "sha256-FYaMhbK/uJASWrGvp+63yTmnZk6ja9XEa65vh1ZGD7s=",
         "owner": "cfi2017",
         "repo": "multi-profile",
-        "rev": "8cf86c7aa342c357a2a3c29166c2bc9cb000b583",
+        "rev": "d6a9f1c1413a6691894417db0616e55918d9fa8a",
         "type": "github"
       },
       "original": {
