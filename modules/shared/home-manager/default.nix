@@ -38,36 +38,60 @@ in
         backupFileExtension = "backup";
 
         users = {
-          "${user}" =
-            { ... }:
-            {
-              # Common config
-              imports = [
-                inputs.catppuccin.homeModules.catppuccin
-                inputs.nix-colors.homeManagerModules.default
-                inputs.zen-browser.homeModules.twilight-official
-              ];
+          "${user}" = { ... }: {
+            # Common config
+            imports = [
+              inputs.catppuccin.homeModules.catppuccin
+              inputs.nix-colors.homeManagerModules.default
+              inputs.zen-browser.homeModules.twilight-official
+              inputs.multi-profile.homeModules.default
+            ];
 
-              colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
+            colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
 
-              home = {
-                stateVersion = config.cfi2017.stateVersion;
-                username = config.cfi2017.user.name;
-                homeDirectory = config.cfi2017.user.homeDirectory;
-                sessionVariables = {
-                  SOPS_AGE_KEY_FILE = config.cfi2017.user.homeDirectory + "/.config/sops/age/keys.txt";
+            home = {
+              stateVersion = config.cfi2017.stateVersion;
+              username = config.cfi2017.user.name;
+              homeDirectory = config.cfi2017.user.homeDirectory;
+              sessionVariables = {
+                SOPS_AGE_KEY_FILE = config.cfi2017.user.homeDirectory + "/.config/sops/age/keys.txt";
+              };
+            };
+
+            programs.home-manager.enable = true;
+            programs.multiProfile = {
+              enable = true;
+
+              profiles = (inputs.private-work.browserProfiles or { }) // {
+                personal = {
+                  browser = "zen";
+                  desktopName = "Personal (Zen)";
+                  pins = [
+                    {
+                      url = "https://mail.proton.me";
+                      title = "Mail";
+                      essential = true;
+                    }
+                  ];
                 };
               };
 
-              programs.home-manager.enable = true;
+              defaultProfile = "personal";
 
-              # User-specific catppuccin configuration
-              catppuccin = {
-                enable = true;
-                flavor = flavor;
-                accent = accent;
-              };
+              router.rules = (inputs.private-work.browserRouterRules or [ ]) ++ [
+                {
+                  profile = "personal";
+                }
+              ];
             };
+
+            # User-specific catppuccin configuration
+            catppuccin = {
+              enable = true;
+              flavor = flavor;
+              accent = accent;
+            };
+          };
         };
       };
     }
