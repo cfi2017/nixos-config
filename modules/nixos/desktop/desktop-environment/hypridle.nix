@@ -1,4 +1,8 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 {
   options.cfi2017.graphical.hypridle = {
     enable = lib.mkEnableOption "hypridle";
