@@ -7,7 +7,13 @@
 }:
 let
   tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
-  hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
+  # Directories tuigreet scans for selectable sessions. niri's session is
+  # added when it is enabled so it can be chosen at login (--remember-session
+  # persists the last pick).
+  session-dirs = lib.concatStringsSep ":" (
+    [ "${pkgs.hyprland}/share/wayland-sessions" ]
+    ++ lib.optional config.cfi2017.graphical.niri.enable "${config.programs.niri.package}/share/wayland-sessions"
+  );
 in
 {
   options.cfi2017.graphical.hyprland = {
@@ -54,7 +60,7 @@ in
         enable = true;
         settings = {
           default_session = {
-            command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+            command = "${tuigreet} --time --remember --remember-session --sessions ${session-dirs}";
             user = "greeter";
           };
         };
