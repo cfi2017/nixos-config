@@ -28,7 +28,12 @@
               #   "DP-5"
               #   "HDMI-A-1"
               # ];
-              modules-left = [ "hyprland/workspaces" ];
+              # Both modules are listed so the same bar works under either
+              # compositor; each only renders when its compositor is running.
+              modules-left = [
+                "niri/workspaces"
+                "hyprland/workspaces"
+              ];
               modules-center = [ ];
               modules-right = [
                 "custom/notifications"
@@ -40,6 +45,14 @@
                 "custom/lock"
                 "custom/power"
               ];
+
+              "niri/workspaces" = {
+                disable-scroll = true;
+                all-outputs = false;
+                # niri workspaces are unnamed, so the default {value} renders
+                # blank; {index} shows the workspace numbers.
+                format = "{index}";
+              };
 
               "hyprland/workspaces" = {
                 disable-scroll = true;

@@ -82,11 +82,15 @@
 
           screenshot-path "~/pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png"
 
-          spawn-at-startup "${pkgs.waybar}/bin/waybar"
+          // waybar is started by its systemd user service (programs.waybar.systemd),
+          // which niri activates via graphical-session.target. Do NOT spawn it here
+          // as well or you get two overlapping bars.
           spawn-at-startup "${pkgs.hyprpaper}/bin/hyprpaper"
           spawn-at-startup "${pkgs.networkmanagerapplet}/bin/nm-applet"
           spawn-at-startup "${pkgs.blueman}/bin/blueman-applet"
           spawn-at-startup "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
+          // Start gnome-keyring (secrets/ssh/gpg) like the hyprland session does.
+          spawn-at-startup "sh" "-c" "eval $(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets,ssh,gpg,pkcs11)"
 
           environment {
               DISPLAY ":0"
@@ -102,7 +106,10 @@
           }
 
           binds {
-              Mod+Shift+Slash { show-hotkey-overlay; }
+              // F1 instead of the upstream Mod+Shift+Slash: on the Swiss (ch)
+              // layout "/" is Shift+7, so the slash keysym already needs Shift
+              // and Mod+Shift+Slash never resolves.
+              Mod+F1 { show-hotkey-overlay; }
 
               Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
               Mod+D { spawn "${pkgs.fuzzel}/bin/fuzzel"; }
@@ -148,9 +155,24 @@
               Mod+Ctrl+K { set-window-height "-10%"; }
               Mod+Ctrl+J { set-window-height "+10%"; }
 
+              // Lock screen (same hyprlock the hypridle idle-timer uses).
+              Mod+Alt+L { spawn "${pkgs.hyprlock}/bin/hyprlock"; }
+              // File manager, notification centre, clipboard history (parity with hyprland).
+              Mod+Alt+E { spawn "${pkgs.kitty}/bin/kitty" "--hold" "-e" "${pkgs.yazi}/bin/yazi"; }
+              Mod+Alt+N { spawn "${pkgs.swaynotificationcenter}/bin/swaync-client" "-t" "-sw"; }
+              Mod+Alt+V { spawn "sh" "-c" "${pkgs.cliphist}/bin/cliphist list | ${pkgs.fuzzel}/bin/fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy"; }
+
               Print { screenshot; }
               Ctrl+Print { screenshot-screen; }
               Alt+Print { screenshot-window; }
+
+              // Volume / mic / brightness — usable even while the screen is locked.
+              XF86AudioRaiseVolume allow-when-locked=true { spawn "${pkgs.wireplumber}/bin/wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+              XF86AudioLowerVolume allow-when-locked=true { spawn "${pkgs.wireplumber}/bin/wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+              XF86AudioMute        allow-when-locked=true { spawn "${pkgs.wireplumber}/bin/wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+              XF86AudioMicMute     allow-when-locked=true { spawn "${pkgs.wireplumber}/bin/wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+              XF86MonBrightnessUp   allow-when-locked=true { spawn "${pkgs.brightnessctl}/bin/brightnessctl" "set" "5%+"; }
+              XF86MonBrightnessDown allow-when-locked=true { spawn "${pkgs.brightnessctl}/bin/brightnessctl" "set" "5%-"; }
 
               Mod+Shift+E { quit; }
               Mod+Shift+P { power-off-monitors; }

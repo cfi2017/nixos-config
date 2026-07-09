@@ -22,7 +22,8 @@ in
             ".local"
             ".claude"
           ];
-          # homeCacheFileLinks = [".claude.json"];
+          # `.claude.json` is kept inside ~/.claude via CLAUDE_CONFIG_DIR (see
+          # sessionVariables below), so the whole directory persists as one unit.
         })
       ];
     })
@@ -55,6 +56,12 @@ in
               homeDirectory = config.cfi2017.user.homeDirectory;
               sessionVariables = {
                 SOPS_AGE_KEY_FILE = config.cfi2017.user.homeDirectory + "/.config/sops/age/keys.txt";
+                # Keep Claude Code's global config (`.claude.json`: login, project
+                # history, resumable chats) inside the already-persisted ~/.claude
+                # directory instead of ~/.claude.json in the ephemeral home root.
+                # Persisting the whole directory (rather than bind-mounting the
+                # single file) also survives Claude's atomic writes cleanly.
+                CLAUDE_CONFIG_DIR = config.cfi2017.user.homeDirectory + "/.claude";
               };
             };
 
