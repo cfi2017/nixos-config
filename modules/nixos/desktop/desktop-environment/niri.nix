@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  kitty-cwd = import ./kitty-cwd.nix { inherit pkgs; };
+in
 {
   options.cfi2017.graphical.niri = {
     enable = lib.mkEnableOption "niri scrollable-tiling wayland compositor";
@@ -112,6 +115,8 @@
               Mod+F1 { show-hotkey-overlay; }
 
               Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
+              // Same as Mod+Return, but inherits the focused terminal's cwd.
+              Mod+Shift+Return { spawn "${kitty-cwd}"; }
               Mod+D { spawn "${pkgs.fuzzel}/bin/fuzzel"; }
               Mod+Shift+Q { close-window; }
 

@@ -6,6 +6,7 @@
   ...
 }:
 let
+  kitty-cwd = import ./kitty-cwd.nix { inherit pkgs; };
   tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
   # Directories tuigreet scans for selectable sessions. niri's session is
   # added when it is enabled so it can be chosen at login (--remember-session
@@ -229,6 +230,8 @@ in
             bind = [
               # General
               "$mod, return, exec, $terminal"
+              # Same as $mod+return, but inherits the focused terminal's cwd.
+              "$mod SHIFT, return, exec, ${kitty-cwd}"
               "$mod SHIFT, q, killactive"
               "$mod SHIFT, e, exit"
               "$mod SHIFT, p, exec, ${pkgs.hyprlock}/bin/hyprlock -v > /tmp/hyprlock.log"
