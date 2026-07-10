@@ -72,10 +72,19 @@ in
               profiles = (inputs.private-work.browserProfiles or { }) // {
                 personal = {
                   browser = "zen";
-                  desktopName = "Personal (Zen)";
                   pins = [
                     {
                       url = "https://mail.proton.me";
+                      title = "Mail";
+                      essential = true;
+                    }
+                  ];
+                };
+                shc = {
+                  browser = "zen";
+                  pins = [
+                    {
+                      url = "https://mail.google.com";
                       title = "Mail";
                       essential = true;
                     }
