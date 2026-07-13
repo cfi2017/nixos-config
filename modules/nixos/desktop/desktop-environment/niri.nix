@@ -130,6 +130,40 @@ in
               Mod+Shift+J { move-window-down; }
               Mod+Shift+K { move-window-up; }
 
+              // Vertical splits. niri columns can stack several windows on top
+              // of each other -- that stack IS the vertical split. A new window
+              // opens in its own column, so to put it *below* the focused one
+              // you pull it into the current column ("consume"); Period pushes
+              // the bottom window back out into its own column ("expel").
+              // Once stacked, Mod+J / Mod+K move focus up/down within the split.
+              Mod+Comma  { consume-window-into-column; }
+              Mod+Period { expel-window-from-column; }
+
+              // Switch focus between physical monitors.
+              Mod+Ctrl+Left  { focus-monitor-left; }
+              Mod+Ctrl+Down  { focus-monitor-down; }
+              Mod+Ctrl+Up    { focus-monitor-up; }
+              Mod+Ctrl+Right { focus-monitor-right; }
+
+              // Send the focused column to the monitor in that direction.
+              Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+              Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+              Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+              Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+
+              // Workspaces are stacked vertically per monitor; move up/down the
+              // stack. U/I mirror the Page keys for home-row reach.
+              Mod+Page_Down { focus-workspace-down; }
+              Mod+Page_Up   { focus-workspace-up; }
+              Mod+U         { focus-workspace-down; }
+              Mod+I         { focus-workspace-up; }
+
+              // Carry the focused column to the workspace above/below.
+              Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+              Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+              Mod+Ctrl+U         { move-column-to-workspace-down; }
+              Mod+Ctrl+I         { move-column-to-workspace-up; }
+
               Mod+1 { focus-workspace 1; }
               Mod+2 { focus-workspace 2; }
               Mod+3 { focus-workspace 3; }
