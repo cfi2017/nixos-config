@@ -50,6 +50,7 @@
       socat
 
       zammad-tui
+      agx
 
       jetbrains.rust-rover
 

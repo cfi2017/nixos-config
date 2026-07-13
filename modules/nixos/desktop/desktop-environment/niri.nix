@@ -6,6 +6,10 @@
 }:
 let
   kitty-cwd = import ./kitty-cwd.nix { inherit pkgs; };
+  # Wallpapers live next to this module. hyprpaper crashes under niri (it is a
+  # Hyprland-only tool), so the niri session paints the background with swaybg.
+  wallpaperTeal = ./_assets/wallpaper-space-teal.png;
+  wallpaperCoral = ./_assets/wallpaper-space-coral.png;
 in
 {
   options.cfi2017.graphical.niri = {
@@ -22,6 +26,7 @@ in
       slurp
       grim
       grimblast
+      swaybg # wallpaper daemon (hyprpaper is Hyprland-only and crashes on niri)
       brightnessctl
       xwayland-satellite # xwayland support for niri
     ];
@@ -88,7 +93,12 @@ in
           // waybar is started by its systemd user service (programs.waybar.systemd),
           // which niri activates via graphical-session.target. Do NOT spawn it here
           // as well or you get two overlapping bars.
-          spawn-at-startup "${pkgs.hyprpaper}/bin/hyprpaper"
+          //
+          // Wallpaper: one swaybg process paints every output. Outputs are named
+          // as reported by `niri msg outputs`; the two Samsung externals get the
+          // matched teal/coral pair, the laptop panel gets teal. "fill" crops to
+          // cover regardless of aspect ratio.
+          spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-o" "eDP-1" "-i" "${wallpaperTeal}" "-m" "fill" "-o" "DP-6" "-i" "${wallpaperTeal}" "-m" "fill" "-o" "DP-7" "-i" "${wallpaperCoral}" "-m" "fill"
           spawn-at-startup "${pkgs.networkmanagerapplet}/bin/nm-applet"
           spawn-at-startup "${pkgs.blueman}/bin/blueman-applet"
           spawn-at-startup "${pkgs.xwayland-satellite}/bin/xwayland-satellite"

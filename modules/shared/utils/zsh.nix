@@ -144,6 +144,7 @@
 
           shellAliases = {
             config = "cd ~/code/personal/nixos-config";
+            rebuild = "nixos-rebuild switch --flake ~/code/personal/nixos-config#e14 --sudo";
             cat = "bat -p --no-pager";
             # man = "tlrc";
             # grep = "rg";

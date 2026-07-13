@@ -77,6 +77,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agx = {
+      url = "github:cfi2017/agx-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # private flakes
     ida-pro-flake = {
       url = "git+ssh://git@github.com/cfi2017/ida-pro-flake?lfs=1";
@@ -123,6 +128,7 @@
       sops-nix,
       nix-headlamp,
       zammad-tui,
+      agx,
       # binaryninja-flake,
       ndg,
       pre-commit-hooks,
@@ -163,6 +169,7 @@
                 (import ./overlays { inherit inputs; }).force-latest
                 nix-headlamp.overlays.default
                 zammad-tui.overlays.default
+                agx.overlays.default
               ];
             };
           }
