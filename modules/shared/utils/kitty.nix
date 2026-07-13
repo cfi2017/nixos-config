@@ -19,7 +19,7 @@
           font_family = config.cfi2017.font;
           adjust_line_height = 3;
 
-          background_opacity = "0.95";
+          background_opacity = "0.90";
           background_blur = 60;
 
           # Window config
