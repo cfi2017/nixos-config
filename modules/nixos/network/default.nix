@@ -64,13 +64,17 @@
 
       services.resolved = {
         enable = true;
-        dnssec = "false";
-        domains = [ "~." ];
-        fallbackDns = [
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
-        dnsovertls = "false";
+        # Renamed in nixos-unstable: the individual options now live under the
+        # freeform `settings.Resolve` table (written verbatim to resolved.conf).
+        settings.Resolve = {
+          DNSSEC = "false";
+          Domains = [ "~." ];
+          FallbackDNS = [
+            "1.1.1.1"
+            "1.0.0.1"
+          ];
+          DNSOverTLS = "false";
+        };
       };
 
       # programs.microsoft-azurevpnclient.enable = true;

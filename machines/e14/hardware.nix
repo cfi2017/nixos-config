@@ -122,9 +122,6 @@
         enable = true;
       };
     };
-    opengl = {
-      enable = true;
-    };
   };
   services = {
     blueman.enable = true;

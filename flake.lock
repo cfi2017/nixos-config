@@ -1121,26 +1121,6 @@
         "type": "github"
       }
     },
-    "nix-headlamp": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1778194328,
-        "narHash": "sha256-Wsf9mEFiMIC1iA2d8iNEhpeXtSjzQnJxHAR0jwzvOg0=",
-        "owner": "plaflamme",
-        "repo": "nix-headlamp",
-        "rev": "45766baf176a0b44659e972abf64b2be2c325574",
-        "type": "github"
-      },
-      "original": {
-        "owner": "plaflamme",
-        "repo": "nix-headlamp",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1768564909,
@@ -1395,7 +1375,6 @@
         "multi-profile": "multi-profile",
         "ndg": "ndg",
         "nix-colors": "nix-colors",
-        "nix-headlamp": "nix-headlamp",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-25-05": "nixpkgs-25-05",
         "nixpkgs-master": "nixpkgs-master",

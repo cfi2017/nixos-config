@@ -13,10 +13,20 @@
       "music"
       "pictures"
       "videos"
+      # Logseq's global config, graph metadata, plugins and preferences. Not
+      # XDG-conformant (Logseq hardcodes ~/.logseq), but small and worth backing
+      # up. Without persisting it the root rollback wipes it every boot, so
+      # Logseq forgets which graph exists and you have to re-open it.
+      ".logseq"
     ];
     cfi2017.core.zfs.homeCacheLinks = [
       "downloads"
       "code"
+      # Logseq's Electron userData (XDG-conformant): window state plus the
+      # localStorage that records the open/recent graph. Mostly rebuildable
+      # cache, so it lives on the non-backed-up dataset -- but it still has to
+      # survive reboots for Logseq to reopen the last graph.
+      ".config/Logseq"
     ];
 
     # xdg = {
@@ -51,6 +61,9 @@
           };
           userDirs = {
             enable = true;
+            # Keep exporting XDG_*_DIR into the session (upstream default flipped
+            # true -> false).
+            setSessionVariables = true;
             desktop = "$HOME/desktop";
             documents = "$HOME/documents";
             download = "$HOME/downloads";

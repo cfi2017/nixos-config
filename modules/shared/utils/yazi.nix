@@ -4,7 +4,13 @@
       programs.yazi = {
         enable = true;
         enableZshIntegration = true;
-        settings = { log = { enabled = false; }; };
+        # Pin the shell wrapper name; upstream changed the default "yy" -> "y".
+        shellWrapperName = "yy";
+        settings = {
+          log = {
+            enabled = false;
+          };
+        };
       };
     };
   };

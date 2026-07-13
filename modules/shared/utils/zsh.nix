@@ -25,6 +25,9 @@
       home-manager.users.${config.cfi2017.user.name} = {
         programs.zsh = {
           enable = true;
+          # Keep ~/.zshrc in $HOME (the pre-26.05 default). home-manager will
+          # otherwise move it to ~/.config/zsh once stateVersion crosses 26.05.
+          dotDir = config.cfi2017.user.homeDirectory;
           autosuggestion = {
             enable = true;
           };

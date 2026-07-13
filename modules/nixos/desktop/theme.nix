@@ -42,6 +42,11 @@
 
     programs.dconf.enable = true;
 
+    # System-level catppuccin is intentionally off (theming is done per-user via
+    # home-manager). Pin autoEnable to the current enable value so the upcoming
+    # semantics change is a no-op here and stops warning.
+    catppuccin.autoEnable = false;
+
     home-manager.users.${config.cfi2017.user.name} =
       { pkgs, ... }:
       {

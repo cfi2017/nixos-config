@@ -94,16 +94,17 @@ in
 
               defaultProfile = "personal";
 
-              router.rules = (inputs.private-work.browserRouterRules or [ ]) ++ [
-                {
-                  profile = "personal";
-                }
-              ];
+              # The catch-all is expressed by defaultProfile below; a rule with no
+              # host patterns is ignored by the router (and warns), so don't add one.
+              router.rules = inputs.private-work.browserRouterRules or [ ];
             };
 
             # User-specific catppuccin configuration
             catppuccin = {
               enable = true;
+              # Pin current behavior: `enable` will become a global toggle and
+              # `autoEnable` will drive per-port enrollment in a future release.
+              autoEnable = true;
               flavor = flavor;
               accent = accent;
             };

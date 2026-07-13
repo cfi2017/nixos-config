@@ -39,7 +39,7 @@
       sshpass
       keepassxc
       lbdb
-      citrix_workspace
+      citrix-workspace
       ccid
       pcsclite
       usbutils

@@ -67,11 +67,6 @@
       inputs.zen-browser.follows = "zen-browser";
     };
 
-    nix-headlamp = {
-      url = "github:plaflamme/nix-headlamp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zammad-tui = {
       url = "github:cfi2017/zammad-tui";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -126,7 +121,6 @@
       nix-colors,
       catppuccin,
       sops-nix,
-      nix-headlamp,
       zammad-tui,
       agx,
       # binaryninja-flake,
@@ -167,7 +161,6 @@
                 (import ./overlays { inherit inputs; }).additions
                 (import ./overlays { inherit inputs; }).stable-packages
                 (import ./overlays { inherit inputs; }).force-latest
-                nix-headlamp.overlays.default
                 zammad-tui.overlays.default
                 agx.overlays.default
               ];

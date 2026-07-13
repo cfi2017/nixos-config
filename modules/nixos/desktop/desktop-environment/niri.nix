@@ -36,7 +36,7 @@ in
       {
         home.packages = with pkgs; [
           qt5.qtwayland
-          (pkgs.hiPrio qt6.qtwayland)
+          (lib.hiPrio qt6.qtwayland)
         ];
 
         services.cliphist.enable = true;

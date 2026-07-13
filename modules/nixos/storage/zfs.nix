@@ -83,6 +83,11 @@
       zfs = {
         devNodes = "/dev/";
         requestEncryptionCredentials = config.cfi2017.core.zfs.encrypted;
+        # Kept explicitly true (the pre-26.11 default). The root pool is never
+        # cleanly exported on a single-host laptop, so a forced import is what
+        # lets it boot after any unclean shutdown; the new `false` default only
+        # makes sense for pools that might be imported by another machine.
+        forceImportRoot = true;
       };
       #initrd.postDeviceCommands = lib.mkIf (config.cfi2017.persistence.enable
       #  && config.cfi2017.core.zfs.rootDataset != "") (lib.mkAfter ''
