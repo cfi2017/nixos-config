@@ -19,8 +19,9 @@
             {
               layer = "top";
               position = "top";
-              # spacing = 2;
-              margin = "2";
+              # Slim, dense bar: hug the top edge (no margin) and let the module
+              # padding provide the only separation (no inter-module spacing).
+              spacing = 0;
               # output = [
               #   "eDP-1"
               #   "DP-2"
@@ -36,10 +37,12 @@
               ];
               modules-center = [ ];
               modules-right = [
-                "custom/notifications"
-                "network"
+                "cpu"
+                "memory"
                 "backlight"
+                "network"
                 "battery"
+                "custom/notifications"
                 "clock"
                 "tray"
                 "custom/lock"
@@ -73,8 +76,21 @@
               };
 
               "tray" = {
-                icon-size = 21;
-                spacing = 10;
+                icon-size = 16;
+                spacing = 6;
+              };
+
+              # Compact, informational readouts (the point of an old-school bar).
+              "cpu" = {
+                interval = 2;
+                format = "󰻠 {usage}%";
+                tooltip = false;
+              };
+
+              "memory" = {
+                interval = 5;
+                format = "󰍛 {used:0.1f}G";
+                tooltip = false;
               };
 
               "clock" = {
@@ -82,21 +98,22 @@
                 tooltip-format = ''
                   <big>{:%Y %B}</big>
                   <tt><small>{calendar}</small></tt>'';
-                format-alt = "  {:%d/%m/%Y}";
-                format = "  {:%H:%M}";
+                format = "{:%a %d %b  %H:%M}";
+                format-alt = "{:%Y-%m-%d %H:%M:%S}";
               };
 
               "network" = {
-                format-wifi = "{icon} ({signalStrength}%)  ";
-                format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈀 ";
-                format-linked = "{ifname} (No IP) 󰌘 ";
-                format-disc = "Disconnected 󰟦 ";
+                format-wifi = "󰤨 {signalStrength}%";
+                format-ethernet = "󰈀 {ipaddr}";
+                format-linked = "󰌘 {ifname}";
+                format-disconnected = "󰤭";
+                tooltip-format = "{ifname}: {ipaddr}/{cidr}";
                 format-alt = "{ifname}: {ipaddr}/{cidr}";
               };
 
               "backlight" = {
                 device = "intel_backlight";
-                format = "{icon}";
+                format = "{icon} {percent}%";
                 format-icons = [
                   ""
                   ""
@@ -115,9 +132,9 @@
                   warning = 30;
                   critical = 15;
                 };
-                format = "{icon}";
-                format-charging = "󰂄";
-                format-plugged = "󱟢";
+                format = "{icon} {capacity}%";
+                format-charging = "󰂄 {capacity}%";
+                format-plugged = "󱟢 {capacity}%";
                 format-alt = "{icon}";
                 format-icons = [
                   "󰁺"
@@ -136,7 +153,7 @@
               ## https://github.com/Frost-Phoenix/nixos-config/blob/4d75ca005a820672a43db9db66949bd33f8fbe9c/modules/home/waybar/settings.nix#L116
               "custom/notifications" = {
                 tooltip = false;
-                format = "{icon} Notifications";
+                format = "{icon}";
                 format-icons = {
                   notification = "󱥁 <span foreground='red'><sup></sup></span>";
                   none = "󰍥 ";
@@ -173,106 +190,64 @@
           style = ''
             * {
               font-family: '0xProto Nerd Font';
-              font-size: 18px;
+              font-size: 12px;
               min-height: 0;
             }
 
+            /* One continuous slim bar hugging the top edge: no pills, no
+               rounding, no floating margins. */
             #waybar {
-              background: transparent;
+              background: @mantle;
               color: @text;
-              margin: 5px 5px;
+              border-bottom: 1px solid @surface0;
             }
 
-            #workspaces {
-              border-radius: 1rem;
-              margin: 5px;
-              background-color: @surface0;
-              margin-left: 1rem;
-            }
-
-            #workspaces button {
-              color: @lavender;
-              border-radius: 1rem;
-              padding: 0.4rem;
-            }
-
-            #workspaces button.active {
-              color: @peach;
-              border-radius: 1rem;
-            }
-
-            #workspaces button:hover {
-              color: @peach;
-              border-radius: 1rem;
-            }
-
-            #custom-music,
-            #tray,
+            /* Every module is flat, square and tightly padded. */
+            #workspaces,
+            #workspaces button,
+            #cpu,
+            #memory,
             #backlight,
             #network,
-            #clock,
             #battery,
-            #custom-lock,
+            #clock,
+            #tray,
             #custom-notifications,
+            #custom-lock,
             #custom-power {
-              background-color: @surface0;
-              padding: 0.5rem 1rem;
-              margin: 5px 0;
+              border-radius: 0;
+              margin: 0;
+              padding: 0 6px;
+              background: transparent;
             }
 
-            #clock {
-              color: @blue;
-              border-radius: 0px 1rem 1rem 0px;
-              margin-right: 1rem;
+            /* Workspaces: square blocks, filled highlight on the active one. */
+            #workspaces button {
+              color: @overlay1;
             }
-
-            #battery {
-              color: @green;
+            #workspaces button.active {
+              color: @base;
+              background-color: @peach;
             }
-
-            #battery.charging {
-              color: @green;
-            }
-
-            #battery.warning:not(.charging) {
-              color: @red;
-            }
-
-            #backlight {
-              color: @yellow;
-            }
-
-            #custom-notifications {
-              border-radius: 1rem;
-              margin-right: 1rem;
+            #workspaces button:hover {
               color: @peach;
+              background: @surface0;
             }
 
-            #network {
-              border-radius: 1rem 0px 0px 1rem;
-              color: @sky;
-            }
+            /* Keep the useful colour coding, drop the boxes. */
+            #cpu { color: @green; }
+            #memory { color: @teal; }
+            #backlight { color: @yellow; }
+            #network { color: @sky; }
+            #battery { color: @green; }
+            #battery.charging { color: @green; }
+            #battery.warning:not(.charging) { color: @peach; }
+            #battery.critical:not(.charging) { color: @red; }
+            #clock { color: @blue; }
+            #custom-notifications { color: @peach; }
+            #custom-lock { color: @lavender; }
+            #custom-power { color: @red; padding-right: 10px; }
 
-            #custom-music {
-              color: @mauve;
-              border-radius: 1rem;
-            }
-
-            #custom-lock {
-                border-radius: 1rem 0px 0px 1rem;
-                color: @lavender;
-            }
-
-            #custom-power {
-                margin-right: 1rem;
-                border-radius: 0px 1rem 1rem 0px;
-                color: @red;
-            }
-
-            #tray {
-              margin-right: 1rem;
-              border-radius: 1rem;
-            }
 
             @define-color rosewater #f4dbd6;
             @define-color flamingo #f0c6c6;
