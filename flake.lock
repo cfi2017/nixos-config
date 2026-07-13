@@ -1071,11 +1071,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783509796,
-        "narHash": "sha256-c3UJHg9aZhtuuTyUQey4bEQjgi4jYFiGaKqTqawL/1k=",
+        "lastModified": 1783930952,
+        "narHash": "sha256-TxzepiSzSdUhwLcztTZBF4+o0sUL3u9ORDzSjckrom4=",
         "owner": "cfi2017",
         "repo": "multi-profile",
-        "rev": "9764fe3b09d9b3360d2ae83208159342e94da983",
+        "rev": "8ccfc7300fab8fa952ac5ba890ff817a815bccec",
         "type": "github"
       },
       "original": {

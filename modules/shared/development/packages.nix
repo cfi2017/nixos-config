@@ -154,6 +154,7 @@
             gdb
             ngrok
             pwncat
+            pwncat-vl # post-exploitation platform (custom pkg in ../../../pkgs)
             frp
             rustscan
             remmina

@@ -72,6 +72,9 @@ in
               profiles = (inputs.private-work.browserProfiles or { }) // {
                 personal = {
                   browser = "zen";
+                  transparency = true;
+                  transparentContent = true;
+                  accentColor = "#4B0082";
                   pins = [
                     {
                       url = "https://mail.proton.me";
@@ -82,6 +85,9 @@ in
                 };
                 shc = {
                   browser = "zen";
+                  transparency = true;
+                  transparentContent = true;
+                  accentColor = "#da2128";
                   pins = [
                     {
                       url = "https://mail.google.com";
