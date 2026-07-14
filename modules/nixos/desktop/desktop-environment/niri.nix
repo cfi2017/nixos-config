@@ -88,6 +88,15 @@ in
 
           prefer-no-csd
 
+          // Antigravity (Electron/VS Code fork) has no native window transparency,
+          // and the usual CSS-injection extensions patch files inside the read-only
+          // Nix store. Give it the translucent look at the compositor level instead,
+          // matching kitty's 0.90 opacity.
+          window-rule {
+              match app-id="antigravity"
+              opacity 0.90
+          }
+
           screenshot-path "~/pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png"
 
           // waybar is started by its systemd user service (programs.waybar.systemd),

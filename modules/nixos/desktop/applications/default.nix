@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./antigravity.nix
   ];
 
   config = {
