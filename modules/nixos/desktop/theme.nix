@@ -59,6 +59,16 @@
           hyprland.enable = false;
         };
 
+        # Advertise a dark preference through the XDG "appearance" portal
+        # (org.freedesktop.appearance color-scheme). xdg-desktop-portal-gtk reads
+        # this gsettings key and reports it to portal-aware apps (Firefox/Zen,
+        # Chrome) as prefers-color-scheme. Without it the portal answers "no
+        # preference" (0), which browsers render as *light*. This only started
+        # mattering once the gtk/gnome portals were added for niri screencast
+        # support -- before that no Settings portal existed and apps fell back to
+        # inferring dark from the GTK theme (gtk-application-prefer-dark-theme).
+        dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
         gtk = {
           enable = true;
           gtk2.extraConfig = "gtk-application-prefer-dark-theme = true;";
