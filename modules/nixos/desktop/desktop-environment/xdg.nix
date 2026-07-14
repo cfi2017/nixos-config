@@ -50,7 +50,19 @@
           portal = {
             enable = true;
             # wlr.enable = true;
+            #
+            # xdg-desktop-portal loads its backends from this home-manager profile
+            # directory, so every backend we need at runtime must be listed here.
+            # niri's screencast goes through xdg-desktop-portal-gnome (niri exposes
+            # org.gnome.Mutter.ScreenCast, and the system-level programs.niri module
+            # ships /etc/xdg/xdg-desktop-portal/niri-portals.conf routing ScreenCast
+            # -> gnome). Without gnome+gtk here the profile only had hyprland+wlr, so
+            # the ScreenCast portal interface never came up and screen sharing under
+            # niri silently did nothing. gtk is the niri fallback backend; hyprland
+            # (and wlr) stay for the Hyprland session.
             extraPortals = with pkgs; [
+              xdg-desktop-portal-gnome
+              xdg-desktop-portal-gtk
               xdg-desktop-portal-hyprland
               xdg-desktop-portal-wlr
             ];
