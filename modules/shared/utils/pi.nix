@@ -22,7 +22,7 @@
           packages = [
             "npm:pi-provider-litellm"
             "npm:pi-web-access"
-            "npm:@hypabolic/pi-hypa"
+            # "npm:@hypabolic/pi-hypa"
             "npm:pi-mcp-adapter"
             "npm:context-mode"
             "npm:pi-subagents"
