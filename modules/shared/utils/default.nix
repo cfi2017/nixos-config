@@ -12,6 +12,7 @@
     ./nh.nix
     ./packages.nix
     ./neovim.nix
+    ./pi.nix
     ./ripgrep.nix
     ./sops.nix
     ./ssh.nix
