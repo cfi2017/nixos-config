@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 {
   config = {
     home-manager.users.${config.cfi2017.user.name} = {
@@ -17,6 +21,11 @@
           # and registers them under the `litellm` provider.
           packages = [
             "npm:pi-provider-litellm"
+            "npm:pi-web-access"
+            "npm:@hypabolic/pi-hypa"
+            "npm:pi-mcp-adapter"
+            "npm:context-mode"
+            "npm:pi-subagents"
           ];
 
           litellm.providers.litellm = {
