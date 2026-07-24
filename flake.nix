@@ -72,6 +72,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    whisper-relay = {
+      url = "github:cfi2017/whisper-relay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agx = {
       url = "github:cfi2017/agx-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -123,6 +128,8 @@
       sops-nix,
       zammad-tui,
       agx,
+      multi-profile,
+      whisper-relay,
       # binaryninja-flake,
       ndg,
       pre-commit-hooks,

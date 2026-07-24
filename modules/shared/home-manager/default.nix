@@ -46,6 +46,7 @@ in
               inputs.nix-colors.homeManagerModules.default
               inputs.zen-browser.homeModules.twilight-official
               inputs.multi-profile.homeModules.default
+              inputs.whisper-relay.homeManagerModules.default
             ];
 
             colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
@@ -66,6 +67,17 @@ in
             };
 
             programs.home-manager.enable = true;
+            programs.whisper-relay = {
+              enable = true;
+              settings = {
+                server_url = "wss://whisper.int.swiss.dev/v1/sessions/ws";
+                output = "~/documents/meetings/transcript.md";
+                oidc_issuer = "https://idp.k8s.swiss.dev/application/o/whisper-relay";
+                oidc_client_id = "whisper-relay";
+                diarization = "prefer";
+                chunk_seconds = 15;
+              };
+            };
             programs.multiProfile = {
               enable = true;
 

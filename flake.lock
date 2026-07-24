@@ -268,6 +268,24 @@
         "type": "github"
       }
     },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": "systems_6"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1383,6 +1401,7 @@
         "pre-commit-hooks": "pre-commit-hooks_2",
         "private-work": "private-work",
         "sops-nix": "sops-nix",
+        "whisper-relay": "whisper-relay",
         "zammad-tui": "zammad-tui",
         "zen-browser": "zen-browser"
       }
@@ -1482,6 +1501,42 @@
         "type": "github"
       }
     },
+    "systems_6": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "whisper-relay": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784894013,
+        "narHash": "sha256-ps0dP2fZW+n96MovnNJpEDH/qQ6bnXNoaGPFVXuNiHQ=",
+        "owner": "cfi2017",
+        "repo": "whisper-relay",
+        "rev": "f1a45c8642cd9fc5e143e42c06e86103407fdf29",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cfi2017",
+        "repo": "whisper-relay",
+        "type": "github"
+      }
+    },
     "xdph": {
       "inputs": {
         "hyprland-protocols": [
@@ -1526,7 +1581,7 @@
     "zammad-tui": {
       "inputs": {
         "crane": "crane",
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
