@@ -1524,11 +1524,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784894013,
-        "narHash": "sha256-ps0dP2fZW+n96MovnNJpEDH/qQ6bnXNoaGPFVXuNiHQ=",
+        "lastModified": 1784896765,
+        "narHash": "sha256-6asPeLiOMEIlVtmYl5HGkih1RQGzAz9WyJSSUyT7rWw=",
         "owner": "cfi2017",
         "repo": "whisper-relay",
-        "rev": "f1a45c8642cd9fc5e143e42c06e86103407fdf29",
+        "rev": "e01515a70de310d24426f1fa32adbf4128846d22",
         "type": "github"
       },
       "original": {
