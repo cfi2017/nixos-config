@@ -61,19 +61,20 @@ in
 
         output "eDP-1" {
             scale 1.0
+            position x=1760 y=1440
+        }
+
+        output "DP-5" {
+            scale 1.0
+            transform "90"
+            mode "2560x1440"
             position x=0 y=0
         }
 
         output "DP-6" {
             scale 1.0
-            mode "1920x1080@60"
-            position x=3840 y=0
-        }
-
-        output "DP-7" {
-            scale 1.0
-            mode "1920x1080@60"
-            position x=1920 y=0
+            mode "2560x1440"
+            position x=1440 y=0
         }
 
         layout {
