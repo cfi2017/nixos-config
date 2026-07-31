@@ -49,7 +49,7 @@ in
                 }
             }
             touchpad {
-                tap
+                // tap
                 natural-scroll
                 accel-profile "flat"
             }
