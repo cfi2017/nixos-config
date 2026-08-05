@@ -167,6 +167,7 @@
               overlays = [
                 (import ./overlays { inherit inputs; }).additions
                 (import ./overlays { inherit inputs; }).stable-packages
+                (import ./overlays { inherit inputs; }).package-fixes
                 (import ./overlays { inherit inputs; }).force-latest
                 zammad-tui.overlays.default
                 agx.overlays.default

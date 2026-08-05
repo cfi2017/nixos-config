@@ -5,6 +5,12 @@
     stable = import inputs.nixpkgs-stable { system = prev.stdenv.hostPlatform.system; };
   };
 
+  package-fixes = final: prev: {
+    goobook = prev.goobook.overridePythonAttrs (old: {
+      pythonRelaxDeps = (old.pythonRelaxDeps or [ ]) ++ [ "simplejson" ];
+    });
+  };
+
   force-latest =
     final: prev:
     let

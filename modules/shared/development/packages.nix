@@ -48,7 +48,6 @@
           (lib.optionals config.cfi2017.development-packages.tools.python [
             python3
             python3Packages.python-lsp-server
-            python3Packages.python-lsp-ruff
             python3Packages.pwntools
             uv
           ])

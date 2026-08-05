@@ -48,6 +48,7 @@
       inetutils
       difftastic
       socat
+      git-credential-gopass
 
       zammad-tui
       agx
@@ -57,6 +58,7 @@
       # enshittification
       claude-code
       code-cursor
+      codex
 
       comma
 
@@ -103,7 +105,6 @@
           nil
           nixd
           helm-ls
-          ruff
           basedpyright
 
           shell-gpt
