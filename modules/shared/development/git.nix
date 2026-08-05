@@ -25,6 +25,8 @@
 
             gpg.format = "ssh";
             commit.gpgsign = true;
+
+            credential.helper = "gopass";
           };
         };
 
