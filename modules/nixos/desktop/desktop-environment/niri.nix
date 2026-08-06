@@ -56,7 +56,7 @@ in
             mouse {
                 accel-profile "flat"
             }
-            focus-follows-mouse
+            focus-follows-mouse max-scroll-amount="0%"
         }
 
         output "eDP-1" {
