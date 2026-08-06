@@ -21,6 +21,7 @@ in
             ".cache"
             ".local"
             ".claude"
+            ".codex"
           ];
           # `.claude.json` is kept inside ~/.claude via CLAUDE_CONFIG_DIR (see
           # sessionVariables below), so the whole directory persists as one unit.
