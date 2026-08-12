@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   config = {
     home-manager.users.${config.cfi2017.user.name} = {
       programs.k9s = {
@@ -62,6 +61,98 @@
               "merge"
               "-p"
               ''{"operation":{"sync": {"syncStrategy": {"hook": {}}}}}''
+            ];
+          };
+          pvc-debug-container = {
+            shortCut = "s";
+            confirm = false;
+            scopes = [ "pvc" ];
+            description = "Shell on PVC";
+            command = "sh";
+            background = false;
+            inputs = [
+              {
+                name = "podname";
+                type = "string";
+                label = "Pod name";
+                default = "pvc-debug";
+                required = true;
+              }
+              {
+                name = "image";
+                type = "dropdown";
+                label = "Image";
+                default = "nicolaka/netshoot:latest";
+                required = true;
+                options = [
+                  "nicolaka/netshoot:latest"
+                  "ubuntu:26.04"
+                ];
+              }
+              {
+                name = "mountpath";
+                type = "string";
+                label = "Mount path";
+                default = "/mnt/data";
+                required = true;
+              }
+            ];
+            args = [
+              "-c"
+              ''
+                NODE=$(kubectl --context $CONTEXT -n $NAMESPACE get pods \
+                  -o jsonpath='{range .items[?(@.spec.volumes[*].persistentVolumeClaim.claimName=="'"$NAME"'")]}{.spec.nodeName}{"\n"}{end}' | head -n1)
+
+                if [ -n "$NODE" ]; then
+                  NODE_LINE="nodeName: $NODE"
+                else
+                  NODE_LINE=""
+                fi
+
+                echo "Starting a shell pod with PVC - $NAME mounted at $INPUT_MOUNTPATH"
+
+                {
+                cat <<EOF
+                apiVersion: v1
+                kind: Pod
+                metadata:
+                  name: $INPUT_PODNAME
+                  namespace: $NAMESPACE
+                spec:
+                  $NODE_LINE
+                  restartPolicy: Never
+                  tolerations:
+                    - operator: Exists
+                  containers:
+                    - name: shell
+                      image: $INPUT_IMAGE
+                      command: ["sh"]
+                      stdin: true
+                      tty: true
+                      volumeMounts:
+                        - name: vol
+                          mountPath: $INPUT_MOUNTPATH
+                  volumes:
+                    - name: vol
+                      persistentVolumeClaim:
+                        claimName: $NAME
+                EOF
+                } | kubectl --context $CONTEXT apply -f - >/dev/null 2>&1
+
+                echo "Waiting for pod to be ready."
+                if ! kubectl --context $CONTEXT -n $NAMESPACE wait --for=condition=Ready pod/$INPUT_PODNAME --timeout=60s; then
+                  echo "Pod did not become Ready. Likely a ReadWriteOnce conflict."
+                  echo "Press Enter to return to k9s."
+                  read dummy
+                  kubectl --context $CONTEXT -n $NAMESPACE delete pod $INPUT_PODNAME --ignore-not-found --grace-period=0 --force >/dev/null 2>&1
+                  exit 0
+                fi
+
+                kubectl --context $CONTEXT -n $NAMESPACE exec -it $INPUT_PODNAME -- bash || echo "Could not exec into pod."
+
+                echo "Cleaning up pod."
+                kubectl --context $CONTEXT -n $NAMESPACE delete pod $INPUT_PODNAME --ignore-not-found --grace-period=0 --force >/dev/null 2>&1
+              ''
             ];
           };
         };
