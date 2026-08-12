@@ -100,9 +100,22 @@
             args = [
               "-c"
               ''
-                NODE=$(kubectl --context $CONTEXT -n $NAMESPACE get pods \
-                  -o jsonpath='{range .items[?(@.spec.volumes[*].persistentVolumeClaim.claimName=="'"$NAME"'")]}{.spec.nodeName}{"\n"}{end}' | head -n1)
 
+                NODE=$(
+                  kubectl --context "$CONTEXT" -n "$NAMESPACE" get pods \
+                      -o go-template='
+                  {{- range .items }}
+                    {{- $node := .spec.nodeName }}
+                    {{- range .spec.volumes }}
+                      {{- if .persistentVolumeClaim }}
+                        {{- if eq .persistentVolumeClaim.claimName "'"$NAME"'" -}}
+                  {{ $node }}
+                        {{ end }}
+                      {{- end }}
+                    {{- end }}
+                  {{- end }}' |
+                    head -n1
+                )
                 if [ -n "$NODE" ]; then
                   NODE_LINE="nodeName: $NODE"
                 else
