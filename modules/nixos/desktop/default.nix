@@ -9,6 +9,7 @@
     ./theme.nix
     ./applications
     ./sound.nix
+    ./laptop.nix
   ];
 
   options.cfi2017.graphical = {

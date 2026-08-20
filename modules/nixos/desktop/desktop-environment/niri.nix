@@ -9,17 +9,141 @@ let
   # Wallpapers live next to this module. hyprpaper crashes under niri (it is a
   # Hyprland-only tool), so the niri session paints the background with swaybg.
   wallpaperTeal = ./_assets/wallpaper-space-teal.png;
-  wallpaperCoral = ./_assets/wallpaper-space-coral.png;
+
+  outputModule = lib.types.submodule {
+    options = {
+      off = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Disable this output entirely.";
+      };
+      mode = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+        example = "2560x1440@59.951";
+        description = ''
+          Resolution and refresh rate. The refresh rate has to match what
+          `niri msg outputs` prints, down to the three decimals. Left unset,
+          niri picks the preferred mode.
+        '';
+      };
+      scale = lib.mkOption {
+        type = lib.types.float;
+        default = 1.0;
+        description = "Fractional scale factor.";
+      };
+      transform = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+        example = "90";
+        description = "Rotation/flip, e.g. \"90\" for a portrait monitor.";
+      };
+      position = lib.mkOption {
+        type = lib.types.nullOr (
+          lib.types.submodule {
+            options = {
+              x = lib.mkOption { type = lib.types.int; };
+              y = lib.mkOption { type = lib.types.int; };
+            };
+          }
+        );
+        default = null;
+        description = ''
+          Position in the global coordinate space, in logical (scaled) pixels.
+          Left unset -- or overlapping an already-placed output -- niri puts
+          this output to the right of everything placed so far.
+        '';
+      };
+    };
+  };
+
+  renderOutput =
+    name: o:
+    let
+      lines =
+        lib.optional o.off "off"
+        ++ lib.optional (o.mode != null) ''mode "${o.mode}"''
+        ++ [ "scale ${toString o.scale}" ]
+        ++ lib.optional (o.transform != null) ''transform "${o.transform}"''
+        ++ lib.optional (
+          o.position != null
+        ) "position x=${toString o.position.x} y=${toString o.position.y}";
+    in
+    ''
+      output "${name}" {
+          ${lib.concatStringsSep "\n    " lines}
+      }
+    '';
+
+  outputsKdl = lib.concatStringsSep "\n" (
+    lib.mapAttrsToList renderOutput config.cfi2017.graphical.niri.outputs
+  );
 in
 {
   options.cfi2017.graphical.niri = {
     enable = lib.mkEnableOption "niri scrollable-tiling wayland compositor";
+
+    outputs = lib.mkOption {
+      type = lib.types.attrsOf outputModule;
+      default = { };
+      description = ''
+        Monitors, keyed by niri output name: either a connector name
+        ("eDP-1") or "manufacturer model serial" as printed by
+        `niri msg outputs`. Prefer the latter for external monitors --
+        connector numbering moves between ports and docks, the serial does not.
+      '';
+    };
   };
 
   config = lib.mkIf config.cfi2017.graphical.niri.enable {
     # Installs the niri package, its wayland-session (so greetd/tuigreet can
     # list it), portals and the gnome-keyring integration.
     programs.niri.enable = true;
+
+    # Every desk in one catalogue -- no profile switching needed. niri redoes
+    # output placement from scratch on every hotplug, so monitors that are not
+    # currently connected simply do not take part. Desks never coexist, so they
+    # can reuse the same coordinate band; if two ever did, niri logs a warning
+    # and puts the loser to the right rather than corrupting the layout. A
+    # monitor that is not in here has no configured position and lands to the
+    # right of everything else, which is a sane fallback for a strange desk.
+    #
+    # To enroll a new desk: sit down, run `niri msg outputs`, paste the quoted
+    # name, rebuild.
+    #
+    # Positions describe the *physical* arrangement, because the cursor can only
+    # cross where two outputs literally share an edge. Keep everything in one
+    # row unless a screen really is stacked: a row shares a full-height edge, so
+    # the pointer crosses anywhere along it. Stacking the 1920-wide laptop under
+    # 5120 of monitor would leave a narrow band as the only way through, which
+    # feels exactly like the monitors are not connected to each other.
+    cfi2017.graphical.niri.outputs = {
+      # Built-in panel, matched by connector name: that is stable for a
+      # soldered-in panel, and its EDID reports no serial at all, so the
+      # manufacturer/model/serial form would not be unique anyway. Leftmost,
+      # tops aligned with the externals.
+      "eDP-1" = {
+        scale = 1.0;
+        position = {
+          x = 0;
+          y = 0;
+        };
+      };
+
+      # --- desk: twin S24H85x in a row to the right of the laptop
+      "Samsung Electric Company S24H85x H4ZKC00255" = {
+        position = {
+          x = 1920;
+          y = 0;
+        };
+      };
+      "Samsung Electric Company S24H85x H4ZMA00945" = {
+        position = {
+          x = 4480;
+          y = 0;
+        };
+      };
+    };
 
     environment.systemPackages = with pkgs; [
       wl-clipboard
@@ -59,9 +183,8 @@ in
             focus-follows-mouse max-scroll-amount="0%"
         }
 
-        output "eDP-1" {
-            scale 1.0
-        }
+        // Generated from cfi2017.graphical.niri.outputs.
+        ${outputsKdl}
 
         layout {
             gaps 8
@@ -101,11 +224,13 @@ in
         // which niri activates via graphical-session.target. Do NOT spawn it here
         // as well or you get two overlapping bars.
         //
-        // Wallpaper: one swaybg process paints every output. Outputs are named
-        // as reported by `niri msg outputs`; the two Samsung externals get the
-        // matched teal/coral pair, the laptop panel gets teal. "fill" crops to
-        // cover regardless of aspect ratio.
-        spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-o" "eDP-1" "-i" "${wallpaperTeal}" "-m" "fill" "-o" "DP-6" "-i" "${wallpaperTeal}" "-m" "fill" "-o" "DP-7" "-i" "${wallpaperCoral}" "-m" "fill"
+        // Wallpaper: one swaybg process paints every output, including ones
+        // plugged in later. Per-monitor images cannot be pinned declaratively
+        // the way output settings can: swaybg matches on connector names
+        // (DP-4, DP-6, ...), which move between ports, docks and desks --
+        // unlike the manufacturer/model/serial names niri itself matches on.
+        // "fill" crops to cover regardless of aspect ratio.
+        spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-o" "*" "-i" "${wallpaperTeal}" "-m" "fill"
         spawn-at-startup "${pkgs.networkmanagerapplet}/bin/nm-applet"
         spawn-at-startup "${pkgs.blueman}/bin/blueman-applet"
         spawn-at-startup "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
