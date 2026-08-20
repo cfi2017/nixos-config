@@ -17,6 +17,7 @@
         pkgs.wireshark
         pkgs.headlamp
         pkgs.libreoffice
+        pkgs.super-productivity
       ];
     };
   };

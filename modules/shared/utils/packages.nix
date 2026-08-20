@@ -48,6 +48,7 @@
       inetutils
       difftastic
       socat
+      rclone
       git-credential-gopass
 
       zammad-tui
