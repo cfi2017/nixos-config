@@ -120,7 +120,7 @@ in
 
                   # Interactively add/remove Gmail labels.
                   # Examples: +Customer/Foo, -Customer/Foo, !flagged
-                  bind index,pager ` modify-labels
+                  macro index,pager ,l "<modify-labels>" "modify Gmail labels"
 
                   # Mark read or unread.
                   macro index,pager ,r \
