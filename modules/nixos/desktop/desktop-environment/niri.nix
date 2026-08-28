@@ -259,7 +259,8 @@ in
             Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
             // Same as Mod+Return, but inherits the focused terminal's cwd.
             Mod+Shift+Return { spawn "${kitty-cwd}"; }
-            Mod+D { spawn "${pkgs.fuzzel}/bin/fuzzel"; }
+            // Mod+D { spawn "${pkgs.fuzzel}/bin/fuzzel"; }
+            Mod+D { spawn "${pkgs.vicinae}/bin/vicinae" "toggle"; }
             Mod+Shift+Q { close-window; }
 
             Mod+H { focus-column-left; }

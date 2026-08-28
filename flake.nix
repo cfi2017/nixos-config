@@ -57,6 +57,15 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+    };
+
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -111,6 +120,11 @@
     };
   };
 
+  nixConfig = {
+    extra-substituters = [ "https://vicinae.cachix.org" ];
+    extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
+  };
+
   outputs =
     {
       self,
@@ -129,6 +143,7 @@
       zammad-tui,
       agx,
       multi-profile,
+      vicinae,
       whisper-relay,
       # binaryninja-flake,
       ndg,
@@ -184,6 +199,7 @@
         home-manager.nixosModules.home-manager
         catppuccin.nixosModules.catppuccin
         nur.modules.nixos.default
+        vicinae.nixosModules.default
         # inputs.microsoft-azurevpnclient.nixosModules.default
         # binaryninja-flake.nixosModules.binaryninja
 
