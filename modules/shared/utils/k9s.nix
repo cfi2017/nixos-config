@@ -66,7 +66,7 @@
 
           approve-csr = {
             shortCut = "a";
-            confirm = true;
+            confirm = false;
             description = "Approve CSR";
             scopes = [ "certificatesigningrequests" ];
             command = "kubectl";
