@@ -130,16 +130,25 @@ in
         };
       };
 
-      # --- desk: twin S24H85x in a row to the right of the laptop
+      # --- office: twin landscape S24H85x followed by a portrait Legion
+      # The Legion is 2560 logical pixels tall after rotation. Centre the
+      # 1440-high Samsungs against it: (2560 - 1440) / 2 = 560.
       "Samsung Electric Company S24H85x H4ZKC00255" = {
         position = {
           x = 1920;
-          y = 0;
+          y = 560;
         };
       };
       "Samsung Electric Company S24H85x H4ZMA00945" = {
         position = {
           x = 4480;
+          y = 560;
+        };
+      };
+      "Lenovo Group Limited Legion 27Q-10 UPACG819" = {
+        transform = "270";
+        position = {
+          x = 7040;
           y = 0;
         };
       };
