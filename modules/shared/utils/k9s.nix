@@ -63,6 +63,23 @@
               ''{"operation":{"sync": {"syncStrategy": {"hook": {}}}}}''
             ];
           };
+
+          approve-csr = {
+            shortCut = "Shift-A";
+            confirm = true;
+            description = "Approve CSR";
+            scopes = [ "certificatesigningrequests" ];
+            command = "kubectl";
+            background = false;
+            args = [
+              "certificate"
+              "approve"
+              "$NAME"
+              "--context"
+              "$CONTEXT"
+            ];
+          };
+
           pvc-debug-container = {
             shortCut = "s";
             confirm = false;
