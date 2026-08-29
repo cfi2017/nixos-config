@@ -2,6 +2,8 @@
 
 At the top level, the `machines/` directory defines the individual hosts. Each machine has a dedicated file (e.g., `machines/e14/default.nix`) that specifies its hardware configuration, network settings, and which modules to import. This is where you would define things like disk layouts, graphics drivers, and other host-specific parameters.
 
+For a fresh NixOS laptop, follow the [new-laptop onboarding guide](docs/onboarding-new-laptop.md). It covers the current ZFS/impermanence layout and bootstrapping SOPS with the authorized YubiKey before the first install.
+
 ### Modules
 
 The core logic is organized in the `modules/` directory, which is split into three categories:
