@@ -65,7 +65,7 @@
           };
 
           approve-csr = {
-            shortCut = "Shift-A";
+            shortCut = "a";
             confirm = true;
             description = "Approve CSR";
             scopes = [ "certificatesigningrequests" ];
