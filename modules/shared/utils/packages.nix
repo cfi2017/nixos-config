@@ -99,6 +99,7 @@
           gpgme
           gpgme.dev
           logseq
+          matterhorn
 
           # language servers
           bash-language-server

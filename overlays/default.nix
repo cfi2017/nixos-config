@@ -5,11 +5,35 @@
     stable = import inputs.nixpkgs-stable { system = prev.stdenv.hostPlatform.system; };
   };
 
-  package-fixes = final: prev: {
-    goobook = prev.goobook.overridePythonAttrs (old: {
-      pythonRelaxDeps = (old.pythonRelaxDeps or [ ]) ++ [ "simplejson" ];
-    });
-  };
+  package-fixes =
+    final: prev:
+    let
+      # mattermost-api 90000.1.1 predates crypton-connection 0.4's extra
+      # TLSSettingsSimple argument. This is upstream PR #65, plus the explicit
+      # Haskell dependency that hackage2nix cannot infer from a patched cabal
+      # file. Rebuild the QC package against the same library so Matterhorn's
+      # test suite does not see two different mattermost-api derivations.
+      mattermost-api = prev.haskell.lib.overrideCabal prev.haskellPackages.mattermost-api (old: {
+        patches = (old.patches or [ ]) ++ [ ../patches/mattermost-api-crypton-connection-0.4.patch ];
+        libraryHaskellDepends = (old.libraryHaskellDepends or [ ]) ++ [ prev.haskellPackages.tls ];
+        broken = false;
+      });
+      mattermost-api-qc = prev.haskellPackages.mattermost-api-qc.override {
+        inherit mattermost-api;
+      };
+      matterhorn = prev.haskellPackages.matterhorn.override {
+        inherit mattermost-api mattermost-api-qc;
+      };
+    in
+    {
+      goobook = prev.goobook.overridePythonAttrs (old: {
+        pythonRelaxDeps = (old.pythonRelaxDeps or [ ]) ++ [ "simplejson" ];
+      });
+
+      matterhorn = prev.haskell.lib.compose.justStaticExecutables (
+        prev.haskell.lib.doJailbreak matterhorn
+      );
+    };
 
   force-latest =
     final: prev:
