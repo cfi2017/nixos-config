@@ -50,7 +50,7 @@
           if config.cfi2017.isDarwin then
             null
           else if config.cfi2017.graphical.enable or false then
-            pkgs.pinentry-gtk2
+            pkgs.pinentry-gnome3
           else
             pkgs.pinentry-curses;
         extraConfig =

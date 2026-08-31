@@ -7,6 +7,7 @@
     ./direnv.nix
     ./fzf.nix
     ./lsd.nix
+    ./matterhorn.nix
     ./k9s.nix
     ./kitty.nix
     ./nh.nix

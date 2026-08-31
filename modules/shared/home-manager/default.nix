@@ -10,6 +10,28 @@ let
   user = config.cfi2017.user.name;
   flavor = config.cfi2017.colorScheme.flavor;
   accent = config.cfi2017.colorScheme.accent;
+  system = pkgs.stdenv.hostPlatform.system;
+  bluetoothExtension = inputs.vicinae.lib.${system}.mkVicinaeExtension {
+    pname = "vicinae-extension-bluetooth";
+    version = "0";
+    src = inputs.vicinae-extensions + "/extensions/bluetooth";
+    # dbus-next's optional usocket accelerator pins node-gyp 7, which cannot
+    # build with current Node. The system bus uses a regular Unix socket, so
+    # skipping that optional native lifecycle build retains Bluetooth support.
+    npmFlags = [
+      "--ignore-scripts"
+      "--legacy-peer-deps"
+    ];
+    buildPhase = ''
+      substituteInPlace node_modules/dbus-next/lib/connection.js \
+        --replace-fail "const usocket = require('usocket');" "" \
+        --replace-fail "new usocket.USocket({ path: '\u0000' + params.abstract })" \
+          "net.createConnection({ path: '\u0000' + params.abstract })" \
+        --replace-fail "new usocket.USocket({ path: params.path })" \
+          "net.createConnection({ path: params.path })"
+      npm run build -- --out="$out"
+    '';
+  };
 in
 {
   config = lib.mkMerge [
@@ -94,10 +116,14 @@ in
                 };
               };
               extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
-                # bluetooth
+                bitwarden
+                bluetoothExtension
+                github
                 nix
+                niri
                 power-profile
-                # Extension names can be found in the link below, it's just the folder names
+                seerr
+                wifi-commander
               ];
             };
 

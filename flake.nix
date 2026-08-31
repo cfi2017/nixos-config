@@ -111,9 +111,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Documentation
-    ndg.url = "github:feel-co/ndg";
-
     private-work = {
       url = "git+ssh://git@github.com/cfi2017/private-work-nixos-configs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -146,7 +143,6 @@
       vicinae,
       whisper-relay,
       # binaryninja-flake,
-      ndg,
       pre-commit-hooks,
       ...
     }@inputs:
@@ -211,19 +207,15 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          rawModules = [
-            ./modules/shared
-            ./modules/nixos # Linux specific
-          ];
         in
         (import ./pkgs { inherit pkgs; })
         // {
-          docs = ndg.packages.${system}.ndg-builder.override {
-            title = "cfi2017 - Nix systems";
-            inputDir = ./docs;
-            rawModules = rawModules;
-            optionsDepth = 3;
-          };
+          # NDG currently loses source-path context with this Nixpkgs revision.
+          # Keep the documentation available as a package without making every
+          # flake check depend on its broken module-options generator.
+          docs = pkgs.runCommandLocal "cfi2017-docs" { } ''
+            cp -r ${./docs} "$out"
+          '';
         }
       );
 

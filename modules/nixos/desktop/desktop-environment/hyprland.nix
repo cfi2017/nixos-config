@@ -227,6 +227,11 @@ in
               disable_splash_rendering = true;
             };
 
+            windowrulev2 = [
+              "float, class:^(attachment-image-preview)$"
+              "float, title:^([Bb]itwarden.*)$"
+            ];
+
             bind = [
               # General
               "$mod, return, exec, $terminal"

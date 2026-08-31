@@ -31,6 +31,10 @@ in
         users = {
           "${user}" = { ... }: {
             accounts.email.maildirBasePath = ".local/share/email";
+            xdg.configFile."neomutt/mailcap".text = ''
+              image/*; ${pkgs.attachment-open}/bin/attachment-open %s
+              */*; ${pkgs.attachment-open}/bin/attachment-open %s
+            '';
             programs = {
               msmtp.enable = true;
               lieer.enable = true;
@@ -39,6 +43,7 @@ in
                 editor = "${pkgs.neovim}/bin/nvim";
                 extraConfig = ''
                   set arrow_cursor
+                  set mailcap_path = "~/.config/neomutt/mailcap"
                   set record = ""
                   set spoolfile = "notmuch://?query=tag%3Ainbox"
                   set sidebar_visible

@@ -227,6 +227,19 @@ in
             opacity 0.90
         }
 
+        // Attachment images get a disposable preview: press q to close it.
+        window-rule {
+            match app-id="attachment-image-preview"
+            open-floating true
+        }
+
+        // Zen extension popups are separate browser windows. Match the
+        // extension title so this survives changes to Zen's app-id.
+        window-rule {
+            match title="^[Bb]itwarden.*"
+            open-floating true
+        }
+
         screenshot-path "~/pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png"
 
         // waybar is started by its systemd user service (programs.waybar.systemd),
