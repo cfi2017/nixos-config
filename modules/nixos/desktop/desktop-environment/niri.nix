@@ -131,21 +131,22 @@ in
       };
 
       # --- office: twin landscape S24H85x followed by a portrait Legion
-      # The Legion is 2560 logical pixels tall after rotation. Centre the
-      # 1440-high Samsungs against it: (2560 - 1440) / 2 = 560.
+      # The Legion is 3200 logical pixels tall after rotation at 0.8 scale.
+      # Centre the 1440-high Samsungs against it: (3200 - 1440) / 2 = 880.
       "Samsung Electric Company S24H85x H4ZKC00255" = {
         position = {
           x = 1920;
-          y = 560;
+          y = 880;
         };
       };
       "Samsung Electric Company S24H85x H4ZMA00945" = {
         position = {
           x = 4480;
-          y = 560;
+          y = 880;
         };
       };
       "Lenovo Group Limited Legion 27Q-10 UPACG819" = {
+        scale = 0.8;
         transform = "270";
         position = {
           x = 7040;
