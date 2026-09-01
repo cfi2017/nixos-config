@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   config = {
     home-manager.users.${config.cfi2017.user.name} = {
       programs.kitty = {
@@ -27,13 +26,17 @@
           single_window_margin_width = -1;
 
           cursor_trail = 3;
+          kitty_mod = "ctrl+shift";
         };
         keybindings = {
           "ctrl+c" = "copy_and_clear_or_interrupt";
           "ctrl+v" = "paste_from_clipboard";
-          "ctrl+shift+plus" = "change_font_size all +2.0";
-          "ctrl+shift+minus" = "change_font_size all -2.0";
-          "mod+f6" = "change_font_size current +2.0";
+
+          # Browser-style zoom using keysyms that are directly reachable on the
+          # Swiss layout: '+' is Shift+1, while '-' has its own physical key.
+          "ctrl+plus" = "change_font_size all +2.0";
+          "ctrl+minus" = "change_font_size all -2.0";
+          "ctrl+0" = "change_font_size all 0";
         };
       };
     };
