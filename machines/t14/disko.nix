@@ -10,9 +10,9 @@
   };
 
   disko.devices.disk.system = {
-    # Safety sentinel: replace this with the T14's stable /dev/disk/by-id path
-    # before enrollment. nixos-anywhere must fail rather than guess a disk.
-    device = "/dev/disk/by-id/REPLACE-WITH-T14-DISK-ID";
+    # KIOXIA KBG6AZNV512G, serial 5E9PSQGBZ12L. This whole-disk EUI was
+    # verified from the T14 installer before enrollment.
+    device = "/dev/disk/by-id/nvme-eui.8ce38e0404d8a302";
     type = "disk";
     content = {
       type = "gpt";

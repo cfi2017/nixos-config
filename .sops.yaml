@@ -4,6 +4,7 @@ keys:
   - &bootstrap age154lt405t8s6cfd0j3v340s6a9d0s70e99hq9hem7l0vzyzr3q3wquw08f7
   - &e14 age14pgxrfmz90lc2pn4j3dg0sh5lpsasr2lvhytj8ggkf5ne4q7mc5qzkcsp7
   - &e14-user age1wy3upcj7xeufffralq7csgw5t6hkatzrtf2jdxnhhlcg357wvqqqn8ykla
+  - &t14 age1hqayfrrp9ull3a6r4um94s5s7tu8hwz3wpl746su9l3dgdmcv5vsqyz28f
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
@@ -12,5 +13,6 @@ creation_rules:
           - *bootstrap
           - *e14
           - *e14-user
+          - *t14
         pgp:
           - *work-yubikey
