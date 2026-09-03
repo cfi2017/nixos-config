@@ -1,5 +1,9 @@
 # Onboarding a new NixOS laptop
 
+For the prepared, attended nixos-anywhere installation of the T14, use
+[`onboarding-t14.md`](./onboarding-t14.md). This document remains the generic
+manual fallback for machines that do not opt into Disko.
+
 This is the bootstrap path for a new laptop when the SOPS PGP key is available
 on a YubiKey. The YubiKey is used to authorize the bootstrap; the installed
 machine uses its own persistent SSH host key to decrypt secrets unattended.

@@ -157,6 +157,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781152676,
+        "narHash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "ff8702b4de27f72b4c78573dfb89ec74e36abdf1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -268,7 +288,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_7"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -287,6 +307,24 @@
     "flake-utils_3": {
       "inputs": {
         "systems": "systems_8"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_4": {
+      "inputs": {
+        "systems": "systems_9"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1402,14 +1440,15 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "wazuh-agent": "wazuh-agent"
       },
       "locked": {
-        "lastModified": 1787901706,
-        "narHash": "sha256-rTyfXeKPwcgcVuhLnmPBx64d/IRIXhl4FtXrVnp0Cdk=",
+        "lastModified": 1788279512,
+        "narHash": "sha256-eDbWJNqLkV7VRcX/V2PoqSdBD17q1BydYiyRNimJtRI=",
         "ref": "refs/heads/main",
-        "rev": "4ce4eca226e715208d198269e9844a28d3cb7d12",
-        "revCount": 56,
+        "rev": "ddfe2af80c1797476953a0c3556790062ee09a34",
+        "revCount": 59,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/private-work-nixos-configs"
       },
@@ -1423,6 +1462,7 @@
         "agx": "agx",
         "burpsuite": "burpsuite",
         "catppuccin": "catppuccin",
+        "disko": "disko",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
@@ -1608,12 +1648,27 @@
         "type": "github"
       }
     },
+    "systems_9": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "vicinae": {
       "inputs": {
         "nixpkgs": "nixpkgs_5",
         "numen": "numen",
         "soulver-cpp": "soulver-cpp",
-        "systems": "systems_5"
+        "systems": "systems_6"
       },
       "locked": {
         "lastModified": 1787956866,
@@ -1635,7 +1690,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_6",
+        "systems": "systems_7",
         "vicinae": "vicinae_2"
       },
       "locked": {
@@ -1677,9 +1732,31 @@
         "type": "github"
       }
     },
-    "whisper-relay": {
+    "wazuh-agent": {
       "inputs": {
         "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "private-work",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787848767,
+        "narHash": "sha256-wqPGk/CFZoynWyomPRjAVkiulYJe0nze597aLl4+dSU=",
+        "owner": "nealfennimore",
+        "repo": "wazuh-agent-nixos",
+        "rev": "cde2502240de83b94ae4c24932de07313dd5b9ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nealfennimore",
+        "repo": "wazuh-agent-nixos",
+        "type": "github"
+      }
+    },
+    "whisper-relay": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -1742,7 +1819,7 @@
     "zammad-tui": {
       "inputs": {
         "crane": "crane",
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ]

@@ -21,6 +21,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Hyprland / Wayland flakes
     hyprland = {
@@ -137,6 +141,7 @@
       nix-colors,
       catppuccin,
       sops-nix,
+      disko,
       zammad-tui,
       agx,
       multi-profile,
@@ -261,6 +266,20 @@
             lib = lib "x86_64-linux";
           };
           modules = privateModules ++ sharedModules ++ nixosModules ++ [ ./machines/e14/default.nix ];
+        };
+        t14 = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            lib = lib "x86_64-linux";
+          };
+          modules =
+            privateModules
+            ++ sharedModules
+            ++ nixosModules
+            ++ [
+              disko.nixosModules.disko
+              ./machines/t14/default.nix
+            ];
         };
       };
     };
