@@ -1444,11 +1444,11 @@
         "wazuh-agent": "wazuh-agent"
       },
       "locked": {
-        "lastModified": 1788279512,
-        "narHash": "sha256-eDbWJNqLkV7VRcX/V2PoqSdBD17q1BydYiyRNimJtRI=",
+        "lastModified": 1788450501,
+        "narHash": "sha256-mmJxMsz4AicdRn+msL8Rhb9iuTZFTdqBbMa2ynZfun4=",
         "ref": "refs/heads/main",
-        "rev": "ddfe2af80c1797476953a0c3556790062ee09a34",
-        "revCount": 59,
+        "rev": "67993e19e710157d2398968d74d85b82c6ed9086",
+        "revCount": 60,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/private-work-nixos-configs"
       },
