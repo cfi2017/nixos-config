@@ -6,6 +6,8 @@
     ./impermanence.nix
   ];
 
+  virtualisation.docker.storageDriver = "btrfs";
+
   networking = {
     hostName = "t14";
     hostId = "0014a14f";

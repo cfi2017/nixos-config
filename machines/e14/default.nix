@@ -12,6 +12,8 @@
     ];
   };
 
+  virtualisation.docker.storageDriver = "zfs";
+
   cfi2017 = {
     stateVersion = "25.11";
     gpg.enable = true;

@@ -1,4 +1,10 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
   options = {
     cfi2017 = {
       development.virtualisation = {
@@ -12,12 +18,12 @@
 
     virtualisation.docker = {
       enable = true;
-      extraOptions =
-        "--data-root ${config.cfi2017.persistence.dataPrefix}/var/lib/docker";
-      storageDriver = "zfs";
+      extraOptions = "--data-root ${config.cfi2017.persistence.dataPrefix}/var/lib/docker";
     };
 
-    home-manager.users.cfi = { home.packages = with pkgs; [ docker-compose ]; };
+    home-manager.users.cfi = {
+      home.packages = with pkgs; [ docker-compose ];
+    };
     users.users.cfi.extraGroups = [ "docker" ];
   };
 }
