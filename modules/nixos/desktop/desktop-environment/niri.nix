@@ -88,7 +88,16 @@ let
         ++ lib.optional (o.transform != null) ''transform "${o.transform}"''
         ++ lib.optional (
           o.position != null
-        ) "position x=${toString o.position.x} y=${toString o.position.y}";
+        ) "position x=${toString o.position.x} y=${toString o.position.y}"
+        ++
+          lib.optional (o.layout != null)
+            "layout {
+              ${lib.concatStringsSep "\n        " (
+                            lib.optional (
+                              o.layout.default-column-width != null
+                            ) "default-column-width { proportion ${toString o.layout.default-column-width.proportion}; }"
+                          )}
+          }";
     in
     ''
       output "${name}" {
