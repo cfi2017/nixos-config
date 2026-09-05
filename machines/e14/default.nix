@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   imports = [ ./hardware.nix ];
 
   networking = {
@@ -7,8 +6,6 @@
     hostId = "00000e14";
 
     nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
     ];
   };
 

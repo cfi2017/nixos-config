@@ -54,6 +54,27 @@ let
           this output to the right of everything placed so far.
         '';
       };
+      layout = lib.mkOption {
+        type = lib.types.nullOr (
+          lib.types.submodule {
+            options = {
+              default-column-width = lib.mkOption {
+                type = lib.types.submodule {
+                  options = {
+                    proportion = lib.mkOption { type = lib.types.float; };
+                  };
+                };
+              };
+            };
+          }
+        );
+        default = null;
+        description = ''
+          Per-output layout tweaks. The default column width is a fraction of
+          the output's width, so a 0.5 proportion on a 1920-wide monitor gives
+          960 logical pixels to each column.
+        '';
+      };
     };
   };
 
@@ -161,6 +182,12 @@ in
         position = {
           x = 0;
           y = 880;
+        };
+
+        layout = {
+          default-column-width = {
+            proportion = 0.33333;
+          };
         };
       };
       "Lenovo Group Limited Legion 27Q-10 UPACC725" = {
