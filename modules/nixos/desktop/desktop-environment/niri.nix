@@ -153,6 +153,24 @@ in
           y = 0;
         };
       };
+
+      # --- home: AOC 3440x1440 ultrawide followed by a portrait Legion
+      # The Legion is 3200 logical pixels tall after rotation at 0.8 scale.
+      # Centre the 1440-high AOC against it: (3200 - 1440) / 2 = 880.
+      "PNP(AOC) U34G2G4R3 0x00000B3E" = {
+        position = {
+          x = 0;
+          y = 880;
+        };
+      };
+      "Lenovo Group Limited Legion 27Q-10 UPACC725" = {
+        scale = 0.8;
+        transform = "270";
+        position = {
+          x = 3440;
+          y = 0;
+        };
+      };
     };
 
     environment.systemPackages = with pkgs; [
