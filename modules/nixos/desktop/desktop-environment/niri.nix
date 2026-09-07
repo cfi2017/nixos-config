@@ -194,6 +194,11 @@ in
           x = 3440;
           y = 0;
         };
+        layout = {
+          default-column-width = {
+            proportion = 1.0;
+          };
+        };
       };
 
       # --- home: AOC 3440x1440 ultrawide followed by a portrait Legion
@@ -217,6 +222,11 @@ in
         position = {
           x = 3440;
           y = 0;
+        };
+        layout = {
+          default-column-width = {
+            proportion = 1.0;
+          };
         };
       };
     };
