@@ -78,3 +78,33 @@ hyprland session. Laptop volume/mic/brightness keys (`XF86Audio*`,
 | `Print` | Interactive region screenshot |
 | `Ctrl+Print` | Whole screen |
 | `Alt+Print` | Focused window |
+
+# Rustic backups
+
+The optional `cfi2017.backup.rustic` service backs up every enabled
+impermanence storage root. 
+
+Add a multiline SOPS secret named `backup/rustic/environment` to
+`secrets/secrets.yaml`. For an S3-compatible OpenDAL repository it should have
+the following EnvironmentFile format:
+
+```text
+RUSTIC_REPOSITORY=opendal:s3:my-bucket
+RUSTIC_PASSWORD=a-long-random-repository-password
+RUSTIC_REPO_OPT_REGION=eu-central-1
+RUSTIC_REPO_OPT_ENDPOINT=https://s3.example.com
+RUSTIC_REPO_OPT_ACCESS_KEY_ID=example-access-key
+RUSTIC_REPO_OPT_SECRET_ACCESS_KEY=example-secret-key
+```
+
+The endpoint is optional for AWS S3. Then enable the service on the desired
+machine:
+
+```nix
+cfi2017.backup.rustic.enable = true;
+```
+
+The timer runs daily by default, initializes an empty repository on its first
+run, and applies the configured retention policy after each successful backup.
+Test it with `sudo systemctl start rustic-backup.service` and inspect it with
+`journalctl -u rustic-backup.service`.

@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./sshd.nix ];
+  imports = [
+    ./rustic-backup.nix
+    ./sshd.nix
+  ];
   services.usbmuxd.enable = true;
   services.pcscd.enable = true;
   # prevent yubikey locking when pcscd is enabled
