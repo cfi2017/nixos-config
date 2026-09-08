@@ -156,7 +156,7 @@ in
         scale = 1.0;
         position = {
           x = 0;
-          y = 0;
+          y = 880;
         };
       };
 
@@ -177,7 +177,7 @@ in
       # };
       "Samsung Electric Company LC34G55T HNTYC01410" = {
         position = {
-          x = 0;
+          x = 1920;
           y = 880;
         };
 
@@ -191,7 +191,7 @@ in
         scale = 0.8;
         transform = "270";
         position = {
-          x = 3440;
+          x = 5360;
           y = 0;
         };
         layout = {
