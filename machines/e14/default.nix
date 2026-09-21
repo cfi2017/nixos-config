@@ -15,6 +15,7 @@
     stateVersion = "25.11";
     gpg.enable = true;
     persistence.enable = true;
+    gaming.enable = true;
     core = {
       zfs = {
         enable = true;

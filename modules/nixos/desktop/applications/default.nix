@@ -6,6 +6,7 @@
 {
   imports = [
     ./antigravity.nix
+    ./gaming.nix
   ];
 
   config = {
