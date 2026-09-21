@@ -10,7 +10,7 @@
     };
   };
 
-  config = lib.mkIf config.cfi2017.development-packages.enable {
+  config = lib.mkIf config.cfi2017.gaming.enable {
     programs = {
       steam.enable = true;
       gamemode.enable = true;
