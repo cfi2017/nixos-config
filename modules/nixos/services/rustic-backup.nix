@@ -111,7 +111,7 @@ in
     systemd.services.rustic-backup = {
       description = "Back up impermanence data with Rustic";
       after = [ "local-fs.target" ];
-      requiresMountsFor = persistenceRoots;
+      unitConfig.RequiresMountsFor = persistenceRoots;
 
       path = [ pkgs.age-plugin-yubikey ];
 
