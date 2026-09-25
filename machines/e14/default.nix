@@ -16,6 +16,11 @@
     gpg.enable = true;
     persistence.enable = true;
     gaming.enable = true;
+
+    backup.rustic = {
+      enable = true;
+      encryptedPasswordFile = ../../secrets/e14-rustic-password.age;
+    };
     core = {
       zfs = {
         enable = true;
