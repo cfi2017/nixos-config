@@ -82,29 +82,59 @@ hyprland session. Laptop volume/mic/brightness keys (`XF86Audio*`,
 # Rustic backups
 
 The optional `cfi2017.backup.rustic` service backs up every enabled
-impermanence storage root. 
+impermanence storage root.
 
 Add a multiline SOPS secret named `backup/rustic/environment` to
 `secrets/secrets.yaml`. For an S3-compatible OpenDAL repository it should have
-the following EnvironmentFile format:
+the following EnvironmentFile format (the repository password deliberately
+does not belong in this secret):
 
 ```text
 RUSTIC_REPOSITORY=opendal:s3:my-bucket
-RUSTIC_PASSWORD=a-long-random-repository-password
 RUSTIC_REPO_OPT_REGION=eu-central-1
 RUSTIC_REPO_OPT_ENDPOINT=https://s3.example.com
 RUSTIC_REPO_OPT_ACCESS_KEY_ID=example-access-key
 RUSTIC_REPO_OPT_SECRET_ACCESS_KEY=example-secret-key
 ```
 
-The endpoint is optional for AWS S3. Then enable the service on the desired
-machine:
+The endpoint is optional for AWS S3. The repository password is intentionally
+not stored in SOPS. Generate a random password and encrypt it directly to the
+age recipient for this one host plus every YubiKey that should be able to
+recover it:
+
+```bash
+age-plugin-yubikey --list
+rage-keygen -y ~/.config/sops/age/keys.txt
+openssl rand -base64 48 | rage --armor \
+  --recipient age1HOST... \
+  --recipient age1yubikey1FIRST... \
+  --recipient age1yubikey1SECOND... \
+  --output secrets/t14-rustic-password.age
+```
+
+The resulting file contains only public-key-encrypted ciphertext and can be
+committed with the configuration. Keeping it outside the Rustic repository is
+important: otherwise recovery would require the password in order to retrieve
+the encrypted password. Do not add the password or this envelope to SOPS; its
+broader recipient list is intentionally not part of the backup trust boundary.
+
+Then enable the service on the matching host:
 
 ```nix
-cfi2017.backup.rustic.enable = true;
+cfi2017.backup.rustic = {
+  enable = true;
+  encryptedPasswordFile = ../../secrets/t14-rustic-password.age;
+  # Defaults to config.sops.age.keyFile. Override this if the host uses a
+  # dedicated backup identity.
+  hostIdentityFile = "/path/to/this-hosts/age-identity";
+};
 ```
 
 The timer runs daily by default, initializes an empty repository on its first
 run, and applies the configured retention policy after each successful backup.
+Rustic invokes `rage` at runtime through its password-command interface. The
+host identity permits unattended backups; any configured YubiKey recipient can
+decrypt the same envelope for recovery. The plaintext password is never
+written to disk or placed directly in the service environment.
 Test it with `sudo systemctl start rustic-backup.service` and inspect it with
 `journalctl -u rustic-backup.service`.

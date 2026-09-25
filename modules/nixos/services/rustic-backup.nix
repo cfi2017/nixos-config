@@ -6,6 +6,8 @@
 }:
 let
   cfg = config.cfi2017.backup.rustic;
+  encryptedPasswordFile =
+    if cfg.encryptedPasswordFile == null then "/dev/null" else toString cfg.encryptedPasswordFile;
 
   # Impermanence keeps the real data below each persistence root. Backing up
   # the roots instead of their bind-mounted destinations avoids crossing the
@@ -13,6 +15,13 @@ let
   persistenceRoots = lib.attrNames (
     lib.filterAttrs (_: persistence: persistence.enable) config.environment.persistence
   );
+
+  passwordCommand = pkgs.writeShellScript "rustic-password-from-age" ''
+    exec ${lib.getExe pkgs.rage} --decrypt \
+      --identity ${lib.escapeShellArg cfg.hostIdentityFile} \
+      ${lib.escapeShellArg encryptedPasswordFile}
+  '';
+
 in
 {
   options.cfi2017.backup.rustic = {
@@ -34,9 +43,27 @@ in
       type = lib.types.str;
       default = "backup/rustic/environment";
       description = ''
-        SOPS secret containing an EnvironmentFile with the Rustic repository,
-        repository password, and S3 credentials.
+        SOPS secret containing an EnvironmentFile with the Rustic repository
+        and S3 credentials. The repository password is handled separately.
       '';
+    };
+
+    encryptedPasswordFile = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      example = lib.literalExpression "../../../secrets/t14-rustic-password.age";
+      description = ''
+        Path to a separately recoverable age-encrypted Rustic repository
+        password. It should be encrypted only to this host and the selected
+        YubiKeys. The ciphertext is safe to store with the Nix configuration.
+      '';
+    };
+
+    hostIdentityFile = lib.mkOption {
+      type = lib.types.str;
+      default = config.sops.age.keyFile;
+      defaultText = lib.literalExpression "config.sops.age.keyFile";
+      description = "Runtime age identity used by this host to unlock the repository password.";
     };
 
     forgetArgs = lib.mkOption {
@@ -63,6 +90,10 @@ in
         assertion = persistenceRoots != [ ];
         message = "cfi2017.backup.rustic found no enabled environment.persistence roots";
       }
+      {
+        assertion = cfg.encryptedPasswordFile != null;
+        message = "cfi2017.backup.rustic.encryptedPasswordFile must point to the age-encrypted repository password";
+      }
     ];
 
     sops.secrets.${cfg.secretName} = {
@@ -71,18 +102,27 @@ in
       restartUnits = [ "rustic-backup.service" ];
     };
 
-    environment.systemPackages = [ pkgs.rustic ];
+    environment.systemPackages = [
+      pkgs.age-plugin-yubikey
+      pkgs.rage
+      pkgs.rustic
+    ];
 
     systemd.services.rustic-backup = {
       description = "Back up impermanence data with Rustic";
       after = [ "local-fs.target" ];
       requiresMountsFor = persistenceRoots;
 
+      path = [ pkgs.age-plugin-yubikey ];
+
       serviceConfig = {
         Type = "oneshot";
         EnvironmentFile = config.sops.secrets.${cfg.secretName}.path;
         CacheDirectory = "rustic";
-        Environment = "RUSTIC_CACHE_DIR=/var/cache/rustic";
+        Environment = [
+          "RUSTIC_CACHE_DIR=/var/cache/rustic"
+          "RUSTIC_PASSWORD_COMMAND=${passwordCommand}"
+        ];
         Nice = 10;
         IOSchedulingClass = "best-effort";
         IOSchedulingPriority = 7;
