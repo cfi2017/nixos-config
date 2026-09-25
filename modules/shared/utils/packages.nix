@@ -50,6 +50,8 @@
       socat
       rclone
       git-credential-gopass
+      age-plugin-yubikey
+      rage
 
       zammad-tui
       agx
