@@ -103,7 +103,6 @@ in
 
 
                   # local rc?
-                  set query_command = "lbdbq '%s'"
                   bind editor <Tab> complete-query
                   auto_view text/x-vcard text/html text/enriched
                   alternative_order text/plain text/enriched text/html
@@ -150,6 +149,7 @@ in
                     "<modify-labels-then-hide>-inbox -unread +trash<enter><sync-mailbox>" \
                     "move to Gmail trash"
 
+                  bind index,pager ,,f vfolder-from-query
                 '';
               };
               notmuch = {
