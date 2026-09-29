@@ -90,11 +90,15 @@ the following EnvironmentFile format (the repository password deliberately
 does not belong in this secret):
 
 ```text
-RUSTIC_REPOSITORY=opendal:s3:my-bucket
-RUSTIC_REPO_OPT_REGION=eu-central-1
-RUSTIC_REPO_OPT_ENDPOINT=https://s3.example.com
-RUSTIC_REPO_OPT_ACCESS_KEY_ID=example-access-key
-RUSTIC_REPO_OPT_SECRET_ACCESS_KEY=example-secret-key
+RUSTIC_REPOSITORY=opendal:s3
+OPENDAL_BUCKET=my-bucket
+# Optional: keep each host in a separate prefix within a shared bucket.
+OPENDAL_ROOT=/my-host
+OPENDAL_REGION=eu-central-1
+OPENDAL_ENDPOINT=https://s3.example.com
+OPENDAL_ACCESS_KEY_ID=example-access-key
+OPENDAL_SECRET_ACCESS_KEY=example-secret-key
+OPENDAL_DISABLE_EC2_METADATA=true
 ```
 
 The endpoint is optional for AWS S3. The repository password is intentionally
