@@ -39,6 +39,16 @@ in
       description = "Maximum random delay applied to scheduled backups.";
     };
 
+    repositoryRoot = lib.mkOption {
+      type = lib.types.str;
+      default = "/${config.networking.hostName}";
+      defaultText = lib.literalExpression "\"/\${config.networking.hostName}\"";
+      description = ''
+        Path within the object-storage bucket used for this host's repository.
+        This is evaluated per host and overrides OPENDAL_ROOT from the secret.
+      '';
+    };
+
     secretName = lib.mkOption {
       type = lib.types.str;
       default = "backup/rustic/environment";
@@ -130,6 +140,7 @@ in
 
       script = ''
         set -euo pipefail
+        export OPENDAL_ROOT=${lib.escapeShellArg cfg.repositoryRoot}
         ${lib.getExe pkgs.rustic} backup --init ${lib.escapeShellArgs persistenceRoots}
         ${lib.getExe pkgs.rustic} forget --prune ${lib.escapeShellArgs cfg.forgetArgs}
       '';

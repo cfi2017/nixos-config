@@ -92,13 +92,20 @@ does not belong in this secret):
 ```text
 RUSTIC_REPOSITORY=opendal:s3
 OPENDAL_BUCKET=my-bucket
-# Optional: keep each host in a separate prefix within a shared bucket.
-OPENDAL_ROOT=/my-host
 OPENDAL_REGION=eu-central-1
 OPENDAL_ENDPOINT=https://s3.example.com
 OPENDAL_ACCESS_KEY_ID=example-access-key
 OPENDAL_SECRET_ACCESS_KEY=example-secret-key
 OPENDAL_DISABLE_EC2_METADATA=true
+```
+
+`OPENDAL_ROOT` must not be placed in the shared secret. The module derives it
+from `config.networking.hostName`, so the `e14` host uses `/e14`, and exports it
+after loading the environment file. It can be overridden declaratively when
+needed:
+
+```nix
+cfi2017.backup.rustic.repositoryRoot = "/custom-prefix";
 ```
 
 The endpoint is optional for AWS S3. The repository password is intentionally
