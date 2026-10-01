@@ -22,6 +22,11 @@ let
       ${lib.escapeShellArg encryptedPasswordFile}
   '';
 
+  excludeArgs = lib.escapeShellArgs (
+    (lib.concatMap (glob: [ "--glob" "!${glob}" ]) cfg.excludeGlobs)
+    ++ (lib.concatMap (marker: [ "--exclude-if-present" marker ]) cfg.excludeIfPresent)
+  );
+
 in
 {
   options.cfi2017.backup.rustic = {
@@ -88,6 +93,30 @@ in
       ];
       description = "Arguments passed to `rustic forget --prune` after a successful backup.";
     };
+
+    excludeGlobs = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [
+        "**/node_modules"
+        "**/node_modules/**"
+        "**/target"
+        "**/target/**"
+      ];
+      description = ''
+        Glob patterns excluded from backups. The module adds Rustic's leading
+        `!` exclusion marker to each pattern.
+      '';
+    };
+
+    excludeIfPresent = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ "pyvenv.cfg" ];
+      description = ''
+        Marker filenames that cause Rustic to exclude their entire containing
+        directory. The default catches Python virtual environments regardless
+        of their directory name.
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -141,7 +170,7 @@ in
       script = ''
         set -euo pipefail
         export OPENDAL_ROOT=${lib.escapeShellArg cfg.repositoryRoot}
-        ${lib.getExe pkgs.rustic} backup --init ${lib.escapeShellArgs persistenceRoots}
+        ${lib.getExe pkgs.rustic} backup --init ${excludeArgs} ${lib.escapeShellArgs persistenceRoots}
         ${lib.getExe pkgs.rustic} forget --prune ${lib.escapeShellArgs cfg.forgetArgs}
       '';
     };

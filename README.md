@@ -147,5 +147,10 @@ Rustic invokes `rage` at runtime through its password-command interface. The
 host identity permits unattended backups; any configured YubiKey recipient can
 decrypt the same envelope for recovery. The plaintext password is never
 written to disk or placed directly in the service environment.
+
+Rust `target` directories, `node_modules`, and directories containing a
+`pyvenv.cfg` marker are excluded by default. Additional exclusions can be
+declared with `cfi2017.backup.rustic.excludeGlobs` or
+`cfi2017.backup.rustic.excludeIfPresent`.
 Test it with `sudo systemctl start rustic-backup.service` and inspect it with
 `journalctl -u rustic-backup.service`.
