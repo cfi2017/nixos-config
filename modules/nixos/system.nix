@@ -57,20 +57,5 @@
         enable = true;
       };
     };
-
-    i18n = {
-      defaultLocale = "en_GB.UTF-8";
-      extraLocaleSettings = {
-        LC_ALL = "en_GB.UTF-8";
-        LANGUAGE = "en_GB.UTF-8";
-        LC_TIME = "en_GB.UTF-8";
-      };
-      supportedLocales = [
-        "de_CH.UTF-8/UTF-8"
-        "en_GB.UTF-8/UTF-8"
-        "en_IE.UTF-8/UTF-8"
-        "en_US.UTF-8/UTF-8"
-      ];
-    };
   };
 }

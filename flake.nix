@@ -25,6 +25,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Hyprland / Wayland flakes
     hyprland = {
@@ -279,6 +283,22 @@
             ++ [
               disko.nixosModules.disko
               ./machines/t14/default.nix
+            ];
+        };
+        wsl = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            lib = lib "x86_64-linux";
+          };
+          # WSL is not a bare-metal host: skip ./modules/nixos and take only the
+          # external modules the shared layer depends on.
+          modules =
+            privateModules
+            ++ sharedModules
+            ++ [
+              sops-nix.nixosModules.sops
+              home-manager.nixosModules.home-manager
+              ./machines/wsl/default.nix
             ];
         };
       };

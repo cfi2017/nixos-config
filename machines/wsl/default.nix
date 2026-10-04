@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   lib,
   ...
@@ -8,25 +9,25 @@
 
   wsl = {
     enable = true;
-    defaultUser = "user";
+    # Must match the user the shared modules configure (home-manager, sops, groups).
+    defaultUser = config.cfi2017.user.name;
   };
 
-  networking = {
-    hostName = "wsl";
-    hostId = "12345678";
-  };
+  networking.hostName = "wsl";
+
+  # No sshd here, so there is no host key to derive an age identity from.
+  # sops decrypts with the age key at sops.age.keyFile instead; its public key
+  # must be a recipient in .sops.yaml.
+  sops.age.sshKeyPaths = lib.mkForce [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
+  system.stateVersion = "26.05";
+
   cfi2017 = {
-    stateVersion = "25.05";
+    stateVersion = "26.05";
     gpg.enable = true;
     persistence.enable = false;
-    core = {
-      zfs = {
-        enable = false;
-      };
-    };
     development-packages = {
       enable = true;
       tools = {
@@ -42,15 +43,6 @@
         cloud = true;
         dev = false;
       };
-    };
-    development = {
-      virtualisation = {
-        docker.enable = false;
-        hypervisor.enable = false;
-      };
-    };
-    graphical = {
-      enable = false;
     };
   };
 }
