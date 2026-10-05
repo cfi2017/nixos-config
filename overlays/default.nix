@@ -26,6 +26,13 @@
       };
     in
     {
+      # GCC 16 warns about volatile-qualified return types in the upstream
+      # demangling test. DejaGNU treats the warning as a compile failure and
+      # causes 15 cascading failures, although ltrace itself builds cleanly.
+      ltrace = prev.ltrace.overrideAttrs {
+        doCheck = false;
+      };
+
       goobook = prev.goobook.overridePythonAttrs (old: {
         pythonRelaxDeps = (old.pythonRelaxDeps or [ ]) ++ [ "simplejson" ];
       });

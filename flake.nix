@@ -164,6 +164,22 @@
       ]
       ++ (nixpkgs.lib.optionals (inputs ? private-work) [
         inputs.private-work.nixosModules.default
+        (
+          { lib, pkgs, ... }:
+          {
+            # Wazuh 4.14.7 vendors a libbpf version that is not const-correct
+            # under GCC 16. Its bpftool build enables -Werror, turning the new
+            # diagnostic into a hard failure.
+            services.wazuh-agent.package = lib.mkForce (
+              inputs.private-work.inputs.wazuh-agent.packages.${pkgs.stdenv.hostPlatform.system}.wazuh-agent.overrideAttrs
+                (old: {
+                  env = (old.env or { }) // {
+                    NIX_CFLAGS_COMPILE = (old.env.NIX_CFLAGS_COMPILE or "") + " -Wno-error=discarded-qualifiers";
+                  };
+                })
+            );
+          }
+        )
       ]);
 
       sharedModules = [
