@@ -1842,11 +1842,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775645048,
-        "narHash": "sha256-57E8MH+UQUBmkU1iPvOM25bfQm82PtmbRgUT4wvzam0=",
+        "lastModified": 1791197273,
+        "narHash": "sha256-qiRQqEP7n/b3xUQXNAtMvBHSTAt4XBHI/gyjzUK07fA=",
         "owner": "cfi2017",
         "repo": "zammad-tui",
-        "rev": "7e07808e583cbc367cc77ff805e5c20af483d0cd",
+        "rev": "7290ea67d27bd4da03b091a6918258cbdd6bc532",
         "type": "github"
       },
       "original": {
