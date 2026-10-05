@@ -1072,12 +1072,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1760962228,
+        "lastModified": 1791196516,
         "lfs": true,
-        "narHash": "sha256-1o53dkKBn2d2Qq+VBTfH5kL3d+ew0hT4sXG/PsglJ98=",
+        "narHash": "sha256-8+anSXyQuIhtxEkGD2gY7A4GGWlaPD1QxSNImyG5ojg=",
         "ref": "refs/heads/main",
-        "rev": "02cc3cca2e9a552c743f1727d2601cda479112f2",
-        "revCount": 6,
+        "rev": "c0269a201b7626b0131e845c9981c8e9af542780",
+        "revCount": 8,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/ida-pro-flake"
       },
@@ -1095,11 +1095,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758527109,
-        "narHash": "sha256-82ibOn1D5U0FMt7a2wir7lzUl9SbJvjGIGZgUI4JGEI=",
+        "lastModified": 1785758329,
+        "narHash": "sha256-UtCdu4witdJNIVS4kW9Be/JeboYSw+fayfCu7I1KbXg=",
         "owner": "msanft",
         "repo": "ida-pro-overlay",
-        "rev": "8581ad9182898b82a58a3a4d3a8a146ed4418dc1",
+        "rev": "b741850598858f913c72bc809e744b89f9a7c255",
         "type": "github"
       },
       "original": {
@@ -1461,11 +1461,11 @@
         "wazuh-agent": "wazuh-agent"
       },
       "locked": {
-        "lastModified": 1791191624,
-        "narHash": "sha256-x1boddhXdXgLzrcEA4wulCmLLbEsL3O1MnQbzbh2UNo=",
+        "lastModified": 1791192672,
+        "narHash": "sha256-kxRvS46dLpG6fnnGuH5KdWXr0Rcormh5beODnwN9yjI=",
         "ref": "refs/heads/main",
-        "rev": "a24df0f545961218db16946868f2d55dde6104c3",
-        "revCount": 80,
+        "rev": "164a65640b549a5edacf80a2d8875f4eb36b7132",
+        "revCount": 82,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/private-work-nixos-configs"
       },

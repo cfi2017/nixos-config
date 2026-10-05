@@ -31,7 +31,7 @@ in
 {
   config = {
     home-manager.users.${user} = hm: {
-      home.packages = [ pkgs.antigravity ];
+      home.packages = [ pkgs.antigravity-ide ];
 
       # Manage settings.json declaratively (like the zed/kitty configs). This makes
       # the file a read-only symlink, so add future settings here rather than in the

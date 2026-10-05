@@ -30,22 +30,22 @@
           programs.ssh = {
             enable = true;
             enableDefaultConfig = false;
-            matchBlocks = {
+            settings = {
               "github" = {
-                hostname = "github.com";
-                user = "git";
-                forwardAgent = true;
-                identitiesOnly = true;
+                HostName = "github.com";
+                User = "git";
+                ForwardAgent = true;
+                IdentitiesOnly = true;
               };
               "*" = {
-                addKeysToAgent = "yes";
-                identityFile =
+                AddKeysToAgent = "yes";
+                IdentityFile =
                   if config.cfi2017.persistence.enable && config.cfi2017.isLinux then
                     "${config.cfi2017.persistence.dataPrefix}/home/${config.cfi2017.user.name}/.ssh/id_ed25519"
                   else
                     "${config.cfi2017.user.homeDirectory}/.ssh/id_ed25519";
-                hashKnownHosts = true;
-                userKnownHostsFile =
+                HashKnownHosts = true;
+                UserKnownHostsFile =
                   if config.cfi2017.persistence.enable && config.cfi2017.isLinux then
                     "${config.cfi2017.persistence.dataPrefix}/home/${config.cfi2017.user.name}/.ssh/known_hosts"
                   else

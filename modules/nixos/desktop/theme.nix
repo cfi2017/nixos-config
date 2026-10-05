@@ -50,6 +50,7 @@
     home-manager.users.${config.cfi2017.user.name} =
       { pkgs, ... }:
       {
+        home.pointerCursor.enable = true;
         catppuccin = {
           cursors = {
             enable = true;

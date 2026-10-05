@@ -53,7 +53,7 @@
     final: prev:
     let
       old = import inputs.nixpkgs-25-05 {
-        system = prev.stdenv.hostPlatform.system or prev.system;
+        system = prev.stdenv.hostPlatform.system;
         config = {
           allowUnfree = true;
         };
