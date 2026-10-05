@@ -94,11 +94,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agx = {
-      url = "github:cfi2017/agx-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # private flakes
     ida-pro-flake = {
       url = "git+ssh://git@github.com/cfi2017/ida-pro-flake?lfs=1";
@@ -147,7 +142,6 @@
       sops-nix,
       disko,
       zammad-tui,
-      agx,
       multi-profile,
       vicinae,
       whisper-relay,
@@ -190,7 +184,6 @@
                 (import ./overlays { inherit inputs; }).package-fixes
                 (import ./overlays { inherit inputs; }).force-latest
                 zammad-tui.overlays.default
-                agx.overlays.default
               ];
             };
           }
