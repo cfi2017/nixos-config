@@ -1461,11 +1461,11 @@
         "wazuh-agent": "wazuh-agent"
       },
       "locked": {
-        "lastModified": 1790948910,
-        "narHash": "sha256-Mh7UXC2q85nEXZmBcban8Go6itNJx/yov+6YlM8kKCw=",
+        "lastModified": 1791188097,
+        "narHash": "sha256-TjgrzMY/9+LME5/9bBaLGTAmuTRCfpJCXF1Ft+GzdH4=",
         "ref": "refs/heads/main",
-        "rev": "b3bae00b6acad497835649d33a1a7feb61879ea9",
-        "revCount": 73,
+        "rev": "187927d78605aa6121fcf7942c65431bbeedb692",
+        "revCount": 77,
         "type": "git",
         "url": "ssh://git@github.com/cfi2017/private-work-nixos-configs"
       },
@@ -1758,11 +1758,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787848767,
-        "narHash": "sha256-wqPGk/CFZoynWyomPRjAVkiulYJe0nze597aLl4+dSU=",
+        "lastModified": 1791126642,
+        "narHash": "sha256-R96D8WOpcFyUF1uxqQTWKXztYGmBXu9OxgaDcsRQwyk=",
         "owner": "nealfennimore",
         "repo": "wazuh-agent-nixos",
-        "rev": "cde2502240de83b94ae4c24932de07313dd5b9ed",
+        "rev": "4b5f3fd8de121bd3910e5206a7fa412d25860764",
         "type": "github"
       },
       "original": {
