@@ -66,6 +66,7 @@
   };
 
   services.tlp.enable = true;
+  services.thermald.enable = true;
 
   system = {
     stateVersion = "25.11";

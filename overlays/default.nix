@@ -26,6 +26,12 @@
       };
     in
     {
+      # Kubernetes 1.36's cAdvisor requires a zfs CLI when /dev/zfs exists.
+      # kind nodes lack that CLI; use filesystem statistics instead.
+      kind = prev.kind.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ../patches/kind-zfs-kubelet.patch ];
+      });
+
       # GCC 16 warns about volatile-qualified return types in the upstream
       # demangling test. DejaGNU treats the warning as a compile failure and
       # causes 15 cascading failures, although ltrace itself builds cleanly.

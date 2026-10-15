@@ -1,0 +1,30 @@
+diff --git a/pkg/cluster/internal/providers/docker/provision.go b/pkg/cluster/internal/providers/docker/provision.go
+--- a/pkg/cluster/internal/providers/docker/provision.go
++++ b/pkg/cluster/internal/providers/docker/provision.go
+@@ -418,5 +418,25 @@ func createContainerWithWaitUntilSystemdReachesMultiUserSystem(name string, args []
+ 	logCtx, logCancel := context.WithTimeout(context.Background(), 30*time.Second)
+ 	logCmd := exec.CommandContext(logCtx, "docker", "logs", "-f", name)
+ 	defer logCancel()
+-	return common.WaitUntilLogRegexpMatches(logCtx, logCmd, common.NodeReachedCgroupsReadyRegexp())
++	if err := common.WaitUntilLogRegexpMatches(logCtx, logCmd, common.NodeReachedCgroupsReadyRegexp()); err != nil {
++		return err
++	}
++	// cAdvisor in Kubernetes 1.36 tries to invoke zfs when /dev/zfs exists.
++	// The node image has no zfs CLI. Remove only the node's device so that
++	// cAdvisor falls back to statfs. Repeat before kubelet on node restarts.
++	driver, err := exec.OutputLines(exec.Command("docker", "info", "--format", "{{.Driver}}"))
++	if err != nil {
++		return err
++	}
++	if len(driver) == 1 && driver[0] == "zfs" {
++		return exec.Command("docker", "exec", name, "sh", "-c", `
++mkdir -p /etc/systemd/system/kubelet.service.d
++cat > /etc/systemd/system/kubelet.service.d/20-zfs-statfs.conf <<'EOF'
++[Service]
++ExecStartPre=/bin/rm -f /dev/zfs
++EOF
++systemctl daemon-reload
++`).Run()
++	}
++	return nil
+ }

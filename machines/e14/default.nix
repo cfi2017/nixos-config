@@ -10,6 +10,21 @@
   };
 
   virtualisation.docker.storageDriver = "zfs";
+  virtualisation.containerd = {
+    enable = true;
+    settings.plugins = {
+      "io.containerd.grpc.v1.cri" = {
+        containerd.snapshotter = "zfs";
+        sandbox_image = "registry.k8s.io/pause:3.10";
+      };
+      "io.containerd.transfer.v1.local".unpack_config = [
+        {
+          platform = "linux/amd64";
+          snapshotter = "zfs";
+        }
+      ];
+    };
+  };
 
   cfi2017 = {
     stateVersion = "25.11";
