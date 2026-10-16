@@ -29,6 +29,7 @@
       luks.devices.cryptswap.device = "/dev/nvme0n1p3";
       systemd.enable = true;
     };
+    kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
     kernelParams = [
       "mitigations=off"
       "quiet"
