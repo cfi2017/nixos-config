@@ -39,6 +39,12 @@
     };
 
     # internal CA (bao.k8s.swiss.dev)
+    security = {
+      pki.caCertificateBlacklist = [
+        "Comodo AAA Services root"
+        "emSign ECC Root CA - G3"
+      ];
+    };
     security.pki.certificates = [
       ''
         -----BEGIN CERTIFICATE-----
