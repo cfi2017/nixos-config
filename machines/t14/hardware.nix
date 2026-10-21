@@ -14,16 +14,54 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+    initrd = {
+      verbose = false;
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "thunderbolt"
+        "nvme"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
+      kernelModules = [ "virtio" ];
+      systemd.enable = true;
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    plymouth = {
+      enable = true;
+      theme = "rings";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "rings" ];
+        })
+      ];
+    };
+
+    consoleLogLevel = 3;
+  };
+  console = {
+    earlySetup = true;
+    useXkbConfig = true;
+  };
+
+  services.xserver.xkb = {
+    layout = "ch";
+  };
+
+  services.tlp.enable = true;
+  services.thermald.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.npu.enable = true;

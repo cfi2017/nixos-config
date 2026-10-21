@@ -31,7 +31,6 @@
     };
     kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
     kernelParams = [
-      "mitigations=off"
       "quiet"
       "splash"
       "boot.shell_on_fail"

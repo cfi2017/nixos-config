@@ -5,7 +5,10 @@
     initrd.systemd.services.rotate-impermanent-root = {
       description = "Archive the previous Btrfs root and create a clean root";
       wantedBy = [ "initrd.target" ];
-      after = [ "systemd-cryptsetup@cryptsystem.service" ];
+      after = [
+        "systemd-cryptsetup@cryptsystem.service"
+        "systemd-hibernate-resume.service"
+      ];
       before = [ "sysroot.mount" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
