@@ -62,6 +62,8 @@
       code-cursor
       codex
 
+      coder
+
       comma
 
       # iphone stuff
