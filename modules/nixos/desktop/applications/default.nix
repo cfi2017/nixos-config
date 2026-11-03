@@ -19,6 +19,7 @@
         pkgs.headlamp
         pkgs.libreoffice
         pkgs.super-productivity
+        pkgs.nheko
       ];
     };
   };
