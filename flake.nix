@@ -110,10 +110,10 @@
     #   url = "github:TeamM0unt41n/berg-cli";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    burpsuite = {
-      url = "github:xiv3r/Burpsuite-Professional";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # burpsuite = {
+    #   url = "github:xiv3r/Burpsuite-Professional";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     private-work = {
       url = "git+ssh://git@github.com/cfi2017/private-work-nixos-configs";
@@ -166,7 +166,11 @@
       ++ (nixpkgs.lib.optionals (inputs ? private-work) [
         inputs.private-work.nixosModules.default
         (
-          { lib, pkgs, ... }:
+          {
+            lib,
+            pkgs,
+            ...
+          }:
           {
             # Wazuh 4.14.7 vendors a libbpf version that is not const-correct
             # under GCC 16. Its bpftool build enables -Werror, turning the new

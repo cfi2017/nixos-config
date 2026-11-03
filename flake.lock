@@ -82,26 +82,6 @@
         "type": "github"
       }
     },
-    "burpsuite": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785188898,
-        "narHash": "sha256-3GLhlQ4ZWjjI1WLk4WD+DzK+aNTcOZRU5sxXS4n/j4Q=",
-        "owner": "xiv3r",
-        "repo": "Burpsuite-Professional",
-        "rev": "011805017eb5199377925d68ea676a54f188fb0d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xiv3r",
-        "repo": "Burpsuite-Professional",
-        "type": "github"
-      }
-    },
     "catppuccin": {
       "inputs": {
         "nixpkgs": [
@@ -385,11 +365,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792098797,
-        "narHash": "sha256-u4DIIZgznEGzByxXrxWCXK19VcMtTBmi/M9gZ7Jk9bM=",
+        "lastModified": 1793193205,
+        "narHash": "sha256-X6xa6sGA7RnJQuZGbFMC+K+KToWAlBDCCjJXfTwEPsw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "640725978b99076e18e069f6e7d2959124584f8f",
+        "rev": "095fef2f265c3c0da4fe315efba8f8a04495ab34",
         "type": "github"
       },
       "original": {
@@ -1489,7 +1469,6 @@
     },
     "root": {
       "inputs": {
-        "burpsuite": "burpsuite",
         "catppuccin": "catppuccin",
         "disko": "disko",
         "home-manager": "home-manager",
@@ -1887,11 +1866,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792271801,
-        "narHash": "sha256-LYN8miMEew9CxgRrF/RCnAyOe6476dQM/JzELnFQef0=",
+        "lastModified": 1793710409,
+        "narHash": "sha256-NapxfokR49AvYX5ldtkjrdtH5pWxEj9BXU0Gw+rYX+E=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "e1b9b3578ebb388b56012cd9ddd80e19681d2d39",
+        "rev": "d87bba54c0ddc367b2801ef5c66eed8b8e0ac072",
         "type": "github"
       },
       "original": {
