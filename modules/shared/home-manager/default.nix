@@ -90,6 +90,43 @@ in
               };
             };
 
+            accounts.email = {
+              accounts = {
+                "kabelsalat" = {
+                  address = "efi@kabelsalat.ch";
+                  userName = "efi@kabelsalat.ch";
+                  realName = "/u/efi";
+                  passwordCommand = "gopass show -o ccc/email";
+
+                  flavor = "plain";
+                  imap = {
+                    host = "imap.kabelsalat.ch";
+                    port = 993;
+                    tls.enable = true;
+                  };
+
+                  smtp = {
+                    host = "smtp.kabelsalat.ch";
+                    port = 587;
+                    tls.enable = true;
+                  };
+
+                  msmtp.enable = true;
+                  mbsync = {
+                    enable = true;
+                    expunge = "both";
+                    extraConfig.channel = {
+                      Expunge = "Both";
+                      Create = "Both";
+                      Sync = "All";
+                    };
+                  };
+
+                  neomutt.enable = true;
+                };
+              };
+            };
+
             programs.vicinae = {
               enable = true; # default: false
               systemd = {
@@ -152,6 +189,16 @@ in
                     {
                       url = "https://mail.proton.me";
                       title = "Mail";
+                      essential = true;
+                    }
+                  ];
+                };
+                ccc = {
+                  browser = "zen";
+                  pins = [
+                    {
+                      url = "https://wiki.ccc-basel.ch/index.php/Linksammlung_f%C3%BCr_Mitglieder";
+                      title = "Links";
                       essential = true;
                     }
                   ];
