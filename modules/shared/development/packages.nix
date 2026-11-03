@@ -148,7 +148,7 @@
             openbao
             inputs.ida-pro-flake.packages.${stdenv.hostPlatform.system}.ida-pro
             # inputs.binaryninja-flake.packages.${system}.binaryninja
-            inputs.burpsuite.packages.${stdenv.hostPlatform.system}.default
+            # inputs.burpsuite.packages.${stdenv.hostPlatform.system}.default
             # inputs.berg-cli.packages.${system}.default
             gdb
             ngrok
