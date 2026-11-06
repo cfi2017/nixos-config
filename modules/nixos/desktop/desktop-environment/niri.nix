@@ -229,6 +229,30 @@ in
           };
         };
       };
+
+      "Samsung Electric Company LS24D60xU HNAY300293" = {
+        mode = "2560x1440@59.951";
+      };
+
+      "Samsung Electric Company LS24A600U H4ZRB00204" = {
+        mode = "2560x1440@59.951";
+      };
+      # --- bern office - Paddys desk
+      "Samsung Electric Company LS24A600U H4ZRC01370" = {
+        transform = "90";
+        position = {
+          x = -320;
+          y = -560;
+        };
+
+      };
+
+      "Samsung Electric Company LS24A600U H4ZRC04399" = {
+        position = {
+          x = 2240;
+          y = -560;
+        };
+      };
     };
 
     environment.systemPackages = with pkgs; [
