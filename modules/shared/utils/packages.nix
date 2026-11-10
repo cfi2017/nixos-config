@@ -64,8 +64,6 @@
 
       coder
 
-      comma
-
       # iphone stuff
       libimobiledevice
       libimobiledevice-glue
@@ -81,6 +79,8 @@
 
       pcsc-safenet
     ];
+
+    programs.nix-index-database.comma.enable = true;
 
     # User Packages
     home-manager.users.${config.cfi2017.user.name} = {

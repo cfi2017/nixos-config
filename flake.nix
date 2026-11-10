@@ -9,6 +9,11 @@
 
     nixpkgs-25-05.url = "github:NixOS/nixpkgs/nixos-25.05";
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # core flakes
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -135,6 +140,7 @@
       ida-pro-flake,
       zen-browser,
       impermanence,
+      nix-index-database,
       hyprland,
       hyprpaper,
       hyprlock,
@@ -220,6 +226,7 @@
         catppuccin.nixosModules.catppuccin
         nur.modules.nixos.default
         vicinae.nixosModules.default
+        nix-index-database.nixosModules.default
         # inputs.microsoft-azurevpnclient.nixosModules.default
         # binaryninja-flake.nixosModules.binaryninja
 
