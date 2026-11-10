@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./attic-cache.nix
     ./rustic-backup.nix
     ./sshd.nix
   ];

@@ -17,9 +17,8 @@
         pkgs.obsidian
         pkgs.wireshark
         pkgs.headlamp
-        pkgs.libreoffice
-        pkgs.super-productivity
-        pkgs.nheko
+        # pkgs.libreoffice
+        # pkgs.super-productivity
       ];
     };
   };

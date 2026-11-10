@@ -25,7 +25,6 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    initrd.systemd.enable = true;
   };
 
   console = {
@@ -55,6 +54,11 @@
   system.stateVersion = "26.05";
 
   cfi2017 = {
+    attic = {
+      enable = true;
+      cache = "efi-nixos";
+      publicKey = "efi-nixos:3UQTGC+npKRnT3kA3NnJlXMhIIrn0CISM0+uYUJAHhU=";
+    };
     stateVersion = "26.05";
     gpg.enable = true;
     persistence.enable = true;

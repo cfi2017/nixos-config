@@ -48,7 +48,6 @@
           (lib.optionals config.cfi2017.development-packages.tools.python [
             python3
             python3Packages.python-lsp-server
-            python3Packages.pwntools
             uv
           ])
           # Rust Tools
@@ -118,7 +117,6 @@
             awscli2
             azure-cli
             hcloud
-            minio-client
           ])
           # Dev Tools
           (lib.optionals config.cfi2017.development-packages.tools.dev [

@@ -78,6 +78,7 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     multi-profile = {
       url = "github:cfi2017/multi-profile";

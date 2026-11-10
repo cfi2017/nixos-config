@@ -67,7 +67,9 @@ in
             imports = [
               inputs.catppuccin.homeModules.catppuccin
               inputs.nix-colors.homeManagerModules.default
-              inputs.zen-browser.homeModules.twilight-official
+              # The official Twilight URL is overwritten by each release. Use
+              # the versioned archive so the download matches the pinned hash.
+              inputs.zen-browser.homeModules.twilight
               inputs.multi-profile.homeModules.default
               inputs.whisper-relay.homeManagerModules.default
               inputs.vicinae.homeManagerModules.default

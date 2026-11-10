@@ -24,7 +24,6 @@
       "rd.systemd.show_status=auto"
     ];
     initrd = {
-      verbose = false;
       availableKernelModules = [
         "xhci_pci"
         "ahci"
@@ -35,7 +34,6 @@
         "sd_mod"
       ];
       kernelModules = [ "virtio" ];
-      systemd.enable = true;
     };
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];

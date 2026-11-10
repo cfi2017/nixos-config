@@ -26,6 +26,22 @@
       };
     in
     {
+      # Fabric 3.2.3 is incompatible with Invoke 3 (fabric/fabric#2376).
+      # Keep one compatible Invoke throughout each Python package set so
+      # consumers such as Azure CLI do not acquire conflicting versions.
+      pythonPackagesExtensions = (prev.pythonPackagesExtensions or [ ]) ++ [
+        (python-final: python-prev: {
+          invoke = python-prev.invoke.overridePythonAttrs (old: {
+            version = "2.2.1";
+            src = final.fetchPypi {
+              pname = "invoke";
+              version = "2.2.1";
+              hash = "sha256-UVv0m0pIkyt5sCRZA0jaIvOcSULf+ZGtH7i4uuob5wc=";
+            };
+          });
+        })
+      ];
+
       # Kubernetes 1.36's cAdvisor requires a zfs CLI when /dev/zfs exists.
       # kind nodes lack that CLI; use filesystem statistics instead.
       kind = prev.kind.overrideAttrs (old: {
