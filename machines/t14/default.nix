@@ -85,7 +85,7 @@
     };
     development.virtualisation = {
       docker.enable = true;
-      hypervisor.enable = true;
+      hypervisor.enable = false;
     };
     graphical = {
       enable = true;
