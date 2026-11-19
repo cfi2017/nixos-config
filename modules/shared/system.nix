@@ -85,6 +85,8 @@
         font-awesome
         nerd-fonts.symbols-only
         nerd-fonts._0xproto
+        source-sans
+        source-sans-pro
       ];
     };
 
