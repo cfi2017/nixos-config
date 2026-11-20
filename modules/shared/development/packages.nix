@@ -104,7 +104,6 @@
             kubectl-neat
             kubectl-explore
             kubectl-doctor
-            kubectl-validate
             kubectl-evict-pod
             kubectl-node-shell
             kubectl-view-allocations
