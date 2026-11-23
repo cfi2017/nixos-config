@@ -12,8 +12,8 @@ let
   # added when it is enabled so it can be chosen at login (--remember-session
   # persists the last pick).
   session-dirs = lib.concatStringsSep ":" (
-    [ "${pkgs.hyprland}/share/wayland-sessions" ]
-    ++ lib.optional config.cfi2017.graphical.niri.enable "${config.programs.niri.package}/share/wayland-sessions"
+    lib.optional config.cfi2017.graphical.niri.enable "${config.programs.niri.package}/share/wayland-sessions"
+    ++ [ "${pkgs.hyprland}/share/wayland-sessions" ]
   );
 in
 {
