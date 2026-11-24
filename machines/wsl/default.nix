@@ -9,16 +9,23 @@
 
   wsl = {
     enable = true;
-    # Must match the user the shared modules configure (home-manager, sops, groups).
     defaultUser = config.cfi2017.user.name;
   };
 
   networking.hostName = "wsl";
 
-  # No sshd here, so there is no host key to derive an age identity from.
-  # sops decrypts with the age key at sops.age.keyFile instead; its public key
-  # must be a recipient in .sops.yaml.
-  sops.age.sshKeyPaths = lib.mkForce [ ];
+  # WSL launches the default user directly and NixOS-WSL grants wheel
+  # passwordless sudo. This host does not run sshd or need login secrets.
+  sops = {
+    age.generateKey = lib.mkForce false;
+    secrets = lib.mkForce { };
+  };
+  users.allowNoPasswordLogin = true;
+
+  home-manager.users.${config.cfi2017.user.name}.accounts.email.accounts.kabelsalat = {
+    primary = true;
+    notmuch.enable = true;
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
