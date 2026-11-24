@@ -83,7 +83,7 @@
           (lib.mkIf config.cfi2017.isLinux {
             isNormalUser = true;
             group = config.cfi2017.user.name;
-            hashedPasswordFile = config.sops.secrets."users/${config.cfi2017.user.name}".path;
+            hashedPasswordFile = config.sops.secrets."users/${config.cfi2017.user.name}".path or null;
             extraGroups = lib.mkIf config.cfi2017.isLinux [
               "systemd-journal"
               "systemd-resolve"

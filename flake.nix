@@ -309,17 +309,18 @@
         };
         wsl = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs outputs;
+            inherit outputs;
+            inputs = builtins.removeAttrs inputs [ "private-work" ];
             lib = lib "x86_64-linux";
           };
           # WSL is not a bare-metal host: skip ./modules/nixos and take only the
           # external modules the shared layer depends on.
           modules =
-            privateModules
-            ++ sharedModules
+            sharedModules
             ++ [
               sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
+              nix-index-database.nixosModules.default
               ./machines/wsl/default.nix
             ];
         };

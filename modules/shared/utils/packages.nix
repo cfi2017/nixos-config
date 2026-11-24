@@ -39,7 +39,6 @@
       sshpass
       keepassxc
       lbdb
-      citrix-workspace
       ccid
       pcsclite
       usbutils
@@ -78,7 +77,7 @@
       strace-analyzer
 
       pcsc-safenet
-    ];
+    ] ++ lib.optional (!(config.wsl.enable or false)) citrix-workspace;
 
     programs.nix-index-database.comma.enable = true;
 
