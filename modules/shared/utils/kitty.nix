@@ -27,6 +27,9 @@
 
           cursor_trail = 3;
           kitty_mod = "ctrl+shift";
+
+          # long scrollback :3
+          scrollback_lines = 100000;
         };
         keybindings = {
           "ctrl+c" = "copy_and_clear_or_interrupt";
@@ -34,8 +37,8 @@
 
           # Browser-style zoom using keysyms that are directly reachable on the
           # Swiss layout: '+' is Shift+1, while '-' has its own physical key.
-          "ctrl+plus" = "change_font_size all +2.0";
-          "ctrl+minus" = "change_font_size all -2.0";
+          "ctrl+," = "change_font_size all +1.0";
+          "ctrl+-" = "change_font_size all -1.0";
           "ctrl+0" = "change_font_size all 0";
         };
       };
