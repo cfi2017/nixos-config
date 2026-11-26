@@ -27,7 +27,8 @@
       kernelModules = [ "virtio" ];
       luks.devices.cryptswap.device = "/dev/nvme0n1p3";
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
+    # Use the supported default kernel for compatibility with ZFS.
+    kernelPackages = pkgs.linuxPackages;
     kernelParams = [
       "quiet"
       "splash"
@@ -37,8 +38,6 @@
     ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
-    # deprecated
-    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     resumeDevice = "/dev/disk/by-label/swap";
 
     plymouth = {
