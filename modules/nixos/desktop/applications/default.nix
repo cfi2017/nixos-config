@@ -17,6 +17,8 @@
         pkgs.obsidian
         pkgs.wireshark
         pkgs.headlamp
+        pkgs.sable
+        pkgs.signal-desktop
         # pkgs.libreoffice
         # pkgs.super-productivity
       ];
